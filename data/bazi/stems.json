@@ -1,0 +1,55 @@
+{
+  "_note": "Ten Heavenly Stems with element, polarity, personality traits, and interpretive text for RAG.",
+  "entries": [
+    {
+      "id": "jia",
+      "meta": {"stem": "甲", "name": "Jiǎ", "element": "Yang Wood"},
+      "text": "Jiǎ (甲) Yang Wood: The upright, growing tree. People with Yang Wood as their Day Master tend to be principled, direct, and persistent — they grow toward the light with single-minded purpose. Their strength is integrity and the ability to provide shelter for others; their challenge is rigidity and difficulty bending when circumstances demand it. Yang Wood thrives when it has deep roots (Water support) but is exhausted by Metal cutting it down or Fire draining its energy upward."
+    },
+    {
+      "id": "yi",
+      "meta": {"stem": "乙", "name": "Yǐ", "element": "Yin Wood"},
+      "text": "Yǐ (乙) Yin Wood: The vine, the grass, the flexible plant that survives by adapting. Yin Wood Day Masters are often gentle, diplomatic, and skilled at finding a way through — they bend rather than break. Creative and aesthetically sensitive, they may struggle with indecisiveness or dependence on a stronger support. They flourish in nurturing environments and wilt under sustained pressure without recovery time."
+    },
+    {
+      "id": "bing",
+      "meta": {"stem": "丙", "name": "Bǐng", "element": "Yang Fire"},
+      "text": "Bǐng (丙) Yang Fire: The blazing sun, radiant and visible to all. Yang Fire Day Masters are warm, generous, charismatic — they light up a room and draw others toward them naturally. Their challenge is the cost of that generosity: burning out, overextending, or needing to be seen. They illuminate everything around them and may find it difficult to rest or turn inward."
+    },
+    {
+      "id": "ding",
+      "meta": {"stem": "丁", "name": "Dīng", "element": "Yin Fire"},
+      "text": "Dīng (丁) Yin Fire: The candle flame — precise, steady, and intimate. Yin Fire Day Masters are perceptive, thoughtful, and devoted. They offer warmth selectively, to those in the room with them, rather than broadcasting like the sun. Highly intuitive and often artistic, they may struggle with self-doubt or being overlooked. They need steady fuel (Wood) to burn without flickering out."
+    },
+    {
+      "id": "wu",
+      "meta": {"stem": "戊", "name": "Wù", "element": "Yang Earth"},
+      "text": "Wù (戊) Yang Earth: The mountain, the vast plain. Immovable, dependable, and quietly powerful. Yang Earth Day Masters are stable, patient, and trustworthy — the kind of person others lean on in a crisis. They may be slow to change or to express emotion, but their loyalty is absolute. They can become stubborn or overly conservative when stressed."
+    },
+    {
+      "id": "ji",
+      "meta": {"stem": "己", "name": "Jǐ", "element": "Yin Earth"},
+      "text": "Jǐ (己) Yin Earth: Fertile farmland, rich and giving. Yin Earth Day Masters are nurturing, detail-oriented, and skilled at sustaining growth in others — they are the soil in which things take root. They may absorb the moods of those around them too easily, becoming anxious or overwhelmed. Their strength is in practical care; their challenge is maintaining boundaries."
+    },
+    {
+      "id": "geng",
+      "meta": {"stem": "庚", "name": "Gēng", "element": "Yang Metal"},
+      "text": "Gēng (庚) Yang Metal: The sword, the axe, the uncompromising edge. Yang Metal Day Masters are decisive, bold, and relentlessly honest — sometimes to a fault. They cut through confusion and get to the point. They may come across as blunt or combative, and can struggle with flexibility. Their strength lies in clarity and follow-through; their challenge is learning when not to cut."
+    },
+    {
+      "id": "xin",
+      "meta": {"stem": "辛", "name": "Xīn", "element": "Yin Metal"},
+      "text": "Xīn (辛) Yin Metal: The jewel, the refined blade, the precious thing. Yin Metal Day Masters are elegant, perceptive, and often perfectionistic — they have high standards for themselves and for beauty in the world. They are sensitive to criticism because they have internalized it already. Their greatest strength is discernment; their challenge is learning to accept imperfection in themselves and others."
+    },
+    {
+      "id": "ren",
+      "meta": {"stem": "壬", "name": "Rén", "element": "Yang Water"},
+      "text": "Rén (壬) Yang Water: The ocean, the river in flood — vast, deep, and relentlessly moving. Yang Water Day Masters are intelligent, adaptable, and always scanning the horizon. They absorb information quickly and find paths where others see obstacles. The challenge is depth without direction: their thinking can become scattered, and they may drift rather than commit."
+    },
+    {
+      "id": "gui",
+      "meta": {"stem": "癸", "name": "Guǐ", "element": "Yin Water"},
+      "text": "Guǐ (癸) Yin Water: The rain, the underground spring, the dew. Yin Water Day Masters are intuitive, imaginative, and often quietly wise. They sense things others miss and carry a rich inner world. They may struggle to be seen or to assert themselves, preferring to influence indirectly. They thrive when they trust their own perception and find ways to bring their interior world outward."
+    }
+  ]
+}

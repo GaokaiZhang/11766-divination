@@ -1,0 +1,55 @@
+{
+  "_note": "Common element interactions and Bazi pattern descriptions for RAG context.",
+  "entries": [
+    {
+      "id": "wood_fire",
+      "meta": {"pattern": "Wood feeds Fire", "elements": ["Wood", "Fire"]},
+      "text": "Wood feeding Fire (木生火): When Wood is strong in a chart with Fire, the native tends toward warmth, creativity, and outward expression. The energy flows naturally from inner vision (Wood) toward visible achievement (Fire). The risk is burning through resources too quickly — Wood can exhaust itself sustaining Fire's needs."
+    },
+    {
+      "id": "fire_earth",
+      "meta": {"pattern": "Fire produces Earth", "elements": ["Fire", "Earth"]},
+      "text": "Fire producing Earth (火生土): Fire settling into Earth brings a grounded creative force — passion that builds something lasting. In a chart, this combination often signals someone who can take bold vision and turn it into tangible results. The challenge is not letting the fire go out before the work is done."
+    },
+    {
+      "id": "earth_metal",
+      "meta": {"pattern": "Earth produces Metal", "elements": ["Earth", "Metal"]},
+      "text": "Earth producing Metal (土生金): The mountain yielding its ore. Earth supporting Metal in a chart tends toward precision, refinement, and a patient commitment to quality. This combination may indicate someone who does their most important work slowly, over time, without needing external validation."
+    },
+    {
+      "id": "metal_water",
+      "meta": {"pattern": "Metal produces Water", "elements": ["Metal", "Water"]},
+      "text": "Metal producing Water (金生水): The condensation on the sword, the spring emerging from rock. Metal feeding Water in a chart often signals sharp intelligence and emotional depth — someone who thinks clearly and feels deeply. The challenge is not letting the Water become too cold or the Metal too rigid."
+    },
+    {
+      "id": "water_wood",
+      "meta": {"pattern": "Water feeds Wood", "elements": ["Water", "Wood"]},
+      "text": "Water feeding Wood (水生木): Nourishment flowing toward growth. This is one of the most fertile combinations in Bazi — steady inner depth (Water) sustaining outward expansion (Wood). A chart with this combination often signals someone capable of sustained growth, provided the Water does not flood and drown the roots."
+    },
+    {
+      "id": "wood_earth",
+      "meta": {"pattern": "Wood controls Earth", "elements": ["Wood", "Earth"]},
+      "text": "Wood controlling Earth (木克土): Roots binding soil. When Wood is dominant in a chart relative to Earth, the native may feel restless and resistant to settling down, always seeking new ground. If Earth is weak, there may be difficulty with stability, routine, or material security. When balanced, Wood and Earth together can indicate purposeful, grounded growth."
+    },
+    {
+      "id": "fire_metal",
+      "meta": {"pattern": "Fire controls Metal", "elements": ["Fire", "Metal"]},
+      "text": "Fire controlling Metal (火克金): The forge shaping the sword. In a chart where Fire is strong relative to Metal, intensity and ambition may sometimes overwhelm careful judgment. But Fire tempering Metal also means refinement — passion that sharpens rather than destroys. This dynamic often appears in people who work best under pressure."
+    },
+    {
+      "id": "water_fire",
+      "meta": {"pattern": "Water controls Fire", "elements": ["Water", "Fire"]},
+      "text": "Water controlling Fire (水克火): Caution meeting passion. When Water is dominant over Fire in a chart, the native may struggle with self-doubt tempering their ambitions, or find that fear of risk dampens genuine enthusiasm. When balanced, this combination brings emotional intelligence to action — feeling your way carefully rather than charging forward."
+    },
+    {
+      "id": "strong_day_master",
+      "meta": {"pattern": "Strong Day Master"},
+      "text": "A Strong Day Master: When the Day Stem element is well-supported by the other pillars (especially the Month and Hour), the chart is considered 'strong.' Strong Day Masters tend to be self-reliant, sometimes stubborn, and at their best when they are directing their own work rather than following others. The challenge is learning when to accept help — strength can become isolation."
+    },
+    {
+      "id": "weak_day_master",
+      "meta": {"pattern": "Weak Day Master"},
+      "text": "A Weak Day Master: When the Day Stem element is unsupported or controlled by the surrounding pillars, the chart is considered 'weak.' Weak Day Masters tend toward collaboration, sensitivity, and adaptability — they flourish when surrounded by supportive people and environments. Their challenge is building enough of a foundation to stand on when the external support is removed."
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+{
+  "_note": "Earthly Branch relationship patterns: Six Combines (六合), Three Harmonies (三合), Six Clashes (六冲), Six Harms (六害), and Three Punishments (三刑). These relational dynamics are central to advanced Bazi interpretation and are frequently confused or oversimplified by LLMs.",
+  "_source": "Verified against Sidereal BaZi (siderealbazi.online/combinations), Imperial Harvest, FengShuied, and classical Zi Ping references.",
+  "entries": [
+    {
+      "id": "six_combines_intro",
+      "meta": {"type": "six_combines", "name": "六合 Introduction"},
+      "text": "The Six Combines (六合 Liù Hé): When two specific Earthly Branches appear in the same chart (especially in adjacent pillars), they form a combine that can transform their elemental nature. A combine represents attraction, bonding, and fusion — the two branches pull toward each other and may produce a new element entirely. In Bazi reading, identifies potential harmony but also attachment: combines can tie you to a person, a pattern, or a situation. The six pairs are: 子丑合(Earth), 寅亥合(Wood), 卯戌合(Fire), 辰酉合(Metal), 巳申合(Water), 午未合(Fire/Earth)."
+    },
+    {
+      "id": "combine_zi_chou",
+      "meta": {"type": "six_combines", "branches": ["子", "丑"], "result_element": "Earth"},
+      "text": "子丑合 (Rat-Ox Combine → Earth): The Water of the Rat meets the Earth of the Ox, and together they settle into Earth. This combine represents stability through commitment — Water stops flowing and becomes grounded. In a chart, this combine often signals a relationship or situation where restless energy (Water) finds a home in something dependable (Earth). The person may sacrifice freedom for security, or find that an unexpected bond provides the stability they needed. When this combine appears between the Day and Month pillars, it often indicates a deep personal relationship that grounds the person's professional life."
+    },
+    {
+      "id": "combine_yin_hai",
+      "meta": {"type": "six_combines", "branches": ["寅", "亥"], "result_element": "Wood"},
+      "text": "寅亥合 (Tiger-Pig Combine → Wood): The Wood of the Tiger meets the Water of the Pig, and together they produce Wood — growth nourished by depth. This is one of the most naturally generative combines: Water feeding Wood is the cycle working at its best. In a chart, this combine suggests partnerships or conditions where emotional depth (Water) fuels ambition and growth (Wood). The person grows through connection. When this combine is present, creative and career expansion often comes through supportive relationships rather than solo effort."
+    },
+    {
+      "id": "combine_mao_xu",
+      "meta": {"type": "six_combines", "branches": ["卯", "戌"], "result_element": "Fire"},
+      "text": "卯戌合 (Rabbit-Dog Combine → Fire): The Wood of the Rabbit meets the Earth of the Dog, and together they produce Fire. This is an unusual transformation — Wood and Earth don't naturally produce Fire, but the Dog's hidden Fire (丁) is released by the Rabbit's Wood fuel. In a chart, this combine often signals a relationship that ignites something unexpected: a gentle person (Rabbit) paired with a loyal protector (Dog) produces passion and visibility neither expected. The Fire outcome means the combine creates warmth, illumination, or public recognition."
+    },
+    {
+      "id": "combine_chen_you",
+      "meta": {"type": "six_combines", "branches": ["辰", "酉"], "result_element": "Metal"},
+      "text": "辰酉合 (Dragon-Rooster Combine → Metal): The Earth of the Dragon meets the Metal of the Rooster, and together they produce Metal — refinement emerging from complexity. Earth naturally produces Metal in the five-element cycle, making this combine feel inevitable and smooth. In a chart, this combine suggests that the querent's imaginative, complex nature (Dragon) finds expression through precision and discernment (Rooster). It often appears in charts of people who channel big visions into meticulously crafted work."
+    },
+    {
+      "id": "combine_si_shen",
+      "meta": {"type": "six_combines", "branches": ["巳", "申"], "result_element": "Water"},
+      "text": "巳申合 (Snake-Monkey Combine → Water): The Fire of the Snake meets the Metal of the Monkey, and together they produce Water — intelligence distilled from strategy and sharpness. Fire controlling Metal is normally destructive, but in this combine the tension is transmuted into Water (wisdom). In a chart, this combine often indicates that conflict or pressure (Fire-Metal tension) produces unexpected insight. The person may thrive in adversarial or high-pressure situations because the tension itself generates clarity."
+    },
+    {
+      "id": "combine_wu_wei",
+      "meta": {"type": "six_combines", "branches": ["午", "未"], "result_element": "Fire"},
+      "text": "午未合 (Horse-Goat Combine → Fire or Earth): The Fire of the Horse meets the Earth of the Goat, and together they settle into Fire (some schools say Earth). This combine represents passion meeting receptivity. In a chart, it often signals creative or romantic partnerships where one person's outward energy (Horse) is received and transformed by another's quiet depth (Goat). The Horse-Goat combine is considered one of the most harmonious because Fire naturally produces Earth."
+    },
+    {
+      "id": "three_harmonies_intro",
+      "meta": {"type": "three_harmonies", "name": "三合 Introduction"},
+      "text": "The Three Harmonies (三合 Sān Hé): Groups of three Earthly Branches that, when all present in a chart, form a powerful elemental alliance. Each group produces one of the four cardinal elements. The Three Harmonies represent natural affinity and cooperative energy on a larger scale than the Six Combines. When all three branches of a harmony group appear in a chart, the resulting element becomes dominant. Even a partial harmony (two of three branches present) strengthens the element. The four groups: 申子辰→Water, 亥卯未→Wood, 寅午戌→Fire, 巳酉丑→Metal."
+    },
+    {
+      "id": "harmony_water",
+      "meta": {"type": "three_harmonies", "branches": ["申", "子", "辰"], "result_element": "Water"},
+      "text": "申子辰 三合水局 (Monkey-Rat-Dragon → Water Bureau): When Monkey, Rat, and Dragon all appear in a chart, they form the Water Bureau — a powerful concentration of Water energy. The Monkey (Metal) generates Water, the Rat (Water) is the core, and the Dragon stores Water. This harmony signals deep emotional intelligence, adaptability, and the capacity to flow around obstacles. In a person's chart, the Water Bureau often indicates someone with strong intuition and the ability to influence others through empathy rather than force. The challenge is direction: Water without banks floods everywhere."
+    },
+    {
+      "id": "harmony_wood",
+      "meta": {"type": "three_harmonies", "branches": ["亥", "卯", "未"], "result_element": "Wood"},
+      "text": "亥卯未 三合木局 (Pig-Rabbit-Goat → Wood Bureau): When Pig, Rabbit, and Goat all appear in a chart, they form the Wood Bureau — a powerful concentration of Wood energy. The Pig (Water) nourishes Wood, the Rabbit (Wood) is the core, and the Goat stores residual Wood. This harmony signals growth, kindness, creativity, and upward movement. In a person's chart, the Wood Bureau often indicates someone with strong creative drive, a talent for nurturing others, and a life trajectory that keeps expanding. The challenge is knowing when to stop growing and start consolidating."
+    },
+    {
+      "id": "harmony_fire",
+      "meta": {"type": "three_harmonies", "branches": ["寅", "午", "戌"], "result_element": "Fire"},
+      "text": "寅午戌 三合火局 (Tiger-Horse-Dog → Fire Bureau): When Tiger, Horse, and Dog all appear in a chart, they form the Fire Bureau — a powerful concentration of Fire energy. The Tiger (Wood) fuels Fire, the Horse (Fire) is the core, and the Dog stores Fire. This harmony signals passion, visibility, ambition, and the drive to be seen. In a person's chart, the Fire Bureau often indicates someone with charisma, leadership qualities, and the ability to inspire others. The challenge is sustainability: Fire burns brightest before it exhausts its fuel."
+    },
+    {
+      "id": "harmony_metal",
+      "meta": {"type": "three_harmonies", "branches": ["巳", "酉", "丑"], "result_element": "Metal"},
+      "text": "巳酉丑 三合金局 (Snake-Rooster-Ox → Metal Bureau): When Snake, Rooster, and Ox all appear in a chart, they form the Metal Bureau — a powerful concentration of Metal energy. The Snake (Fire) tempers Metal, the Rooster (Metal) is the core, and the Ox stores Metal. This harmony signals precision, justice, determination, and high standards. In a person's chart, the Metal Bureau often indicates someone with sharp judgment, professional excellence, and an uncompromising sense of right and wrong. The challenge is rigidity: Metal that won't bend eventually breaks."
+    },
+    {
+      "id": "six_clashes_intro",
+      "meta": {"type": "six_clashes", "name": "六冲 Introduction"},
+      "text": "The Six Clashes (六冲 Liù Chōng): When two directly opposing Earthly Branches appear in the same chart, they create a clash — a collision of energies that disrupts, destabilizes, and forces change. Clashes are not inherently bad; they signal movement, breakthrough, and necessary disruption. But they are uncomfortable. In Bazi reading, clashes between pillars often indicate life changes tied to those pillars' domains (Year=ancestry, Month=career, Day=self/spouse, Hour=children/legacy). The six clash pairs: 子午冲, 丑未冲, 寅申冲, 卯酉冲, 辰戌冲, 巳亥冲."
+    },
+    {
+      "id": "clash_zi_wu",
+      "meta": {"type": "six_clashes", "branches": ["子", "午"]},
+      "text": "子午冲 (Rat-Horse Clash / Water vs. Fire): The most elemental of the clashes — Water directly opposes Fire. This clash represents the tension between caution and passion, depth and visibility, withdrawal and engagement. In a chart, this clash often manifests as inner conflict between wanting to be seen (Fire) and wanting to retreat (Water), or between emotional safety and bold action. Life events triggered by this clash tend to be dramatic and emotionally charged."
+    },
+    {
+      "id": "clash_chou_wei",
+      "meta": {"type": "six_clashes", "branches": ["丑", "未"]},
+      "text": "丑未冲 (Ox-Goat Clash / Earth vs. Earth): Both branches are Earth, but they carry different hidden stems and energies. The Ox is cold, disciplined Earth (winter); the Goat is warm, creative Earth (summer). This clash represents the tension between duty and desire, pragmatism and art, stoicism and sensitivity. Because both are Earth, this clash often plays out internally — it feels like being pulled between two equally valid versions of yourself."
+    },
+    {
+      "id": "clash_yin_shen",
+      "meta": {"type": "six_clashes", "branches": ["寅", "申"]},
+      "text": "寅申冲 (Tiger-Monkey Clash / Wood vs. Metal): Metal chops Wood — this clash represents the tension between bold growth and sharp restraint. The Tiger charges forward; the Monkey outmaneuvers. In a chart, this clash often manifests as career upheaval, restlessness, or conflict between ambition (Tiger) and pragmatic calculation (Monkey). The clash can produce both destructive competition and creative tension."
+    },
+    {
+      "id": "clash_mao_you",
+      "meta": {"type": "six_clashes", "branches": ["卯", "酉"]},
+      "text": "卯酉冲 (Rabbit-Rooster Clash / Wood vs. Metal): Pure Yin Wood meets pure Yin Metal — two refined, concentrated energies in direct opposition. This clash is often felt as a conflict between harmony-seeking (Rabbit) and truth-telling (Rooster), between diplomacy and bluntness. In relationships, this clash can indicate deep attraction paired with persistent friction. In a career context, it may signal tension between creative vision and critical judgment."
+    },
+    {
+      "id": "clash_chen_xu",
+      "meta": {"type": "six_clashes", "branches": ["辰", "戌"]},
+      "text": "辰戌冲 (Dragon-Dog Clash / Earth vs. Earth): Two storage branches in direct opposition — the Dragon stores Water, the Dog stores Fire. This clash activates stored energies, releasing what has been held in reserve. In a chart, the Dragon-Dog clash often signals a period where buried emotions, dormant talents, or suppressed conflicts suddenly surface. It can be destabilizing but also profoundly clarifying."
+    },
+    {
+      "id": "clash_si_hai",
+      "meta": {"type": "six_clashes", "branches": ["巳", "亥"]},
+      "text": "巳亥冲 (Snake-Pig Clash / Fire vs. Water): The Snake's strategic intensity meets the Pig's open generosity. This clash represents tension between calculated self-interest and selfless giving, between guarding secrets and trusting freely. In a chart, this clash can manifest as betrayal anxiety, trust issues, or the painful lesson of learning whom to trust. When resolved, it produces wisdom about boundaries."
+    },
+    {
+      "id": "six_harms_intro",
+      "meta": {"type": "six_harms", "name": "六害 Introduction"},
+      "text": "The Six Harms (六害 Liù Hài): Harmful pairings that create subtle, persistent damage rather than the dramatic disruption of clashes. Harms often manifest as relationships or situations that look fine on the surface but slowly erode wellbeing. They can represent backstabbing, hidden resentment, or situations where helping one person necessarily hurts another. In Bazi reading, harms are less dramatic than clashes but more insidious. The six harm pairs: 子未害, 丑午害, 寅巳害, 卯辰害, 申亥害, 酉戌害."
+    },
+    {
+      "id": "harm_zi_wei",
+      "meta": {"type": "six_harms", "branches": ["子", "未"]},
+      "text": "子未害 (Rat-Goat Harm): The Rat (Water) and the Goat (Earth) create a harm because the Goat's combine partner is the Horse (午未合), and the Rat clashes with the Horse (子午冲). The harm arises when loyalty to one bond necessarily damages another. In life, this manifests as situations where caring for one person means neglecting another, or where your inner emotional needs (Rat/Water) conflict with your nurturing obligations (Goat/Earth)."
+    },
+    {
+      "id": "harm_chou_wu",
+      "meta": {"type": "six_harms", "branches": ["丑", "午"]},
+      "text": "丑午害 (Ox-Horse Harm): The Ox's combine partner is the Rat (子丑合), and the Horse clashes with the Rat (子午冲). This harm creates tension between stability (Ox) and freedom (Horse). It often manifests in career contexts: the steady, reliable work (Ox) conflicts with the restless desire for something more exciting (Horse). The harm is particularly felt when duty and passion pull in opposite directions."
+    },
+    {
+      "id": "harm_yin_si",
+      "meta": {"type": "six_harms", "branches": ["寅", "巳"]},
+      "text": "寅巳害 (Tiger-Snake Harm): The Tiger's combine partner is the Pig (寅亥合), and the Snake clashes with the Pig (巳亥冲). This harm creates a triangle of conflicting loyalties. In a chart, it often manifests as situations where bold action (Tiger) is undermined by strategic opposition (Snake), or where trust given to one alliance creates vulnerability from another direction. This harm can also indicate health concerns related to Fire-Wood imbalances."
+    },
+    {
+      "id": "harm_mao_chen",
+      "meta": {"type": "six_harms", "branches": ["卯", "辰"]},
+      "text": "卯辰害 (Rabbit-Dragon Harm): The Rabbit's combine partner is the Dog (卯戌合), and the Dragon clashes with the Dog (辰戌冲). This harm often manifests as the tension between gentleness (Rabbit) and ambition (Dragon) — being kind can hold you back from pursuing your visions, or pursuing visions can damage gentle relationships. In practice, this harm appears in charts of people who struggle to reconcile their social grace with their deeper aspirations."
+    },
+    {
+      "id": "harm_shen_hai",
+      "meta": {"type": "six_harms", "branches": ["申", "亥"]},
+      "text": "申亥害 (Monkey-Pig Harm): The Monkey's combine partner is the Snake (巳申合), and the Pig clashes with the Snake (巳亥冲). This harm creates tension between cleverness (Monkey) and sincerity (Pig). It often manifests as situations where being too clever undermines genuine trust, or where trusting too freely leaves you vulnerable to manipulation. In relationships, this harm can indicate partnerships where one person's wit and the other's openness create a subtle power imbalance."
+    },
+    {
+      "id": "harm_you_xu",
+      "meta": {"type": "six_harms", "branches": ["酉", "戌"]},
+      "text": "酉戌害 (Rooster-Dog Harm): The Rooster's combine partner is the Dragon (辰酉合), and the Dog clashes with the Dragon (辰戌冲). This harm represents the tension between perfectionism (Rooster) and loyalty (Dog) — high standards can wound the people closest to you. In a chart, it often appears in people who are deeply principled but whose principles sometimes alienate their allies. The harm asks: can you hold high standards without cutting those who love you?"
+    },
+    {
+      "id": "three_punishments_intro",
+      "meta": {"type": "three_punishments", "name": "三刑 Introduction"},
+      "text": "The Three Punishments (三刑 Sān Xíng): The most severe branch relationships, indicating deep patterns of self-sabotage, karmic debt, or repeated painful lessons. Punishments differ from clashes (which are dramatic disruptions) and harms (which are subtle erosion). Punishments represent patterns that recur until the lesson is learned — they feel fated and often involve suffering that ultimately produces growth. There are four types: Ungrateful Punishment (寅巳申), Bullying Punishment (丑未戌), Uncivilized Punishment (子卯), and Self-Punishment (辰辰, 午午, 酉酉, 亥亥)."
+    },
+    {
+      "id": "punishment_ungrateful",
+      "meta": {"type": "three_punishments", "branches": ["寅", "巳", "申"], "name": "Ungrateful Punishment"},
+      "text": "寅巳申刑 — Ungrateful Punishment (恩中生害): Tiger, Snake, and Monkey form the Punishment of Ingratitude — help given that is repaid with betrayal, or generosity that creates resentment. When all three appear in a chart, the person may repeatedly experience situations where their good intentions backfire or where trusted people turn against them. The lesson is not to stop giving but to give without expectation. Each pair within the triad carries its own tension: Tiger-Snake (boldness undermined by strategy), Snake-Monkey (cunning meeting cleverness), Monkey-Tiger (calculation colliding with courage)."
+    },
+    {
+      "id": "punishment_bullying",
+      "meta": {"type": "three_punishments", "branches": ["丑", "未", "戌"], "name": "Bullying Punishment"},
+      "text": "丑未戌刑 — Bullying Punishment (恃势之刑): Ox, Goat, and Dog form the Punishment of Bullying — all three are Earth branches, creating an excess of stubbornness, rigidity, and the impulse to dominate through sheer persistence. When all three appear in a chart, the person may struggle with control issues, difficulty yielding, or a pattern of relationships where power dynamics become toxic. The lesson is flexibility: the very groundedness that is Earth's strength becomes oppressive when it refuses to accommodate others."
+    },
+    {
+      "id": "punishment_uncivilized",
+      "meta": {"type": "three_punishments", "branches": ["子", "卯"], "name": "Uncivilized Punishment"},
+      "text": "子卯刑 — Uncivilized Punishment (无礼之刑): Rat and Rabbit form the Punishment of Rudeness or Disrespect. Water (Rat) nourishes Wood (Rabbit) in the productive cycle, but here the nourishment is excessive — like a parent who overindulges a child until the child has no respect for boundaries. When this pair appears in a chart, it can indicate entitlement, boundary violations, or relationships where kindness has eroded respect. The lesson is that support without structure produces neither gratitude nor growth."
+    },
+    {
+      "id": "punishment_self",
+      "meta": {"type": "three_punishments", "branches": ["辰辰", "午午", "酉酉", "亥亥"], "name": "Self-Punishment"},
+      "text": "Self-Punishment (自刑): When the same branch appears twice or more in a chart (辰辰, 午午, 酉酉, or 亥亥), it creates a Self-Punishment — the energy turns inward and attacks itself. Dragon-Dragon: imagination that becomes delusion, or ambition that consumes itself. Horse-Horse: passion that burns without purpose, restlessness that can't be satisfied. Rooster-Rooster: perfectionism that becomes paralyzing self-criticism. Pig-Pig: generosity that enables or depletes the self. The lesson in all cases is moderation: the same quality that defines you can destroy you if taken to excess."
+    }
+  ]
+}

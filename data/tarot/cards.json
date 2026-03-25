@@ -1,0 +1,1153 @@
+{
+  "_note": "Full 78-card Rider-Waite-Smith dataset. Major Arcana (0–21) and all 56 Minor Arcana cards.",
+  "cards": [
+    {
+      "id": "major_00",
+      "name": "The Fool",
+      "arcana": "major",
+      "number": 0,
+      "upright": {
+        "meaning": "New beginnings, innocence, spontaneity, and a free spirit. The Fool leaps into the unknown with pure trust, unconcerned with risk.",
+        "keywords": ["beginnings", "innocence", "spontaneity", "leap of faith", "freedom", "naivety"]
+      },
+      "reversed": {
+        "meaning": "Recklessness, being taken advantage of, inconsideration. A naivety that has tipped into carelessness, or fear of taking a necessary leap.",
+        "keywords": ["recklessness", "foolishness", "risk-taking", "distraction", "apathy"]
+      }
+    },
+    {
+      "id": "major_01",
+      "name": "The Magician",
+      "arcana": "major",
+      "number": 1,
+      "upright": {
+        "meaning": "Willpower, skill, resourcefulness, and the ability to manifest. All tools are available; the question is whether you will use them.",
+        "keywords": ["willpower", "manifestation", "skill", "concentration", "action", "resourcefulness"]
+      },
+      "reversed": {
+        "meaning": "Manipulation, poor planning, untapped talents. Gifts that are being squandered or turned toward deceptive ends.",
+        "keywords": ["manipulation", "cunning", "untapped potential", "trickery", "wasted talent"]
+      }
+    },
+    {
+      "id": "major_02",
+      "name": "The High Priestess",
+      "arcana": "major",
+      "number": 2,
+      "upright": {
+        "meaning": "Intuition, sacred knowledge, the subconscious, and inner wisdom. She sits between the conscious and unconscious, keeper of what is not yet said.",
+        "keywords": ["intuition", "unconscious", "inner knowledge", "mystery", "patience", "stillness"]
+      },
+      "reversed": {
+        "meaning": "Repressed intuition, hidden agendas, disconnection from the inner voice. Something is being withheld — perhaps from yourself.",
+        "keywords": ["secrets", "repression", "withdrawal", "silence", "hidden motives"]
+      }
+    },
+    {
+      "id": "major_03",
+      "name": "The Empress",
+      "arcana": "major",
+      "number": 3,
+      "upright": {
+        "meaning": "Femininity, beauty, nature, abundance, and nurturing. A card of creation — of life, of art, of relationships tended with care.",
+        "keywords": ["abundance", "nurturing", "fertility", "nature", "sensuality", "creativity"]
+      },
+      "reversed": {
+        "meaning": "Dependence, smothering, creative block. The abundance of the Empress withheld or distorted into overprotection.",
+        "keywords": ["dependence", "creative block", "smothering", "neglect", "infertility"]
+      }
+    },
+    {
+      "id": "major_04",
+      "name": "The Emperor",
+      "arcana": "major",
+      "number": 4,
+      "upright": {
+        "meaning": "Authority, structure, fatherhood, and stability. The Emperor establishes order and holds the container in which things can grow.",
+        "keywords": ["authority", "structure", "control", "fatherhood", "stability", "discipline"]
+      },
+      "reversed": {
+        "meaning": "Tyranny, rigidity, domination. Authority become excessive, or a refusal to yield control when flexibility is needed.",
+        "keywords": ["tyranny", "rigidity", "domination", "inflexibility", "loss of control"]
+      }
+    },
+    {
+      "id": "major_05",
+      "name": "The Hierophant",
+      "arcana": "major",
+      "number": 5,
+      "upright": {
+        "meaning": "Tradition, conformity, institutions, and spiritual guidance. A bridge between the divine and the human, operating within established systems.",
+        "keywords": ["tradition", "conformity", "institutions", "spiritual guidance", "education", "beliefs"]
+      },
+      "reversed": {
+        "meaning": "Rebellion, subversiveness, questioning norms. The call to find one's own spiritual path outside the prescribed one.",
+        "keywords": ["rebellion", "unorthodoxy", "questioning", "challenge to authority", "non-conformity"]
+      }
+    },
+    {
+      "id": "major_06",
+      "name": "The Lovers",
+      "arcana": "major",
+      "number": 6,
+      "upright": {
+        "meaning": "Love, harmony, relationships, values alignment, and choices. Not just romantic love — the deep alignment of values that makes a genuine union possible.",
+        "keywords": ["love", "union", "choices", "alignment", "values", "harmony", "relationships"]
+      },
+      "reversed": {
+        "meaning": "Disharmony, imbalance, misaligned values, bad choices. A partnership or decision that pulls against what truly matters.",
+        "keywords": ["disharmony", "imbalance", "misalignment", "indecision", "conflict of values"]
+      }
+    },
+    {
+      "id": "major_07",
+      "name": "The Chariot",
+      "arcana": "major",
+      "number": 7,
+      "upright": {
+        "meaning": "Control, willpower, success through effort, and determination. Victory earned by harnessing opposing forces and driving forward with focus.",
+        "keywords": ["control", "willpower", "victory", "determination", "direction", "ambition"]
+      },
+      "reversed": {
+        "meaning": "Lack of control, aggression, lack of direction. The chariot careening — force without direction, or the need to slow down.",
+        "keywords": ["loss of control", "aggression", "no direction", "scattered energy", "obstacles"]
+      }
+    },
+    {
+      "id": "major_08",
+      "name": "Strength",
+      "arcana": "major",
+      "number": 8,
+      "upright": {
+        "meaning": "Strength, courage, persuasion, and inner power. Not brute force, but the quiet confidence that tames even the wildest impulses with gentleness.",
+        "keywords": ["inner strength", "courage", "compassion", "soft power", "patience", "fortitude"]
+      },
+      "reversed": {
+        "meaning": "Self-doubt, weakness, insecurity. The lion that roars inward — fear, not force, governing the moment.",
+        "keywords": ["self-doubt", "weakness", "insecurity", "cowardice", "raw emotion unchecked"]
+      }
+    },
+    {
+      "id": "major_09",
+      "name": "The Hermit",
+      "arcana": "major",
+      "number": 9,
+      "upright": {
+        "meaning": "Soul-searching, introspection, solitude, and inner guidance. The lantern held up not to light the whole road but the next step.",
+        "keywords": ["introspection", "solitude", "guidance", "inner wisdom", "reflection", "withdrawal"]
+      },
+      "reversed": {
+        "meaning": "Isolation, loneliness, withdrawal. Solitude that has become avoidance, or wisdom that refuses to be shared.",
+        "keywords": ["isolation", "loneliness", "avoidance", "antisocial behavior", "withdrawal"]
+      }
+    },
+    {
+      "id": "major_10",
+      "name": "Wheel of Fortune",
+      "arcana": "major",
+      "number": 10,
+      "upright": {
+        "meaning": "Good luck, karma, life cycles, and a turning point. The wheel turns regardless — what matters is how we meet what comes around.",
+        "keywords": ["luck", "karma", "cycles", "turning point", "fate", "change", "destiny"]
+      },
+      "reversed": {
+        "meaning": "Bad luck, resistance to change, breaking cycles. Clinging to a position on the wheel that is already turning.",
+        "keywords": ["bad luck", "resistance", "cycles repeating", "setback", "no control"]
+      }
+    },
+    {
+      "id": "major_11",
+      "name": "Justice",
+      "arcana": "major",
+      "number": 11,
+      "upright": {
+        "meaning": "Fairness, truth, cause and effect, and the law. Every action has a consequence; Justice neither punishes nor rewards — it balances.",
+        "keywords": ["fairness", "truth", "cause and effect", "law", "accountability", "balance"]
+      },
+      "reversed": {
+        "meaning": "Unfairness, dishonesty, lack of accountability. The scales tipped — by bias, by dishonesty, or by avoiding consequence.",
+        "keywords": ["unfairness", "dishonesty", "lack of accountability", "bias", "injustice"]
+      }
+    },
+    {
+      "id": "major_12",
+      "name": "The Hanged Man",
+      "arcana": "major",
+      "number": 12,
+      "upright": {
+        "meaning": "Pause, surrender, letting go, and new perspectives. The suspension is chosen — the Hanged Man sees something upside down that no one else can.",
+        "keywords": ["pause", "surrender", "new perspective", "waiting", "sacrifice", "letting go"]
+      },
+      "reversed": {
+        "meaning": "Delays, resistance, stalling. An unwillingness to accept the pause that the moment requires.",
+        "keywords": ["delay", "resistance", "indecision", "stalling", "avoiding sacrifice"]
+      }
+    },
+    {
+      "id": "major_13",
+      "name": "Death",
+      "arcana": "major",
+      "number": 13,
+      "upright": {
+        "meaning": "Endings, beginnings, change, and transformation. Not literal death — but the necessary closing of one chapter before another can open.",
+        "keywords": ["endings", "transformation", "transition", "change", "letting go", "new beginnings"]
+      },
+      "reversed": {
+        "meaning": "Resistance to change, fear of endings, stagnation. Clinging to what has already ended, forestalling the transformation.",
+        "keywords": ["resistance to change", "stagnation", "fear", "inability to move on", "decay"]
+      }
+    },
+    {
+      "id": "major_14",
+      "name": "Temperance",
+      "arcana": "major",
+      "number": 14,
+      "upright": {
+        "meaning": "Balance, moderation, patience, and purpose. The angel pours between two cups — not choosing one over the other, but flowing between.",
+        "keywords": ["balance", "moderation", "patience", "purpose", "alchemy", "flow", "middle path"]
+      },
+      "reversed": {
+        "meaning": "Imbalance, excess, lack of long-term vision. The balance disrupted — too much of one thing, not enough of another.",
+        "keywords": ["imbalance", "excess", "lack of moderation", "discord", "extremes"]
+      }
+    },
+    {
+      "id": "major_15",
+      "name": "The Devil",
+      "arcana": "major",
+      "number": 15,
+      "upright": {
+        "meaning": "Shadow self, attachment, addiction, and restriction. The chains are loose — the figures could leave, but they don't. What are you choosing not to see?",
+        "keywords": ["shadow self", "attachment", "addiction", "materialism", "bondage", "restriction"]
+      },
+      "reversed": {
+        "meaning": "Releasing limiting beliefs, exploring dark thoughts, detachment. The moment of recognizing the chain and deciding whether to remove it.",
+        "keywords": ["releasing bondage", "freedom", "reclaiming power", "shadow work", "detachment"]
+      }
+    },
+    {
+      "id": "major_16",
+      "name": "The Tower",
+      "arcana": "major",
+      "number": 16,
+      "upright": {
+        "meaning": "Sudden change, upheaval, chaos, and revelation. Something built on a false foundation is struck — what collapses was never as solid as it seemed.",
+        "keywords": ["upheaval", "chaos", "sudden change", "revelation", "destruction", "awakening"]
+      },
+      "reversed": {
+        "meaning": "Personal transformation, fear of change, averting disaster. The lightning is still coming — you're just being warned first.",
+        "keywords": ["fear of upheaval", "internal chaos", "avoiding disaster", "resisting change"]
+      }
+    },
+    {
+      "id": "major_17",
+      "name": "The Star",
+      "arcana": "major",
+      "number": 17,
+      "upright": {
+        "meaning": "Hope, faith, renewal, and serenity. After the Tower, the Star appears. Quiet, patient, pouring itself out freely — a promise without demand.",
+        "keywords": ["hope", "faith", "serenity", "renewal", "healing", "inspiration", "generosity"]
+      },
+      "reversed": {
+        "meaning": "Lack of faith, despair, disconnection. The star still shines — but grief or cynicism prevents it from being seen.",
+        "keywords": ["loss of faith", "despair", "disconnection", "hopelessness", "insecurity"]
+      }
+    },
+    {
+      "id": "major_18",
+      "name": "The Moon",
+      "arcana": "major",
+      "number": 18,
+      "upright": {
+        "meaning": "Illusion, fear, the unconscious, and confusion. The path in the Moon's light looks clear but shifts with shadows. Not everything is as it seems.",
+        "keywords": ["illusion", "fear", "unconscious", "confusion", "anxiety", "dreams", "deception"]
+      },
+      "reversed": {
+        "meaning": "Release of fear, repressed emotions surfacing, inner confusion. The fog beginning to lift — or the fear finally being named.",
+        "keywords": ["release of fear", "confusion lifting", "unhealthy patterns", "repression surfacing"]
+      }
+    },
+    {
+      "id": "major_19",
+      "name": "The Sun",
+      "arcana": "major",
+      "number": 19,
+      "upright": {
+        "meaning": "Positivity, success, radiance, and vitality. The child on the horse has nothing to hide. Everything is illuminated; there is nothing to fear.",
+        "keywords": ["positivity", "success", "vitality", "joy", "clarity", "confidence", "radiance"]
+      },
+      "reversed": {
+        "meaning": "Inner child issues, excessive positivity, sadness. The sun still shines, but you're standing in shadow — sometimes by choice.",
+        "keywords": ["pessimism", "sadness", "blocked joy", "unrealistic optimism", "inner child wounds"]
+      }
+    },
+    {
+      "id": "major_20",
+      "name": "Judgement",
+      "arcana": "major",
+      "number": 20,
+      "upright": {
+        "meaning": "Reflection, reckoning, awakening, and absolution. The trumpet sounds — not to condemn, but to call forth. A rising to meet who you are becoming.",
+        "keywords": ["reflection", "reckoning", "awakening", "calling", "absolution", "transformation"]
+      },
+      "reversed": {
+        "meaning": "Self-doubt, refusal of self-examination, harsh judgement. The trumpet heard but not heeded — something in you resists the call.",
+        "keywords": ["self-doubt", "ignoring the call", "self-criticism", "lack of self-awareness"]
+      }
+    },
+    {
+      "id": "major_21",
+      "name": "The World",
+      "arcana": "major",
+      "number": 21,
+      "upright": {
+        "meaning": "Completion, integration, accomplishment, and wholeness. The dancer at the centre of the wreath has arrived — not at an end, but at a fullness.",
+        "keywords": ["completion", "integration", "wholeness", "achievement", "fulfilment", "harmony"]
+      },
+      "reversed": {
+        "meaning": "Incomplete cycles, shortcuts taken, delayed endings. So close — but something prevents the final step toward completion.",
+        "keywords": ["incompletion", "shortcuts", "stagnation", "delay", "lack of closure"]
+      }
+    },
+    {
+      "id": "wands_ace",
+      "name": "Ace of Wands",
+      "arcana": "minor",
+      "suit": "wands",
+      "number": 1,
+      "upright": {
+        "meaning": "Inspiration, new opportunities, growth, and potential. A spark — pure creative energy offered as a gift. Will you take hold of it?",
+        "keywords": ["inspiration", "new opportunity", "creative spark", "potential", "excitement"]
+      },
+      "reversed": {
+        "meaning": "An emerging idea that lacks direction, delays, or creative blocks. The fire is there but hasn't caught yet.",
+        "keywords": ["delays", "creative block", "lack of direction", "missed opportunity"]
+      }
+    },
+    {
+      "id": "wands_02",
+      "name": "Two of Wands",
+      "arcana": "minor",
+      "suit": "wands",
+      "number": 2,
+      "upright": {
+        "meaning": "Future planning, progress, decisions, and discovery. The figure holds the world in his hand, gazing beyond his castle walls — the vision is forming, and the first steps are being weighed.",
+        "keywords": ["planning", "future vision", "progress", "decisions", "discovery", "ambition"]
+      },
+      "reversed": {
+        "meaning": "Fear of the unknown, lack of planning, or playing it safe. The world is offered but you refuse to leave the familiar battlement.",
+        "keywords": ["fear of unknown", "poor planning", "indecision", "staying safe", "lack of vision"]
+      }
+    },
+    {
+      "id": "wands_03",
+      "name": "Three of Wands",
+      "arcana": "minor",
+      "suit": "wands",
+      "number": 3,
+      "upright": {
+        "meaning": "Expansion, foresight, overseas opportunities, and progress. The ships have sailed — plans set in motion are now returning with results. Confidence in what was launched.",
+        "keywords": ["expansion", "foresight", "progress", "overseas", "growth", "momentum"]
+      },
+      "reversed": {
+        "meaning": "Delays in plans, frustration with progress, obstacles to expansion. The ships are delayed or have veered off course.",
+        "keywords": ["delays", "frustration", "obstacles", "lack of foresight", "setbacks"]
+      }
+    },
+    {
+      "id": "wands_04",
+      "name": "Four of Wands",
+      "arcana": "minor",
+      "suit": "wands",
+      "number": 4,
+      "upright": {
+        "meaning": "Celebration, harmony, homecoming, and community. The garland-draped wands mark a threshold of joy — a milestone earned and shared with those who matter.",
+        "keywords": ["celebration", "harmony", "homecoming", "community", "joy", "milestone"]
+      },
+      "reversed": {
+        "meaning": "Lack of harmony, feeling unwelcome, transition, or a celebration that feels hollow. The threshold is there, but something is missing on the other side.",
+        "keywords": ["discord", "transition", "instability", "feeling unwelcome", "incomplete celebration"]
+      }
+    },
+    {
+      "id": "wands_05",
+      "name": "Five of Wands",
+      "arcana": "minor",
+      "suit": "wands",
+      "number": 5,
+      "upright": {
+        "meaning": "Conflict, competition, disagreement, and creative tension. Five figures clash wands — not necessarily with malice, but with the friction that comes from differing wills.",
+        "keywords": ["conflict", "competition", "disagreement", "tension", "rivalry", "struggle"]
+      },
+      "reversed": {
+        "meaning": "Avoidance of conflict, inner turmoil, or the end of a dispute. The battle either retreats inward or the combatants find a truce.",
+        "keywords": ["avoiding conflict", "inner turmoil", "resolution", "compromise", "suppressed anger"]
+      }
+    },
+    {
+      "id": "wands_06",
+      "name": "Six of Wands",
+      "arcana": "minor",
+      "suit": "wands",
+      "number": 6,
+      "upright": {
+        "meaning": "Victory, public recognition, self-confidence, and triumph. The rider bears the laurel wreath — the crowd acknowledges what has been achieved through effort and courage.",
+        "keywords": ["victory", "recognition", "success", "triumph", "confidence", "acclaim"]
+      },
+      "reversed": {
+        "meaning": "Egotism, fall from grace, or lack of recognition. The parade continues but no one is watching, or the victory rings hollow.",
+        "keywords": ["egotism", "fall from grace", "lack of recognition", "self-doubt", "false success"]
+      }
+    },
+    {
+      "id": "wands_07",
+      "name": "Seven of Wands",
+      "arcana": "minor",
+      "suit": "wands",
+      "number": 7,
+      "upright": {
+        "meaning": "Defensiveness, standing your ground, perseverance, and challenge. The figure fights from higher ground — the advantage is there, but the struggle is real and ongoing.",
+        "keywords": ["perseverance", "defensiveness", "standing ground", "challenge", "courage", "resilience"]
+      },
+      "reversed": {
+        "meaning": "Giving up, feeling overwhelmed, or being worn down by opposition. The high ground is lost, or the fight no longer feels worth it.",
+        "keywords": ["giving up", "overwhelm", "exhaustion", "yielding", "loss of advantage"]
+      }
+    },
+    {
+      "id": "wands_08",
+      "name": "Eight of Wands",
+      "arcana": "minor",
+      "suit": "wands",
+      "number": 8,
+      "upright": {
+        "meaning": "Speed, swift action, movement, and rapid progress. Eight wands fly through a clear sky — what was stalled now accelerates. Events move quickly and decisively.",
+        "keywords": ["speed", "swift action", "movement", "progress", "momentum", "air travel"]
+      },
+      "reversed": {
+        "meaning": "Delays, frustration, internal resistance, or waiting. The wands hang suspended — something slows their flight, demanding patience.",
+        "keywords": ["delays", "frustration", "waiting", "slowdown", "resistance", "stalled progress"]
+      }
+    },
+    {
+      "id": "wands_09",
+      "name": "Nine of Wands",
+      "arcana": "minor",
+      "suit": "wands",
+      "number": 9,
+      "upright": {
+        "meaning": "Resilience, grit, persistence, and last stand. The battered figure leans on one wand with eight behind — wounded but unwilling to fall. One more push remains.",
+        "keywords": ["resilience", "persistence", "grit", "boundaries", "last stand", "courage"]
+      },
+      "reversed": {
+        "meaning": "Exhaustion, giving up, paranoia, or stubbornness. The guard has been held too long — the vigilance has become its own wound.",
+        "keywords": ["exhaustion", "paranoia", "giving up", "stubbornness", "burnout", "defensive"]
+      }
+    },
+    {
+      "id": "wands_10",
+      "name": "Ten of Wands",
+      "arcana": "minor",
+      "suit": "wands",
+      "number": 10,
+      "upright": {
+        "meaning": "Burden, responsibility, hard work, and overcommitment. The figure carries all ten wands toward the town — the load is real, the destination is near, but the weight is crushing.",
+        "keywords": ["burden", "responsibility", "hard work", "overcommitment", "stress", "duty"]
+      },
+      "reversed": {
+        "meaning": "Inability to delegate, burning out, or finally putting the burden down. The wands scatter — either in collapse or deliberate release.",
+        "keywords": ["burnout", "inability to delegate", "release", "overwhelm", "letting go of burden"]
+      }
+    },
+    {
+      "id": "wands_page",
+      "name": "Page of Wands",
+      "arcana": "minor",
+      "suit": "wands",
+      "number": 11,
+      "upright": {
+        "meaning": "Enthusiasm, exploration, discovery, and free spirit. The Page gazes at the wand with wonder — a messenger of new creative ventures and the courage to begin something untested.",
+        "keywords": ["enthusiasm", "exploration", "discovery", "free spirit", "new venture", "curiosity"]
+      },
+      "reversed": {
+        "meaning": "Lack of direction, procrastination, or a creative idea that hasn't found its footing. The spark is there but scattered, unable to commit.",
+        "keywords": ["lack of direction", "procrastination", "immaturity", "hasty decisions", "scattered energy"]
+      }
+    },
+    {
+      "id": "wands_knight",
+      "name": "Knight of Wands",
+      "arcana": "minor",
+      "suit": "wands",
+      "number": 12,
+      "upright": {
+        "meaning": "Action, adventure, fearlessness, and impulsive energy. The Knight charges forward on a rearing horse — passionate, daring, and absolutely unwilling to wait.",
+        "keywords": ["action", "adventure", "fearlessness", "energy", "passion", "impulsiveness"]
+      },
+      "reversed": {
+        "meaning": "Haste, scattered energy, delays, or reckless behavior. The horse bolts without a rider's guidance — passion without direction becomes chaos.",
+        "keywords": ["haste", "recklessness", "scattered energy", "delays", "frustration", "burnout"]
+      }
+    },
+    {
+      "id": "wands_queen",
+      "name": "Queen of Wands",
+      "arcana": "minor",
+      "suit": "wands",
+      "number": 13,
+      "upright": {
+        "meaning": "Courage, confidence, independence, and warmth. She sits with sunflowers and a black cat, radiating fiery determination tempered by genuine generosity of spirit.",
+        "keywords": ["courage", "confidence", "independence", "warmth", "determination", "vibrancy"]
+      },
+      "reversed": {
+        "meaning": "Selfishness, jealousy, insecurity, or demanding nature. The fire that once warmed now scorches — confidence turned to domination or collapsed into self-doubt.",
+        "keywords": ["selfishness", "jealousy", "insecurity", "demanding", "temperamental", "overbearing"]
+      }
+    },
+    {
+      "id": "wands_king",
+      "name": "King of Wands",
+      "arcana": "minor",
+      "suit": "wands",
+      "number": 14,
+      "upright": {
+        "meaning": "Leadership, vision, entrepreneurship, and bold action. The King holds his flowering wand with natural authority — a leader who inspires through vision rather than fear.",
+        "keywords": ["leadership", "vision", "entrepreneurship", "boldness", "charisma", "honor"]
+      },
+      "reversed": {
+        "meaning": "Impulsiveness, ruthlessness, high expectations, or tyranny. The visionary becomes a dictator — fire unchecked by wisdom or empathy.",
+        "keywords": ["impulsiveness", "ruthlessness", "tyranny", "high expectations", "arrogance", "viciousness"]
+      }
+    },
+    {
+      "id": "cups_ace",
+      "name": "Ace of Cups",
+      "arcana": "minor",
+      "suit": "cups",
+      "number": 1,
+      "upright": {
+        "meaning": "New love, new emotional beginnings, intuition, and the wellspring of feeling. The cup overflows — something is ready to be felt.",
+        "keywords": ["new love", "emotional beginning", "intuition", "compassion", "creativity", "abundance"]
+      },
+      "reversed": {
+        "meaning": "Emotional emptiness, blocked intuition, repressed feelings. The cup held but not received — or poured out before it was full.",
+        "keywords": ["emotional loss", "blocked feelings", "emptiness", "repression", "missed connection"]
+      }
+    },
+    {
+      "id": "cups_02",
+      "name": "Two of Cups",
+      "arcana": "minor",
+      "suit": "cups",
+      "number": 2,
+      "upright": {
+        "meaning": "Unified love, partnership, mutual attraction, and connection. Two figures exchange cups beneath a caduceus — a bond formed in equality, respect, and genuine feeling.",
+        "keywords": ["partnership", "unified love", "mutual attraction", "connection", "harmony", "respect"]
+      },
+      "reversed": {
+        "meaning": "Imbalance in a relationship, break-up, disharmony, or self-love neglected. The cups no longer meet evenly — one gives too much, the other too little.",
+        "keywords": ["imbalance", "break-up", "disharmony", "distrust", "self-love neglected"]
+      }
+    },
+    {
+      "id": "cups_03",
+      "name": "Three of Cups",
+      "arcana": "minor",
+      "suit": "cups",
+      "number": 3,
+      "upright": {
+        "meaning": "Celebration, friendship, creativity, and community. Three women raise their cups together — the joy of shared connection, abundance, and creative collaboration.",
+        "keywords": ["celebration", "friendship", "creativity", "community", "collaboration", "joy"]
+      },
+      "reversed": {
+        "meaning": "Overindulgence, gossip, isolation from friends, or a friendship that sours. The celebration turns excessive, or you find yourself outside the circle.",
+        "keywords": ["overindulgence", "gossip", "isolation", "excess", "broken friendships", "loneliness"]
+      }
+    },
+    {
+      "id": "cups_04",
+      "name": "Four of Cups",
+      "arcana": "minor",
+      "suit": "cups",
+      "number": 4,
+      "upright": {
+        "meaning": "Meditation, contemplation, apathy, or discontent. A figure sits beneath a tree, arms crossed, ignoring a cup offered from a cloud — what is being refused or simply not seen?",
+        "keywords": ["contemplation", "apathy", "discontent", "meditation", "reevaluation", "withdrawal"]
+      },
+      "reversed": {
+        "meaning": "Awareness, acceptance of an opportunity, renewed motivation. The eyes finally open to the cup that has been waiting — readiness to re-engage.",
+        "keywords": ["awareness", "acceptance", "renewed interest", "motivation", "new perspective"]
+      }
+    },
+    {
+      "id": "cups_05",
+      "name": "Five of Cups",
+      "arcana": "minor",
+      "suit": "cups",
+      "number": 5,
+      "upright": {
+        "meaning": "Regret, failure, disappointment, and grief. The cloaked figure stares at three spilled cups while two remain standing behind — loss is real, but not total.",
+        "keywords": ["regret", "grief", "disappointment", "loss", "mourning", "pessimism"]
+      },
+      "reversed": {
+        "meaning": "Acceptance, moving on, finding peace after loss. The figure finally turns around and sees what remains — recovery begins with noticing what survived.",
+        "keywords": ["acceptance", "moving on", "recovery", "forgiveness", "finding peace"]
+      }
+    },
+    {
+      "id": "cups_06",
+      "name": "Six of Cups",
+      "arcana": "minor",
+      "suit": "cups",
+      "number": 6,
+      "upright": {
+        "meaning": "Nostalgia, childhood memories, innocence, and reunion. A child offers flowers in a cup to another — the sweetness of the past revisited, and the kindness that comes without calculation.",
+        "keywords": ["nostalgia", "childhood", "innocence", "reunion", "kindness", "past memories"]
+      },
+      "reversed": {
+        "meaning": "Living in the past, unrealistic nostalgia, or inability to move forward. The garden of childhood becomes a cage when you refuse to leave it.",
+        "keywords": ["living in the past", "unrealistic nostalgia", "stuck", "naivety", "blocked growth"]
+      }
+    },
+    {
+      "id": "cups_07",
+      "name": "Seven of Cups",
+      "arcana": "minor",
+      "suit": "cups",
+      "number": 7,
+      "upright": {
+        "meaning": "Fantasy, illusion, wishful thinking, and choices. Seven cups appear in the clouds, each holding a different vision — some are gifts, some are traps, and discernment is everything.",
+        "keywords": ["fantasy", "illusion", "wishful thinking", "choices", "imagination", "temptation"]
+      },
+      "reversed": {
+        "meaning": "Clarity of purpose, alignment, or avoidance of reality. The clouds clear and one real choice emerges — or you turn away from choosing at all.",
+        "keywords": ["clarity", "alignment", "determination", "reality check", "overwhelm", "focus"]
+      }
+    },
+    {
+      "id": "cups_08",
+      "name": "Eight of Cups",
+      "arcana": "minor",
+      "suit": "cups",
+      "number": 8,
+      "upright": {
+        "meaning": "Walking away, disillusionment, leaving behind, and seeking deeper meaning. The figure abandons eight neatly stacked cups to climb toward the mountains under a waning moon — what was built no longer satisfies.",
+        "keywords": ["walking away", "disillusionment", "seeking truth", "abandonment", "deeper meaning", "courage to leave"]
+      },
+      "reversed": {
+        "meaning": "Fear of change, staying in a bad situation, or aimless drifting. You know you should leave but the cups, however empty, are familiar.",
+        "keywords": ["fear of change", "stagnation", "clinging", "avoidance", "aimless wandering"]
+      }
+    },
+    {
+      "id": "cups_09",
+      "name": "Nine of Cups",
+      "arcana": "minor",
+      "suit": "cups",
+      "number": 9,
+      "upright": {
+        "meaning": "Contentment, satisfaction, gratitude, and wish fulfillment. The figure sits with arms crossed before nine golden cups — the wish card, a moment of deep personal satisfaction.",
+        "keywords": ["contentment", "satisfaction", "wish fulfilled", "gratitude", "pleasure", "abundance"]
+      },
+      "reversed": {
+        "meaning": "Dissatisfaction despite having enough, greed, or materialism. The cups are full but the heart is not — something intangible is missing.",
+        "keywords": ["dissatisfaction", "greed", "materialism", "unfulfilled wishes", "smugness", "emptiness"]
+      }
+    },
+    {
+      "id": "cups_10",
+      "name": "Ten of Cups",
+      "arcana": "minor",
+      "suit": "cups",
+      "number": 10,
+      "upright": {
+        "meaning": "Divine love, harmony, alignment, and family. A rainbow of cups arcs over a joyful family — the fullest expression of emotional fulfillment, belonging, and lasting happiness.",
+        "keywords": ["divine love", "harmony", "family", "happiness", "alignment", "emotional fulfillment"]
+      },
+      "reversed": {
+        "meaning": "Broken family, disharmony, misaligned values, or the ideal that cracks under reality. The rainbow fades — the picture-perfect image hides real fractures.",
+        "keywords": ["broken family", "disharmony", "misaligned values", "disconnection", "shattered ideals"]
+      }
+    },
+    {
+      "id": "cups_page",
+      "name": "Page of Cups",
+      "arcana": "minor",
+      "suit": "cups",
+      "number": 11,
+      "upright": {
+        "meaning": "Creative opportunity, intuitive message, curiosity, and emotional openness. A young figure peers at a fish emerging from a cup — the unexpected messenger of feeling and imagination.",
+        "keywords": ["creative opportunity", "intuition", "curiosity", "emotional openness", "surprise", "imagination"]
+      },
+      "reversed": {
+        "meaning": "Emotional immaturity, creative block, or escapism. The fish speaks but is ignored, or the message is twisted by fantasy and avoidance.",
+        "keywords": ["emotional immaturity", "creative block", "escapism", "insecurity", "unrealistic expectations"]
+      }
+    },
+    {
+      "id": "cups_knight",
+      "name": "Knight of Cups",
+      "arcana": "minor",
+      "suit": "cups",
+      "number": 12,
+      "upright": {
+        "meaning": "Romance, charm, imagination, and following the heart. The Knight rides slowly, cup extended — a messenger of proposals, invitations, and emotional offers made with sincerity.",
+        "keywords": ["romance", "charm", "imagination", "following the heart", "proposal", "idealism"]
+      },
+      "reversed": {
+        "meaning": "Moodiness, unrealistic expectations, jealousy, or emotional manipulation. The romantic becomes the dreamer who never acts, or whose charm masks deeper motives.",
+        "keywords": ["moodiness", "unrealistic expectations", "jealousy", "manipulation", "vanity", "idleness"]
+      }
+    },
+    {
+      "id": "cups_queen",
+      "name": "Queen of Cups",
+      "arcana": "minor",
+      "suit": "cups",
+      "number": 13,
+      "upright": {
+        "meaning": "Compassion, calm, emotional security, and intuition. She gazes into a closed cup at the water's edge — deeply feeling yet composed, the embodiment of empathic wisdom.",
+        "keywords": ["compassion", "calm", "intuition", "emotional security", "empathy", "nurturing"]
+      },
+      "reversed": {
+        "meaning": "Codependency, emotional manipulation, insecurity, or martyrdom. The deep well of feeling becomes a whirlpool — swallowing self and others alike.",
+        "keywords": ["codependency", "insecurity", "manipulation", "martyrdom", "emotional overwhelm", "self-neglect"]
+      }
+    },
+    {
+      "id": "cups_king",
+      "name": "King of Cups",
+      "arcana": "minor",
+      "suit": "cups",
+      "number": 14,
+      "upright": {
+        "meaning": "Emotional balance, diplomacy, compassion, and control of feelings. The King sits steady on his throne amid turbulent seas — master of feeling without being ruled by it.",
+        "keywords": ["emotional balance", "diplomacy", "compassion", "control", "wisdom", "generosity"]
+      },
+      "reversed": {
+        "meaning": "Emotional manipulation, volatility, or moodiness hidden behind a calm facade. The sea beneath the throne churns — repression or calculated use of others' emotions.",
+        "keywords": ["emotional manipulation", "volatility", "moodiness", "repression", "coldness", "controlling"]
+      }
+    },
+    {
+      "id": "swords_ace",
+      "name": "Ace of Swords",
+      "arcana": "minor",
+      "suit": "swords",
+      "number": 1,
+      "upright": {
+        "meaning": "Clarity, breakthrough, new ideas, and mental force. The sword cuts cleanly — truth, spoken directly, at last.",
+        "keywords": ["clarity", "breakthrough", "mental force", "truth", "justice", "new idea"]
+      },
+      "reversed": {
+        "meaning": "Confusion, miscommunication, brutality. The sword swung carelessly — or not yet drawn from its sheath.",
+        "keywords": ["confusion", "miscommunication", "chaos", "brutality", "lack of clarity"]
+      }
+    },
+    {
+      "id": "swords_02",
+      "name": "Two of Swords",
+      "arcana": "minor",
+      "suit": "swords",
+      "number": 2,
+      "upright": {
+        "meaning": "Difficult choices, indecision, stalemate, and avoidance. A blindfolded figure balances two crossed swords — the refusal or inability to see what must be decided.",
+        "keywords": ["indecision", "stalemate", "avoidance", "difficult choices", "blocked emotions", "denial"]
+      },
+      "reversed": {
+        "meaning": "Information overload, indecision resolved, or truth emerging. The blindfold slips — the choice becomes clear, or the information becomes overwhelming.",
+        "keywords": ["information overload", "confusion", "truth revealed", "anxiety", "lesser of two evils"]
+      }
+    },
+    {
+      "id": "swords_03",
+      "name": "Three of Swords",
+      "arcana": "minor",
+      "suit": "swords",
+      "number": 3,
+      "upright": {
+        "meaning": "Heartbreak, emotional pain, sorrow, and grief. Three swords pierce a heart amid rain clouds — the wound is direct and undeniable. Some truths hurt to receive.",
+        "keywords": ["heartbreak", "sorrow", "grief", "emotional pain", "loss", "betrayal"]
+      },
+      "reversed": {
+        "meaning": "Recovery, forgiveness, releasing pain, or moving on. The swords begin to withdraw — the wound remains but healing has started.",
+        "keywords": ["recovery", "forgiveness", "releasing pain", "optimism", "healing", "moving on"]
+      }
+    },
+    {
+      "id": "swords_04",
+      "name": "Four of Swords",
+      "arcana": "minor",
+      "suit": "swords",
+      "number": 4,
+      "upright": {
+        "meaning": "Rest, restoration, contemplation, and recovery. The knight lies in repose — not defeated, but deliberately withdrawn to heal. Stillness as strategy, not surrender.",
+        "keywords": ["rest", "restoration", "contemplation", "recovery", "solitude", "meditation"]
+      },
+      "reversed": {
+        "meaning": "Restlessness, burnout, lack of rest, or forced re-engagement. The rest is interrupted — either by external demands or an inability to be still.",
+        "keywords": ["restlessness", "burnout", "exhaustion", "stagnation", "forced action", "no peace"]
+      }
+    },
+    {
+      "id": "swords_05",
+      "name": "Five of Swords",
+      "arcana": "minor",
+      "suit": "swords",
+      "number": 5,
+      "upright": {
+        "meaning": "Conflict, defeat, winning at all costs, and hollow victory. The figure collects swords while others walk away — was what was won worth what was lost?",
+        "keywords": ["conflict", "defeat", "hollow victory", "betrayal", "winning at all costs", "hostility"]
+      },
+      "reversed": {
+        "meaning": "Reconciliation, forgiveness, moving past conflict, or lingering resentment. The swords are laid down — either in genuine peace or in bitter resignation.",
+        "keywords": ["reconciliation", "forgiveness", "moving past conflict", "resentment", "regret", "compromise"]
+      }
+    },
+    {
+      "id": "swords_06",
+      "name": "Six of Swords",
+      "arcana": "minor",
+      "suit": "swords",
+      "number": 6,
+      "upright": {
+        "meaning": "Transition, moving on, leaving behind, and mental clarity. A boat carries figures from rough to calm waters — the journey away from difficulty, guided by quiet resolve.",
+        "keywords": ["transition", "moving on", "leaving behind", "mental clarity", "recovery", "journey"]
+      },
+      "reversed": {
+        "meaning": "Inability to move on, resistance to change, or unresolved baggage. The boat stays moored — the swords too heavy to carry across the water.",
+        "keywords": ["resistance to change", "unresolved baggage", "stuck", "returning to trouble", "emotional weight"]
+      }
+    },
+    {
+      "id": "swords_07",
+      "name": "Seven of Swords",
+      "arcana": "minor",
+      "suit": "swords",
+      "number": 7,
+      "upright": {
+        "meaning": "Deception, trickery, strategy, and stealth. A figure steals away from a camp with five swords, leaving two behind — cunning in action, but at what cost to integrity?",
+        "keywords": ["deception", "trickery", "strategy", "stealth", "cunning", "betrayal"]
+      },
+      "reversed": {
+        "meaning": "Coming clean, confession, conscience, or getting caught. The stolen swords clatter — the deception unravels, whether by choice or by exposure.",
+        "keywords": ["confession", "coming clean", "conscience", "getting caught", "imposter syndrome", "rethinking strategy"]
+      }
+    },
+    {
+      "id": "swords_08",
+      "name": "Eight of Swords",
+      "arcana": "minor",
+      "suit": "swords",
+      "number": 8,
+      "upright": {
+        "meaning": "Imprisonment, self-imposed restriction, victimhood, and helplessness. A bound and blindfolded figure stands among swords — but the bindings are loose. The prison is largely of the mind.",
+        "keywords": ["imprisonment", "restriction", "victimhood", "helplessness", "self-limiting beliefs", "trapped"]
+      },
+      "reversed": {
+        "meaning": "Self-acceptance, new perspective, freedom from self-imposed constraints. The blindfold comes off — the swords were never a cage, only a circle that could be stepped out of.",
+        "keywords": ["self-acceptance", "freedom", "new perspective", "release", "empowerment", "clarity"]
+      }
+    },
+    {
+      "id": "swords_09",
+      "name": "Nine of Swords",
+      "arcana": "minor",
+      "suit": "swords",
+      "number": 9,
+      "upright": {
+        "meaning": "Anxiety, worry, fear, and nightmares. A figure sits up in bed, head in hands, nine swords mounted on the wall behind — the suffering of a mind that cannot stop turning.",
+        "keywords": ["anxiety", "worry", "fear", "nightmares", "despair", "mental anguish"]
+      },
+      "reversed": {
+        "meaning": "Hope, reaching out, overcoming anxiety, or deeper despair. Either the nightmare begins to ease as help is sought, or the worry deepens into something that requires intervention.",
+        "keywords": ["hope", "recovery", "reaching out", "overcoming fear", "inner turmoil", "shame"]
+      }
+    },
+    {
+      "id": "swords_10",
+      "name": "Ten of Swords",
+      "arcana": "minor",
+      "suit": "swords",
+      "number": 10,
+      "upright": {
+        "meaning": "Painful endings, deep wounds, betrayal, and rock bottom. A figure lies face down with ten swords in the back — yet dawn breaks on the horizon. This is the worst, and it is over.",
+        "keywords": ["painful endings", "betrayal", "rock bottom", "deep wounds", "crisis", "finality"]
+      },
+      "reversed": {
+        "meaning": "Recovery, regeneration, resisting an inevitable end, or fear of ruin. The swords begin to fall away — the worst has passed, or the fear of it holds you hostage.",
+        "keywords": ["recovery", "regeneration", "survival", "improvement", "resisting endings", "learning from pain"]
+      }
+    },
+    {
+      "id": "swords_page",
+      "name": "Page of Swords",
+      "arcana": "minor",
+      "suit": "swords",
+      "number": 11,
+      "upright": {
+        "meaning": "Curiosity, mental agility, new ideas, and thirst for knowledge. The Page holds the sword high on a windy hilltop — alert, inquisitive, and ready to challenge any assumption.",
+        "keywords": ["curiosity", "mental agility", "new ideas", "thirst for knowledge", "vigilance", "communication"]
+      },
+      "reversed": {
+        "meaning": "Gossip, deception, all talk and no action, or cynicism. The sharp mind cuts without purpose — words used to wound rather than to learn.",
+        "keywords": ["gossip", "deception", "all talk", "cynicism", "scattered thoughts", "hurtful words"]
+      }
+    },
+    {
+      "id": "swords_knight",
+      "name": "Knight of Swords",
+      "arcana": "minor",
+      "suit": "swords",
+      "number": 12,
+      "upright": {
+        "meaning": "Ambition, action, drive, and determination. The Knight charges at full gallop, sword raised — a mind set on its target with fierce, single-pointed focus.",
+        "keywords": ["ambition", "action", "drive", "determination", "focus", "assertiveness"]
+      },
+      "reversed": {
+        "meaning": "No direction, disregard for consequences, or reckless haste. The charge becomes a stampede — brilliant energy without the wisdom to wield it.",
+        "keywords": ["recklessness", "no direction", "disregard for consequences", "aggression", "impulsiveness", "burnout"]
+      }
+    },
+    {
+      "id": "swords_queen",
+      "name": "Queen of Swords",
+      "arcana": "minor",
+      "suit": "swords",
+      "number": 13,
+      "upright": {
+        "meaning": "Clear thinking, independence, direct communication, and unbiased judgment. She raises her sword with one hand and extends the other — truth spoken with both precision and an open heart.",
+        "keywords": ["clear thinking", "independence", "direct communication", "unbiased judgment", "perception", "honesty"]
+      },
+      "reversed": {
+        "meaning": "Coldness, cruelty, bitterness, or overly critical nature. The sword that once cut toward truth now cuts toward pain — intellect weaponized against others or the self.",
+        "keywords": ["coldness", "cruelty", "bitterness", "overly critical", "harsh words", "emotional detachment"]
+      }
+    },
+    {
+      "id": "swords_king",
+      "name": "King of Swords",
+      "arcana": "minor",
+      "suit": "swords",
+      "number": 14,
+      "upright": {
+        "meaning": "Intellectual power, authority, truth, and clear analysis. The King sits upright with his sword — a mind that commands through reason, ethics, and the disciplined pursuit of truth.",
+        "keywords": ["intellectual power", "authority", "truth", "clear analysis", "ethics", "discipline"]
+      },
+      "reversed": {
+        "meaning": "Manipulation, tyranny, abuse of power, or cold-heartedness. Authority exercised without compassion — the mind as weapon, wielded to dominate rather than to illuminate.",
+        "keywords": ["manipulation", "tyranny", "abuse of power", "cold-heartedness", "rigid thinking", "oppression"]
+      }
+    },
+    {
+      "id": "pentacles_ace",
+      "name": "Ace of Pentacles",
+      "arcana": "minor",
+      "suit": "pentacles",
+      "number": 1,
+      "upright": {
+        "meaning": "New financial or material beginnings, manifestation, abundance. A seed of something tangible — the hand extended from the cloud.",
+        "keywords": ["new beginnings", "manifestation", "prosperity", "abundance", "opportunity", "stability"]
+      },
+      "reversed": {
+        "meaning": "Lost opportunity, lack of planning, scarcity mindset. The coin offered but not taken, or taken before the soil was ready.",
+        "keywords": ["lost opportunity", "scarcity", "poor planning", "materialism", "instability"]
+      }
+    },
+    {
+      "id": "pentacles_02",
+      "name": "Two of Pentacles",
+      "arcana": "minor",
+      "suit": "pentacles",
+      "number": 2,
+      "upright": {
+        "meaning": "Balance, adaptability, time management, and juggling priorities. A figure dances while balancing two pentacles in an infinity loop — the art of keeping multiple demands in motion.",
+        "keywords": ["balance", "adaptability", "time management", "juggling", "flexibility", "prioritization"]
+      },
+      "reversed": {
+        "meaning": "Overwhelm, disorganization, or financial instability. The dance falters — too many things in the air, and the rhythm is lost.",
+        "keywords": ["overwhelm", "disorganization", "financial instability", "imbalance", "overcommitted", "chaos"]
+      }
+    },
+    {
+      "id": "pentacles_03",
+      "name": "Three of Pentacles",
+      "arcana": "minor",
+      "suit": "pentacles",
+      "number": 3,
+      "upright": {
+        "meaning": "Teamwork, collaboration, craftsmanship, and learning. Three figures consult over architectural plans in a cathedral — mastery built through shared skill and mutual respect.",
+        "keywords": ["teamwork", "collaboration", "craftsmanship", "learning", "skill", "implementation"]
+      },
+      "reversed": {
+        "meaning": "Lack of teamwork, disregard for skill, or poor quality. The collaboration breaks down — ego, laziness, or misalignment undermines the work.",
+        "keywords": ["lack of teamwork", "poor quality", "disregard for skill", "conflict", "misalignment", "mediocrity"]
+      }
+    },
+    {
+      "id": "pentacles_04",
+      "name": "Four of Pentacles",
+      "arcana": "minor",
+      "suit": "pentacles",
+      "number": 4,
+      "upright": {
+        "meaning": "Security, conservation, control, and possessiveness. A figure clutches a pentacle to his chest and sits on two more — holding tight to what has been gained, sometimes too tight.",
+        "keywords": ["security", "conservation", "control", "possessiveness", "frugality", "stability"]
+      },
+      "reversed": {
+        "meaning": "Greed, materialism, excessive spending, or letting go of control. Either the grip loosens in healthy release, or it tightens into miserly hoarding.",
+        "keywords": ["greed", "materialism", "overspending", "letting go", "insecurity", "generosity"]
+      }
+    },
+    {
+      "id": "pentacles_05",
+      "name": "Five of Pentacles",
+      "arcana": "minor",
+      "suit": "pentacles",
+      "number": 5,
+      "upright": {
+        "meaning": "Financial loss, poverty, lack, and hardship. Two figures trudge through snow past a lit church window — suffering is real, but help may be closer than it seems.",
+        "keywords": ["financial loss", "poverty", "hardship", "isolation", "insecurity", "worry"]
+      },
+      "reversed": {
+        "meaning": "Recovery from financial loss, spiritual poverty addressed, or end of hardship. The church door opens — the willingness to receive help marks the turning point.",
+        "keywords": ["recovery", "end of hardship", "spiritual growth", "improvement", "acceptance of help"]
+      }
+    },
+    {
+      "id": "pentacles_06",
+      "name": "Six of Pentacles",
+      "arcana": "minor",
+      "suit": "pentacles",
+      "number": 6,
+      "upright": {
+        "meaning": "Generosity, charity, giving and receiving, and sharing wealth. A merchant holds scales while distributing coins — the flow of resources between those who have and those who need.",
+        "keywords": ["generosity", "charity", "giving", "receiving", "sharing", "fairness"]
+      },
+      "reversed": {
+        "meaning": "Strings attached, inequality, one-sided charity, or debt. The giving comes with conditions — generosity that is really about power.",
+        "keywords": ["strings attached", "inequality", "one-sided", "debt", "selfishness", "power imbalance"]
+      }
+    },
+    {
+      "id": "pentacles_07",
+      "name": "Seven of Pentacles",
+      "arcana": "minor",
+      "suit": "pentacles",
+      "number": 7,
+      "upright": {
+        "meaning": "Long-term view, patience, investment, and perseverance. A gardener leans on his hoe, contemplating the pentacles growing on the vine — the harvest is coming, but not yet.",
+        "keywords": ["patience", "long-term investment", "perseverance", "assessment", "reward", "vision"]
+      },
+      "reversed": {
+        "meaning": "Impatience, lack of reward, poor investment, or wasted effort. The garden hasn't yielded — was the soil wrong, or is it simply too soon to tell?",
+        "keywords": ["impatience", "lack of reward", "poor investment", "frustration", "wasted effort", "short-sightedness"]
+      }
+    },
+    {
+      "id": "pentacles_08",
+      "name": "Eight of Pentacles",
+      "arcana": "minor",
+      "suit": "pentacles",
+      "number": 8,
+      "upright": {
+        "meaning": "Apprenticeship, skill development, diligence, and attention to detail. A craftsman works steadily at his bench, producing one pentacle after another — mastery built through deliberate repetition.",
+        "keywords": ["apprenticeship", "skill development", "diligence", "detail", "craftsmanship", "dedication"]
+      },
+      "reversed": {
+        "meaning": "Perfectionism, lack of motivation, or misdirected effort. The work continues but without purpose — endless polishing of something that may never be used.",
+        "keywords": ["perfectionism", "lack of motivation", "misdirected effort", "boredom", "shortcuts", "sloppy work"]
+      }
+    },
+    {
+      "id": "pentacles_09",
+      "name": "Nine of Pentacles",
+      "arcana": "minor",
+      "suit": "pentacles",
+      "number": 9,
+      "upright": {
+        "meaning": "Abundance, luxury, self-sufficiency, and financial independence. A well-dressed figure stands in a lush garden with a falcon — the reward of disciplined effort, enjoyed in elegance.",
+        "keywords": ["abundance", "luxury", "self-sufficiency", "financial independence", "discipline", "refinement"]
+      },
+      "reversed": {
+        "meaning": "Over-investment in work, superficial success, or financial setback. The garden is beautiful, but it cost everything else — or it may not truly be yours.",
+        "keywords": ["over-investment", "superficial success", "financial setback", "hustling", "loss of independence", "living beyond means"]
+      }
+    },
+    {
+      "id": "pentacles_10",
+      "name": "Ten of Pentacles",
+      "arcana": "minor",
+      "suit": "pentacles",
+      "number": 10,
+      "upright": {
+        "meaning": "Wealth, inheritance, family legacy, and long-term security. An elder sits surrounded by family and dogs beneath an archway of pentacles — the culmination of material and familial abundance.",
+        "keywords": ["wealth", "inheritance", "family legacy", "long-term security", "establishment", "tradition"]
+      },
+      "reversed": {
+        "meaning": "Financial failure, family disputes, loss of security, or squandered legacy. The wealth built over generations is threatened — by greed, conflict, or poor stewardship.",
+        "keywords": ["financial failure", "family disputes", "loss of security", "squandered legacy", "debt", "instability"]
+      }
+    },
+    {
+      "id": "pentacles_page",
+      "name": "Page of Pentacles",
+      "arcana": "minor",
+      "suit": "pentacles",
+      "number": 11,
+      "upright": {
+        "meaning": "Ambition, desire to learn, new financial opportunity, and manifestation. The Page holds a single pentacle with careful wonder — a student of the material world, eager and grounded.",
+        "keywords": ["ambition", "desire to learn", "new opportunity", "manifestation", "diligence", "reliability"]
+      },
+      "reversed": {
+        "meaning": "Lack of progress, procrastination, or failure to take advantage of opportunity. The pentacle is studied but never planted — knowledge without application.",
+        "keywords": ["lack of progress", "procrastination", "missed opportunity", "laziness", "unfocused", "irresponsibility"]
+      }
+    },
+    {
+      "id": "pentacles_knight",
+      "name": "Knight of Pentacles",
+      "arcana": "minor",
+      "suit": "pentacles",
+      "number": 12,
+      "upright": {
+        "meaning": "Hard work, productivity, routine, and reliability. The Knight sits on a steady horse, pentacle in hand — the slowest knight, but the most dependable. Progress through persistence, not flash.",
+        "keywords": ["hard work", "productivity", "routine", "reliability", "persistence", "thoroughness"]
+      },
+      "reversed": {
+        "meaning": "Stagnation, laziness, boredom, or perfectionism that prevents progress. The horse stands still — reliability turned to stubbornness, steadiness turned to inertia.",
+        "keywords": ["stagnation", "laziness", "boredom", "perfectionism", "stubbornness", "workaholism"]
+      }
+    },
+    {
+      "id": "pentacles_queen",
+      "name": "Queen of Pentacles",
+      "arcana": "minor",
+      "suit": "pentacles",
+      "number": 13,
+      "upright": {
+        "meaning": "Nurturing, practical, providing, and down-to-earth. She cradles a pentacle on her lap in a garden abundant with flowers and a rabbit — the warmth of material care given freely and wisely.",
+        "keywords": ["nurturing", "practical", "providing", "down-to-earth", "abundance", "security"]
+      },
+      "reversed": {
+        "meaning": "Self-care neglected, work-home imbalance, or financial dependence. The garden grows wild as the gardener tends only others, or the abundance becomes jealous possession.",
+        "keywords": ["self-neglect", "work-home imbalance", "financial dependence", "jealousy", "smothering", "insecurity"]
+      }
+    },
+    {
+      "id": "pentacles_king",
+      "name": "King of Pentacles",
+      "arcana": "minor",
+      "suit": "pentacles",
+      "number": 14,
+      "upright": {
+        "meaning": "Wealth, business acumen, security, and discipline. The King sits on a throne adorned with bulls, surrounded by abundance — a master builder who has turned vision into lasting prosperity.",
+        "keywords": ["wealth", "business acumen", "security", "discipline", "abundance", "leadership"]
+      },
+      "reversed": {
+        "meaning": "Greed, materialism, financial mismanagement, or corruption. The throne becomes a counting-house — wealth pursued at the expense of everything else, or prosperity built on shaky foundations.",
+        "keywords": ["greed", "materialism", "financial mismanagement", "corruption", "stubbornness", "possessiveness"]
+      }
+    }
+  ]
+}

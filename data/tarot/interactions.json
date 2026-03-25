@@ -1,0 +1,65 @@
+{
+  "_note": "Cross-card interaction patterns for multi-card spreads. These describe how the meaning of one card shifts when paired with another — knowledge that is nuanced, tradition-specific, and not reliably captured by LLM parametric memory.",
+  "entries": [
+    {
+      "id": "tower_star",
+      "meta": {"cards": ["The Tower", "The Star"], "type": "sequence"},
+      "text": "The Tower followed by The Star: This is one of the most powerful pairings in Tarot. The Tower signals sudden collapse — a structure, belief, or identity shattered. The Star immediately after promises that what emerges from the rubble is authentic. Together they say: the destruction was necessary, and healing has already begun. The Star does not undo the Tower; it reframes the devastation as clearing space for something real."
+    },
+    {
+      "id": "death_fool",
+      "meta": {"cards": ["Death", "The Fool"], "type": "sequence"},
+      "text": "Death followed by The Fool: An ending that opens into radical new beginning. Death closes a chapter completely — there is no going back. The Fool then leaps forward without a map. This pairing suggests the querent is being asked to let something die fully (not hold on to fragments) and then trust the blank slate. The danger is leaping too soon, before the grieving is done."
+    },
+    {
+      "id": "high_priestess_moon",
+      "meta": {"cards": ["The High Priestess", "The Moon"], "type": "amplification"},
+      "text": "The High Priestess with The Moon: Both cards live in the realm of the unconscious, but they approach it differently. The High Priestess holds sacred knowledge deliberately — she knows what she knows. The Moon creates confusion and illusion. Together, they amplify the message: something important is being obscured. The answer is available but requires trusting intuition over logic. The querent may be overthinking what their body or dreams already understand."
+    },
+    {
+      "id": "emperor_hierophant",
+      "meta": {"cards": ["The Emperor", "The Hierophant"], "type": "amplification"},
+      "text": "The Emperor with The Hierophant: A double dose of structure, authority, and tradition. This pairing often appears when the querent is navigating institutional power — a workplace hierarchy, a family system, or a religious tradition. The question becomes: are these structures supporting you or constraining you? Both cards upright suggest the structures are functioning. If either is reversed, the system may be failing the person inside it."
+    },
+    {
+      "id": "lovers_devil",
+      "meta": {"cards": ["The Lovers", "The Devil"], "type": "tension"},
+      "text": "The Lovers with The Devil: A pairing of profound tension. The Lovers represent genuine union and aligned values; The Devil represents attachment, shadow, and chains that are chosen. Together, they ask: is this relationship (or choice) rooted in genuine love, or in dependency? The querent may be confusing intensity with intimacy, or may be aware of the shadow but not ready to name it."
+    },
+    {
+      "id": "magician_reversed_wheel",
+      "meta": {"cards": ["The Magician", "Wheel of Fortune"], "type": "tension"},
+      "text": "The Magician reversed with Wheel of Fortune: The Magician reversed signals untapped potential or manipulation. Paired with the Wheel, the message is about timing: the opportunity is turning — the tools are there but the querent is not using them, or is using them dishonestly. The Wheel doesn't wait. This pairing often carries urgency: act authentically now, or the moment passes."
+    },
+    {
+      "id": "hermit_world",
+      "meta": {"cards": ["The Hermit", "The World"], "type": "journey"},
+      "text": "The Hermit with The World: The solitary seeker and the completion of the cycle. This pairing suggests that the integration the querent seeks will come through introspection, not external action. The World doesn't arrive through busyness; the Hermit's lantern illuminates the final step. The querent may need time alone to realize they have already arrived."
+    },
+    {
+      "id": "three_swords_ten_swords",
+      "meta": {"cards": ["Three of Swords", "Ten of Swords"], "type": "intensification"},
+      "text": "Three of Swords with Ten of Swords: Heartbreak upon devastation. The Three is the sharp, specific pain of betrayal or loss. The Ten is the rock-bottom moment — it cannot get worse, which paradoxically means the only direction is up. Together, they validate that the querent's pain is real and complete. This is not a pairing to minimize. The message is: you have been through something genuinely terrible, and the fact that you survived it matters."
+    },
+    {
+      "id": "strength_chariot",
+      "meta": {"cards": ["Strength", "The Chariot"], "type": "complementary"},
+      "text": "Strength with The Chariot: Two different kinds of power. The Chariot drives forward through sheer will and external force. Strength tames through patience and inner calm. Together, they suggest the querent needs both: the drive to pursue their goal AND the gentleness to not bulldoze everything in their path. The question is which one is currently missing."
+    },
+    {
+      "id": "hanged_man_temperance",
+      "meta": {"cards": ["The Hanged Man", "Temperance"], "type": "process"},
+      "text": "The Hanged Man with Temperance: Surrender followed by integration. The Hanged Man asks the querent to stop pushing and let perspective shift. Temperance then does the slow alchemical work of blending what was with what could be. This pairing says: the pause is not wasted time — it is the prerequisite for the balance you're seeking. Do not rush out of the suspension."
+    },
+    {
+      "id": "ace_wands_ten_pentacles",
+      "meta": {"cards": ["Ace of Wands", "Ten of Pentacles"], "type": "trajectory"},
+      "text": "Ace of Wands with Ten of Pentacles: A spark of inspiration pointing toward long-term material fulfillment. The Ace is pure creative fire — an idea, an impulse, a beginning. The Ten of Pentacles is the end of the material cycle: wealth, legacy, generational stability. Together, they suggest that the creative spark the querent is feeling has genuine long-term potential. The advice is to take the spark seriously."
+    },
+    {
+      "id": "reversed_pair",
+      "meta": {"cards": ["any", "any"], "type": "reversed_dynamics"},
+      "text": "When two or more cards appear reversed in a spread: Multiple reversals amplify the sense that energy is blocked, internalized, or delayed. The reading is not 'negative' — but it suggests the querent's situation is more internal than external. The action may be in processing, reconsidering, or releasing rather than doing. A spread with all reversals asks: what are you holding onto that wants to be let go?"
+    }
+  ]
+}

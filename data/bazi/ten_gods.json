@@ -1,0 +1,55 @@
+{
+  "_note": "Ten Gods (十神) relationship patterns in Bazi. These are NOT simple element interactions — they encode complex relational dynamics between the Day Master and other pillars. This is expert-level interpretive knowledge that LLMs frequently get wrong or oversimplify.",
+  "entries": [
+    {
+      "id": "zheng_guan",
+      "meta": {"god": "正官", "name": "Zhèng Guān (Direct Officer)", "relation": "controls Day Master, same polarity"},
+      "text": "Zhèng Guān (正官) Direct Officer: The element that controls the Day Master with matching polarity. Represents legitimate authority, discipline, career structure, and the rules one follows. A strong Direct Officer suggests someone who thrives within systems — they respect hierarchy and earn advancement through reliability. Excess Direct Officer energy can feel like being crushed by expectation. For women in traditional Bazi, Direct Officer also represents the spouse or partner. Key question: Is the structure you're operating within supporting your growth, or limiting it?"
+    },
+    {
+      "id": "qi_sha",
+      "meta": {"god": "七杀", "name": "Qī Shā (Seven Killings)", "relation": "controls Day Master, opposite polarity"},
+      "text": "Qī Shā (七杀) Seven Killings: The element that controls the Day Master with opposing polarity — a harsher, more volatile authority than Direct Officer. Represents pressure, ambition, conflict, transformation through adversity. People with prominent Seven Killings tend to be driven, intense, and drawn to high-stakes situations. They may create conflict where none exists because they need resistance to feel alive. When balanced by other elements, Seven Killings produces remarkable achievers. Unbalanced, it produces burnout or aggression."
+    },
+    {
+      "id": "zheng_cai",
+      "meta": {"god": "正财", "name": "Zhèng Cái (Direct Wealth)", "relation": "Day Master controls, same polarity"},
+      "text": "Zhèng Cái (正财) Direct Wealth: The element the Day Master controls with matching polarity. Represents stable income, tangible assets, things earned through steady effort. A strong Direct Wealth suggests someone practical and materially grounded — good at managing resources. For men in traditional Bazi, Direct Wealth also represents the wife or primary relationship. Excess wealth element without Day Master strength means the person is overwhelmed by responsibility. Key question: Are you earning what matters to you, or just accumulating?"
+    },
+    {
+      "id": "pian_cai",
+      "meta": {"god": "偏财", "name": "Piān Cái (Indirect Wealth)", "relation": "Day Master controls, opposite polarity"},
+      "text": "Piān Cái (偏财) Indirect Wealth: The element the Day Master controls with opposing polarity. Represents windfall, speculation, generosity, and social wealth. People with prominent Indirect Wealth tend to be charismatic, generous, and comfortable with financial risk. They make money in unconventional ways and spend it freely. In a chart, strong Indirect Wealth without grounding can indicate financial instability or people-pleasing. Key question: Is your generosity flowing from abundance or from a need to be liked?"
+    },
+    {
+      "id": "shi_shen",
+      "meta": {"god": "食神", "name": "Shí Shén (Eating God)", "relation": "Day Master produces, same polarity"},
+      "text": "Shí Shén (食神) Eating God: The element the Day Master produces with matching polarity. Represents creativity, pleasure, self-expression, and the joy of making things. Eating God energy is gentle, artistic, and content — the person who cooks for friends, writes poetry, or loses track of time in a garden. It is the most benign of the output gods. Excess Eating God can mean passivity or self-indulgence. Key question: Are you allowing yourself enough space to create and enjoy?"
+    },
+    {
+      "id": "shang_guan",
+      "meta": {"god": "伤官", "name": "Shāng Guān (Hurting Officer)", "relation": "Day Master produces, opposite polarity"},
+      "text": "Shāng Guān (伤官) Hurting Officer: The element the Day Master produces with opposing polarity. Represents rebellion, sharp intelligence, unconventional talent, and the need to challenge authority. Hurting Officer is the most volatile of the Ten Gods — it produces brilliance and conflict in equal measure. People with prominent Hurting Officer are often talented but difficult, creative but restless. The name 'Hurting Officer' means it clashes with Direct Officer (authority). Key question: Is your need to challenge coming from genuine insight, or from a wound?"
+    },
+    {
+      "id": "zheng_yin",
+      "meta": {"god": "正印", "name": "Zhèng Yìn (Direct Resource)", "relation": "produces Day Master, same polarity"},
+      "text": "Zhèng Yìn (正印) Direct Resource: The element that produces the Day Master with matching polarity. Represents nourishment, education, support, maternal energy, and the capacity to receive. Strong Direct Resource suggests someone who is well-supported, educated, and able to absorb knowledge naturally. It is the mother element. Excess Resource without output can mean over-dependence on external support or analysis paralysis — always learning, never doing. Key question: What are you being nourished by, and is it time to give back?"
+    },
+    {
+      "id": "pian_yin",
+      "meta": {"god": "偏印", "name": "Piān Yìn (Indirect Resource)", "relation": "produces Day Master, opposite polarity"},
+      "text": "Piān Yìn (偏印) Indirect Resource: The element that produces the Day Master with opposing polarity. Represents unconventional wisdom, esoteric knowledge, sudden insight, and the shadow side of nourishment. Indirect Resource energy is associated with intuition, occult interests, and the ability to understand things that can't be taught in a classroom. It can also indicate loneliness or the feeling of being different. When Indirect Resource 'robs' the Eating God, creativity is suppressed. Key question: Where does your deepest knowing come from — and do you trust it?"
+    },
+    {
+      "id": "bi_jian",
+      "meta": {"god": "比肩", "name": "Bǐ Jiān (Friend/Rob Wealth)", "relation": "same element as Day Master, same polarity"},
+      "text": "Bǐ Jiān (比肩) Friend (Rob Wealth): The same element and polarity as the Day Master — peers, equals, competitors, and allies. Strong Friend element in a chart suggests someone who is independent, competitive, and values loyalty. They do well in team environments but may struggle with sharing resources or credit. In traditional Bazi, excess Friend energy can 'rob' wealth — meaning the person's relationships or generosity undermine their material security. Key question: Who are your true peers, and where does healthy competition become rivalry?"
+    },
+    {
+      "id": "jie_cai",
+      "meta": {"god": "劫财", "name": "Jié Cái (Rob Wealth)", "relation": "same element as Day Master, opposite polarity"},
+      "text": "Jié Cái (劫财) Rob Wealth: The same element with opposing polarity to the Day Master — the shadow sibling, the person who shares your nature but uses it differently. Rob Wealth energy is more aggressive than Friend: it signals competition, impulsiveness, and the tendency to overextend. People with strong Rob Wealth are bold and decisive but may make enemies through their directness. Key question: Are you pursuing what you truly want, or just proving you can take it?"
+    }
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "_note": "Twelve Earthly Branches with associated element, zodiac animal, season, and interpretive text.",
+  "entries": [
+    {
+      "id": "zi",
+      "meta": {"branch": "子", "name": "Zǐ", "element": "Yang Water", "animal": "Rat", "season": "Winter"},
+      "text": "Zǐ (子) — Rat, Yang Water, deep winter. The Rat branch carries the energy of resourcefulness, quick thinking, and the ability to find a way through in the dark. It governs midnight and the depths of winter — a time of stillness on the surface and intense activity beneath. In a Bazi chart, Zǐ contributes Water energy that can support Wood (growth) or create conflict with Fire (ambition). The Rat's intelligence can tip into overcalculation."
+    },
+    {
+      "id": "chou",
+      "meta": {"branch": "丑", "name": "Chǒu", "element": "Yin Earth", "animal": "Ox", "season": "Winter/Spring"},
+      "text": "Chǒu (丑) — Ox, Yin Earth, late winter. The Ox branch is associated with persistence, diligence, and the capacity to bear heavy loads without complaint. It is the slow, sure movement toward a goal — reliable but sometimes inflexible. Chǒu contains hidden Metal and Water energies, making it a complex branch often associated with stored potential. In a chart, it speaks to the ability to endure and the value placed on tangible results."
+    },
+    {
+      "id": "yin",
+      "meta": {"branch": "寅", "name": "Yín", "element": "Yang Wood", "animal": "Tiger", "season": "Early Spring"},
+      "text": "Yín (寅) — Tiger, Yang Wood, early spring. The Tiger branch pulses with ambition, courage, and the thrill of a new beginning. It is dawn, early spring — the moment when the year's energy first stirs. Yín is associated with boldness and sometimes impulsiveness. In a chart, it brings strong Wood energy and can signal a life full of action, leadership, and rapid change. The Tiger does not wait."
+    },
+    {
+      "id": "mao",
+      "meta": {"branch": "卯", "name": "Mǎo", "element": "Yin Wood", "animal": "Rabbit", "season": "Spring"},
+      "text": "Mǎo (卯) — Rabbit, Yin Wood, full spring. The Rabbit branch carries gentleness, diplomacy, and an eye for beauty. It is the moment of full blossom — not striving, but being. Mǎo is associated with charm, artistry, and a preference for harmony over conflict. In a chart, it contributes pure Yin Wood energy and often signals someone who navigates social situations with grace but may avoid necessary confrontation."
+    },
+    {
+      "id": "chen",
+      "meta": {"branch": "辰", "name": "Chén", "element": "Yang Earth", "animal": "Dragon", "season": "Spring/Summer"},
+      "text": "Chén (辰) — Dragon, Yang Earth, late spring. The Dragon is the only mythical animal in the zodiac and carries a complexity others lack. Chén contains hidden Water, making it a Water storage branch despite its Earth element — the reservoir beneath the mountain. In a chart, Dragon energy is associated with imagination, unpredictability, and a life that defies easy category. Dragon people may feel set apart from ordinary rhythms."
+    },
+    {
+      "id": "si",
+      "meta": {"branch": "巳", "name": "Sì", "element": "Yin Fire", "animal": "Snake", "season": "Early Summer"},
+      "text": "Sì (巳) — Snake, Yin Fire, early summer. The Snake branch is associated with wisdom, depth, and a penetrating intelligence that sees beneath the surface. Sì is quiet Fire — thoughtful rather than explosive, perceptive rather than demonstrative. In a chart, it contributes concentrated Yin Fire energy and often indicates someone with strong intuition and strategic thinking. Snakes may keep their own counsel too long."
+    },
+    {
+      "id": "wu",
+      "meta": {"branch": "午", "name": "Wǔ", "element": "Yang Fire", "animal": "Horse", "season": "Midsummer"},
+      "text": "Wǔ (午) — Horse, Yang Fire, midsummer noon. The Horse branch is pure movement, passion, and freedom. It is the peak of the day, the height of summer — energy at its most outward and intense. In a chart, Wǔ signals someone who needs space, dislikes restriction, and brings others along through sheer enthusiasm. The challenge is sustaining direction when the initial fire fades."
+    },
+    {
+      "id": "wei",
+      "meta": {"branch": "未", "name": "Wèi", "element": "Yin Earth", "animal": "Goat", "season": "Midsummer/Autumn"},
+      "text": "Wèi (未) — Goat, Yin Earth, late summer. The Goat branch carries creativity, sensitivity, and a deep attunement to beauty and feeling. It is the warmth of late summer, slightly melancholy with the knowledge that autumn is coming. In a chart, Wèi brings gentle, relational energy — someone who cares deeply and feels things acutely. The challenge is direction: the Goat can ruminate rather than act."
+    },
+    {
+      "id": "shen",
+      "meta": {"branch": "申", "name": "Shēn", "element": "Yang Metal", "animal": "Monkey", "season": "Early Autumn"},
+      "text": "Shēn (申) — Monkey, Yang Metal, early autumn. The Monkey branch is quick-witted, versatile, and endlessly inventive. Shēn contains hidden Water, giving it a depth behind its playfulness. In a chart, Monkey energy signals adaptability, cleverness, and the ability to improvise — but also a tendency toward restlessness and difficulty with sustained commitment. The Monkey is always looking for a better tree."
+    },
+    {
+      "id": "you",
+      "meta": {"branch": "酉", "name": "Yǒu", "element": "Yin Metal", "animal": "Rooster", "season": "Autumn"},
+      "text": "Yǒu (酉) — Rooster, Yin Metal, full autumn. The Rooster branch is associated with precision, punctuality, and high standards. It is the most concentrated Metal branch — refined to a sharp edge. In a chart, Yǒu energy signals someone who notices details others miss and holds themselves and others to demanding expectations. The challenge is the gap between the ideal and the actual, which the Rooster feels more acutely than most."
+    },
+    {
+      "id": "xu",
+      "meta": {"branch": "戌", "name": "Xū", "element": "Yang Earth", "animal": "Dog", "season": "Late Autumn"},
+      "text": "Xū (戌) — Dog, Yang Earth, late autumn. The Dog branch is loyal, honest, and deeply oriented toward fairness. It is a fire-storage branch containing hidden Fire energy beneath its Earth surface — warmth held in reserve. In a chart, Xū energy signals someone with strong convictions and an instinct to protect those they love. The Dog may hold grudges or become anxious when trust is violated."
+    },
+    {
+      "id": "hai",
+      "meta": {"branch": "亥", "name": "Hài", "element": "Yin Water", "animal": "Pig", "season": "Early Winter"},
+      "text": "Hài (亥) — Pig, Yin Water, early winter. The Pig branch carries generosity, openness, and an almost childlike trust in the world. Hài is among the purest Water branches, associated with depth of feeling and a natural flow toward others. In a chart, it often signals someone warm-hearted and sincere who may be vulnerable to being taken advantage of. The Pig's strength is its capacity for genuine connection."
+    }
+  ]
+}

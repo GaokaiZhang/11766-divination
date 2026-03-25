@@ -1,0 +1,66 @@
+{
+  "_note": "Hidden Heavenly Stems in Earthly Branches (地支藏干). Each branch contains 1-3 hidden stems: a primary qi (本气), and optionally middle qi (中气) and residual qi (余气). This is expert-level Bazi knowledge that LLMs frequently get wrong. Verified against Imperial Harvest and FengShuied references.",
+  "_source": "Imperial Harvest (imperialharvest.com/blog/hidden-heavenly-stems/), FengShuied (fengshuied.com/heavenly-stems-in-earthly-branches)",
+  "entries": [
+    {
+      "id": "hidden_zi",
+      "meta": {"branch": "子", "animal": "Rat", "element": "Yang Water"},
+      "text": "Hidden Stems in 子 (Zǐ, Rat): Contains only 癸 Guǐ (Yin Water) as its primary qi. The Rat is a pure Water branch — undiluted, concentrated, and singular in nature. In a Bazi chart, when the Rat branch appears, the hidden Yin Water reinforces Water energy without complication. This purity makes the Rat branch straightforward to interpret but also means it lacks the internal complexity of branches with multiple hidden stems. A person with Rat branches tends to have a clear, focused expression of Water qualities."
+    },
+    {
+      "id": "hidden_chou",
+      "meta": {"branch": "丑", "animal": "Ox", "element": "Yin Earth"},
+      "text": "Hidden Stems in 丑 (Chǒu, Ox): Contains 己 Jǐ (Yin Earth) as primary qi, 癸 Guǐ (Yin Water) as middle qi, and 辛 Xīn (Yin Metal) as residual qi. The Ox is a complex branch — outwardly Earth but harboring Water and Metal beneath the surface. This makes the Ox a 'storage' branch for Metal energy. The hidden Water (癸) gives the Ox emotional depth beneath its stoic exterior, while the hidden Metal (辛) adds sharpness and discernment. In chart analysis, the Ox's hidden stems mean it can participate in unexpected element interactions — its surface stability conceals inner complexity."
+    },
+    {
+      "id": "hidden_yin",
+      "meta": {"branch": "寅", "animal": "Tiger", "element": "Yang Wood"},
+      "text": "Hidden Stems in 寅 (Yín, Tiger): Contains 甲 Jiǎ (Yang Wood) as primary qi, 丙 Bǐng (Yang Fire) as middle qi, and 戊 Wù (Yang Earth) as residual qi. The Tiger is the most vigorous of the Wood branches, carrying not just growth energy but also the Fire to fuel ambition and the Earth to ground it. The hidden Fire (丙) means the Tiger's Wood energy naturally feeds into visible achievement. The hidden Earth (戊) provides unexpected stability. In a chart, the Tiger branch brings a complex package: the drive of Wood, the visibility of Fire, and the groundedness of Earth."
+    },
+    {
+      "id": "hidden_mao",
+      "meta": {"branch": "卯", "animal": "Rabbit", "element": "Yin Wood"},
+      "text": "Hidden Stems in 卯 (Mǎo, Rabbit): Contains only 乙 Yǐ (Yin Wood) as its primary qi. Like the Rat, the Rabbit is a pure branch — concentrated Yin Wood without internal complication. This purity gives the Rabbit branch a clear, gentle Wood expression: diplomacy, grace, flexibility. In chart analysis, the Rabbit's single hidden stem means its energy is predictable and consistent. When the Rabbit interacts with other branches, its contribution is unambiguous Yin Wood, making it a reliable indicator in relationship analysis."
+    },
+    {
+      "id": "hidden_chen",
+      "meta": {"branch": "辰", "animal": "Dragon", "element": "Yang Earth"},
+      "text": "Hidden Stems in 辰 (Chén, Dragon): Contains 戊 Wù (Yang Earth) as primary qi, 乙 Yǐ (Yin Wood) as middle qi, and 癸 Guǐ (Yin Water) as residual qi. The Dragon is a Water storage branch — despite its Earth surface, it holds Water (癸) in reserve like an underground reservoir. The hidden Wood (乙) adds a growth element that can emerge unexpectedly. In Bazi analysis, the Dragon's Water storage capacity is critical: it can release stored Water energy when triggered by other branches (especially in Three Harmony Water combinations with Monkey and Rat). The Dragon's complexity makes it one of the most nuanced branches to interpret."
+    },
+    {
+      "id": "hidden_si",
+      "meta": {"branch": "巳", "animal": "Snake", "element": "Yin Fire"},
+      "text": "Hidden Stems in 巳 (Sì, Snake): Contains 丙 Bǐng (Yang Fire) as primary qi, 戊 Wù (Yang Earth) as middle qi, and 庚 Gēng (Yang Metal) as residual qi. The Snake branch carries concentrated Fire energy but also harbors Metal (庚) — Fire's opposite. This internal tension gives the Snake its reputation for strategic intelligence: the Fire provides insight and passion, while the hidden Metal adds decisiveness and edge. The hidden Earth (戊) acts as a mediator between Fire and Metal. In chart analysis, the Snake's hidden Metal is significant: it can participate in Metal combinations that wouldn't be obvious from the branch's Fire surface."
+    },
+    {
+      "id": "hidden_wu",
+      "meta": {"branch": "午", "animal": "Horse", "element": "Yang Fire"},
+      "text": "Hidden Stems in 午 (Wǔ, Horse): Contains 丁 Dīng (Yin Fire) as primary qi and 己 Jǐ (Yin Earth) as middle qi. The Horse carries two hidden stems — intimate Fire and nurturing Earth. Despite being a Yang Fire branch by classification, the Horse's hidden stem is Yin Fire (丁), giving it a more focused, candle-like quality beneath its outward exuberance. The hidden Earth (己) provides a stabilizing undercurrent. The Horse is a Fire storage branch and, when combined with Tiger and Dog in the Three Harmony Fire combination, releases powerful Fire energy."
+    },
+    {
+      "id": "hidden_wei",
+      "meta": {"branch": "未", "animal": "Goat", "element": "Yin Earth"},
+      "text": "Hidden Stems in 未 (Wèi, Goat): Contains 己 Jǐ (Yin Earth) as primary qi, 丁 Dīng (Yin Fire) as middle qi, and 乙 Yǐ (Yin Wood) as residual qi. The Goat is entirely Yin — all three hidden stems are Yin polarity, giving this branch a deeply receptive, inward quality. The hidden Fire (丁) warms the Earth without burning, and the hidden Wood (乙) provides gentle growth. In Bazi, the Goat's all-Yin nature means it absorbs and transforms energy rather than projecting it. The Goat is an Earth storage branch and often indicates someone who processes experiences internally before responding."
+    },
+    {
+      "id": "hidden_shen",
+      "meta": {"branch": "申", "animal": "Monkey", "element": "Yang Metal"},
+      "text": "Hidden Stems in 申 (Shēn, Monkey): Contains 庚 Gēng (Yang Metal) as primary qi, 壬 Rén (Yang Water) as middle qi, and 戊 Wù (Yang Earth) as residual qi. The Monkey is entirely Yang — all three hidden stems carry Yang polarity, giving this branch dynamic, outward-projecting energy. The hidden Water (壬) behind the Metal surface feeds intelligence and adaptability. The hidden Earth (戊) supports the Metal. In Bazi, the Monkey's Yang nature makes it active and assertive. Its hidden Water is critical: the Monkey participates in the Water Three Harmony (申子辰) and can release significant Water energy when triggered."
+    },
+    {
+      "id": "hidden_you",
+      "meta": {"branch": "酉", "animal": "Rooster", "element": "Yin Metal"},
+      "text": "Hidden Stems in 酉 (Yǒu, Rooster): Contains only 辛 Xīn (Yin Metal) as its primary qi. The Rooster is a pure Metal branch — the most concentrated Metal energy in the twelve branches. This purity gives the Rooster exceptional precision and discernment but also rigidity. In chart analysis, the Rooster's single hidden stem makes it a powerful, undiluted Metal influence. When the Rooster participates in Metal combinations (like the Metal Three Harmony with Snake and Ox: 巳酉丑), it contributes pure, concentrated Metal energy."
+    },
+    {
+      "id": "hidden_xu",
+      "meta": {"branch": "戌", "animal": "Dog", "element": "Yang Earth"},
+      "text": "Hidden Stems in 戌 (Xū, Dog): Contains 戊 Wù (Yang Earth) as primary qi, 辛 Xīn (Yin Metal) as middle qi, and 丁 Dīng (Yin Fire) as residual qi. The Dog is a Fire storage branch — beneath its Earth exterior, it holds Fire (丁) in reserve. The hidden Metal (辛) adds discernment and loyalty. In Bazi, the Dog's Fire storage capacity is activated in the Fire Three Harmony (寅午戌), where it releases stored Fire energy. The combination of hidden Fire and Metal gives the Dog branch both warmth and sharpness — loyalty with teeth."
+    },
+    {
+      "id": "hidden_hai",
+      "meta": {"branch": "亥", "animal": "Pig", "element": "Yin Water"},
+      "text": "Hidden Stems in 亥 (Hài, Pig): Contains 壬 Rén (Yang Water) as primary qi and 甲 Jiǎ (Yang Wood) as middle qi. The Pig holds Water and Wood — a naturally generative combination where Water feeds Wood growth. Despite being classified as Yin Water, the Pig's primary hidden stem is Yang Water (壬), giving it more depth and force than expected. The hidden Wood (甲) means the Pig branch naturally generates growth from its Water foundation. In Bazi, the Pig participates in the Wood Six Combine (寅亥合 → Wood) and carries Wood potential even before the combination is activated."
+    }
+  ]
+}

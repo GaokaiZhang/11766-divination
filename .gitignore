@@ -1,0 +1,23 @@
+status.md
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+dist/
+build/
+
+# Secrets
+.env
+*.env
+
+# ChromaDB persistent store
+.chroma_db/
+
+# SQLite user data
+users.db
+
+# OS
+.DS_Store

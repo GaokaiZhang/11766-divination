@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Divination Companion</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ─── Input Screen ──────────────────────────────────── -->
+  <div id="screen-input" class="screen active">
+    <div class="card">
+      <h1 class="title">Divination Companion</h1>
+      <p class="subtitle">A space for reflection, not prediction.</p>
+
+      <form id="form-input">
+        <label>Your name
+          <input type="text" id="input-name" placeholder="How should I call you?" required />
+        </label>
+
+        <label>System
+          <select id="input-system">
+            <option value="tarot">Tarot (three-card spread)</option>
+            <option value="bazi">Bazi — Four Pillars of Destiny</option>
+            <option value="iching">I Ching — Book of Changes</option>
+          </select>
+        </label>
+
+        <div id="birth-fields">
+          <label>Birth date
+            <input type="date" id="input-birth-date" />
+          </label>
+          <label>Birth time <span class="hint">(optional, improves Bazi reading)</span>
+            <input type="time" id="input-birth-time" />
+          </label>
+          <label>Birth location <span class="hint">(optional)</span>
+            <input type="text" id="input-birth-location" placeholder="e.g. Shanghai, China" />
+          </label>
+        </div>
+
+        <label>What's on your mind? <span class="hint">(optional)</span>
+          <textarea id="input-question" rows="3"
+            placeholder="A question, a concern, or leave blank for an open reading…"></textarea>
+        </label>
+
+        <button type="submit" class="btn-primary">Begin Reading</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- ─── Clarification Screen ─────────────────────────── -->
+  <div id="screen-clarify" class="screen">
+    <div class="card">
+      <p id="clarify-question" class="clarify-text"></p>
+      <input type="text" id="clarify-answer" placeholder="Your answer…" />
+      <button id="btn-clarify-submit" class="btn-primary">Continue</button>
+    </div>
+  </div>
+
+  <!-- ─── Reading + Chat Screen ────────────────────────── -->
+  <div id="screen-chat" class="screen">
+    <div id="reading-panel">
+      <h2 id="reading-title">Your Reading</h2>
+      <div id="reading-display"></div>
+    </div>
+
+    <div id="chat-panel">
+      <div id="chat-messages"></div>
+      <div id="chat-input-row">
+        <textarea id="chat-input" rows="2" placeholder="Respond, or ask a question…"></textarea>
+        <button id="btn-send" class="btn-primary">Send</button>
+      </div>
+      <button id="btn-end-session" class="btn-secondary">End Session</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

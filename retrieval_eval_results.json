@@ -1,0 +1,115 @@
+[
+  {
+    "system": "tarot",
+    "total_queries": 156,
+    "hits": 138,
+    "precision@3": 0.8846,
+    "sample_misses": [
+      [
+        "Two of Wands",
+        "reversed",
+        [
+          "tarot|wands_04|reversed",
+          "tarot|wands_08|reversed"
+        ]
+      ],
+      [
+        "Three of Wands",
+        "upright",
+        [
+          "tarot|wands_07|upright",
+          "tarot|wands_09|upright"
+        ]
+      ],
+      [
+        "Four of Wands",
+        "upright",
+        [
+          "tarot|wands_07|upright",
+          "tarot|wands_09|upright"
+        ]
+      ],
+      [
+        "Five of Wands",
+        "upright",
+        [
+          "tarot|wands_07|upright",
+          "tarot|wands_09|upright"
+        ]
+      ],
+      [
+        "Eight of Wands",
+        "upright",
+        [
+          "tarot|wands_07|upright",
+          "tarot|wands_09|upright"
+        ]
+      ]
+    ]
+  },
+  {
+    "system": "bazi",
+    "total_queries": 22,
+    "hits": 22,
+    "precision@3": 1.0,
+    "sample_misses": []
+  },
+  {
+    "system": "iching",
+    "total_queries": 64,
+    "hits": 42,
+    "precision@3": 0.6562,
+    "sample_misses": [
+      [
+        "Responding",
+        [
+          "iching|judgment|2"
+        ],
+        [
+          "iching|symbolic|51",
+          "iching|line|2_4"
+        ]
+      ],
+      [
+        "Needing",
+        [
+          "iching|symbolic|5"
+        ],
+        [
+          "iching|line|57_4",
+          "iching|symbolic|40"
+        ]
+      ],
+      [
+        "Fulfillment",
+        [
+          "iching|judgment|10"
+        ],
+        [
+          "iching|line|10_6",
+          "iching|line|10_5"
+        ]
+      ],
+      [
+        "Seeking Harmony",
+        [
+          "iching|symbolic|13"
+        ],
+        [
+          "iching|line|13_1",
+          "iching|line|13_6"
+        ]
+      ],
+      [
+        "Remedying",
+        [
+          "iching|image|18"
+        ],
+        [
+          "iching|line|18_5",
+          "iching|symbolic|35"
+        ]
+      ]
+    ]
+  }
+]

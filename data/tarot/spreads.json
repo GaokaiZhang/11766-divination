@@ -1,0 +1,45 @@
+{
+  "_note": "Positional interpretation modifiers for multi-card spreads. The same card means different things depending on WHERE it falls in a spread — this is domain knowledge that simple prompting often flattens.",
+  "entries": [
+    {
+      "id": "past_position",
+      "meta": {"position": "Past", "spread": "Past/Present/Future"},
+      "text": "A card in the Past position represents the foundation — what has already happened, what the querent is carrying forward. It is not just 'what was,' but the emotional and situational residue that colors the present. When interpreting a Past card, ask: how is this energy still active? What lesson from this period hasn't been fully integrated? The Past position often reveals the root of the current question, even when the querent hasn't made the connection themselves."
+    },
+    {
+      "id": "present_position",
+      "meta": {"position": "Present", "spread": "Past/Present/Future"},
+      "text": "A card in the Present position captures the current energy — what is alive right now, the central tension or gift the querent is sitting in. This is the most immediately felt card. When interpreting, ground it in 'what you are experiencing right now' rather than 'what will happen.' The Present card often names something the querent already knows but hasn't articulated."
+    },
+    {
+      "id": "future_position",
+      "meta": {"position": "Future", "spread": "Past/Present/Future"},
+      "text": "A card in the Future position suggests the direction of energy — not a fixed outcome, but where things are heading if the current trajectory continues. It is the most mutable position. When interpreting, frame it as possibility rather than destiny: 'This is where the energy is pointing' rather than 'This will happen.' The Future card is an invitation to reflect on whether the querent wants to move toward or away from what it suggests."
+    },
+    {
+      "id": "situation_position",
+      "meta": {"position": "Situation", "spread": "Five-Card Cross"},
+      "text": "In a five-card spread, the Situation card describes the overall context — the landscape the querent is navigating. It sets the stage. Unlike the Present card in a three-card spread, the Situation card is more objective: it describes circumstances rather than internal experience."
+    },
+    {
+      "id": "challenge_position",
+      "meta": {"position": "Challenge", "spread": "Five-Card Cross"},
+      "text": "The Challenge card names the primary obstacle or tension. This is not necessarily something bad — challenges can be growing edges. When interpreting, present the challenge with respect: 'This is what you're being asked to work with' rather than 'This is your problem.' Even a traditionally positive card in the Challenge position suggests that its energy is currently difficult to access or integrate."
+    },
+    {
+      "id": "foundation_position",
+      "meta": {"position": "Foundation", "spread": "Five-Card Cross"},
+      "text": "The Foundation card reveals the unconscious basis — the deeper ground beneath the question. It is often the most surprising card in the spread because it names something the querent may not be aware of. When interpreting, approach it with curiosity: 'Underneath everything, there seems to be...' This card often holds the key to the entire reading."
+    },
+    {
+      "id": "approach_position",
+      "meta": {"position": "Approach", "spread": "Five-Card Cross"},
+      "text": "The Approach card suggests how the querent might best engage with their situation — not a prescription, but an orientation. Think of it as the energy or attitude that would serve them. When interpreting, frame it as an invitation: 'What if you approached this with the energy of...' A reversed card here might suggest that the opposite energy is needed."
+    },
+    {
+      "id": "outcome_position",
+      "meta": {"position": "Outcome", "spread": "Five-Card Cross"},
+      "text": "The Outcome card in a five-card spread carries more weight than a simple prediction. It represents the likely resolution if the querent engages with the challenge and approach. Frame it conditionally: 'If you work with what the other cards are showing, this is the direction things move toward.' Always leave room for the querent's agency in shaping the outcome."
+    }
+  ]
+}

@@ -189,12 +189,24 @@ class DivinationLLM:
         trimmed = _truncate_messages(messages, max_tokens=6000)
 
         start = time.time()
-        response = self.client.chat.completions.create(
-            model=self.model,
-            messages=[{"role": "system", "content": system_content}] + trimmed,
-            temperature=0.85,
-            max_tokens=600,
-        )
+        try:
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=[{"role": "system", "content": system_content}] + trimmed,
+                temperature=0.85,
+                max_tokens=600,
+            )
+        except Exception:
+            # Retry with backoff for rate limits during evaluation
+            import time as _time
+            from openai import RateLimitError
+            _time.sleep(3)
+            response = self.client.chat.completions.create(
+                model=self.model,
+                messages=[{"role": "system", "content": system_content}] + trimmed,
+                temperature=0.85,
+                max_tokens=600,
+            )
         elapsed_ms = int((time.time() - start) * 1000)
 
         reply = response.choices[0].message.content

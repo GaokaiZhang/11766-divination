@@ -9,15 +9,15 @@
         "Two of Wands",
         "reversed",
         [
-          "tarot|wands_04|reversed",
-          "tarot|wands_08|reversed"
+          "tarot|wands_08|reversed",
+          "tarot|wands_04|reversed"
         ]
       ],
       [
         "Three of Wands",
         "upright",
         [
-          "tarot|wands_07|upright",
+          "tarot|wands_02|upright",
           "tarot|wands_09|upright"
         ]
       ],
@@ -25,7 +25,7 @@
         "Four of Wands",
         "upright",
         [
-          "tarot|wands_07|upright",
+          "tarot|wands_02|upright",
           "tarot|wands_09|upright"
         ]
       ],
@@ -33,7 +33,7 @@
         "Five of Wands",
         "upright",
         [
-          "tarot|wands_07|upright",
+          "tarot|wands_10|upright",
           "tarot|wands_09|upright"
         ]
       ],
@@ -41,7 +41,7 @@
         "Eight of Wands",
         "upright",
         [
-          "tarot|wands_07|upright",
+          "tarot|wands_08|reversed",
           "tarot|wands_09|upright"
         ]
       ]
@@ -57,8 +57,8 @@
   {
     "system": "iching",
     "total_queries": 64,
-    "hits": 42,
-    "precision@3": 0.6562,
+    "hits": 50,
+    "precision@3": 0.7812,
     "sample_misses": [
       [
         "Responding",
@@ -66,7 +66,7 @@
           "iching|judgment|2"
         ],
         [
-          "iching|symbolic|51",
+          "iching|symbolic|64",
           "iching|line|2_4"
         ]
       ],
@@ -76,8 +76,8 @@
           "iching|symbolic|5"
         ],
         [
-          "iching|line|57_4",
-          "iching|symbolic|40"
+          "iching|symbolic|64",
+          "iching|overview|57"
         ]
       ],
       [
@@ -86,28 +86,46 @@
           "iching|judgment|10"
         ],
         [
-          "iching|line|10_6",
-          "iching|line|10_5"
+          "iching|line|10_5",
+          "iching|image|30"
         ]
       ],
       [
-        "Seeking Harmony",
+        "Approaching",
         [
-          "iching|symbolic|13"
+          "iching|image|19"
         ],
         [
-          "iching|line|13_1",
-          "iching|line|13_6"
+          "iching|line|19_6",
+          "iching|symbolic|64"
         ]
       ],
       [
-        "Remedying",
+        "Without Falsehood",
         [
-          "iching|image|18"
+          "iching|judgment|25"
         ],
         [
-          "iching|line|18_5",
-          "iching|symbolic|35"
+          "iching|line|25_4",
+          "iching|line|25_1"
+        ]
+      ]
+    ]
+  },
+  {
+    "system": "iching_filtered",
+    "total_queries": 64,
+    "hits": 63,
+    "precision@3": 0.9844,
+    "sample_misses": [
+      [
+        "Turning Back",
+        [
+          "iching|symbolic|24"
+        ],
+        [
+          "iching|line|24_1",
+          "iching|line|24_2"
         ]
       ]
     ]

@@ -117,6 +117,28 @@ def _index_iching(col: chromadb.Collection) -> int:
         num = h["number"]
         name = f"{h['chinese']} ({h['pinyin']}) — {h['english']}"
 
+        # Overview document (1 per hexagram) — combines the hexagram
+        # identity, trigram composition, and judgment/image texts into one
+        # semantically rich document that anchors hexagram-level retrieval.
+        jtext = h.get("judgment", {}).get("text", "")
+        itext = h.get("image", {}).get("text", "")
+        trigrams = (
+            f"Upper: {h.get('upper_trigram', {}).get('symbolic', '')} "
+            f"({h.get('upper_trigram', {}).get('nature', '')}), "
+            f"Lower: {h.get('lower_trigram', {}).get('symbolic', '')} "
+            f"({h.get('lower_trigram', {}).get('nature', '')})"
+        )
+        overview = (
+            f"Hexagram {num} {name}. "
+            f"Trigrams: {trigrams}. "
+            f"Judgment: {jtext} "
+            f"Image: {itext}"
+        )
+        docs.append(overview)
+        ids.append(f"iching|overview|{num}")
+        metas.append({"system": "iching", "hexagram": num,
+                      "type": "overview"})
+
         # Symbolic description (1 doc per hexagram)
         if h.get("symbolic_description"):
             docs.append(
@@ -126,8 +148,7 @@ def _index_iching(col: chromadb.Collection) -> int:
             metas.append({"system": "iching", "hexagram": num,
                           "type": "symbolic"})
 
-        # Judgment (1 doc per hexagram)
-        jtext = h.get("judgment", {}).get("text", "")
+        # Judgment with commentary (1 doc per hexagram)
         jcomm = h.get("judgment", {}).get("commentary", "")
         if jtext:
             docs.append(
@@ -138,8 +159,7 @@ def _index_iching(col: chromadb.Collection) -> int:
             metas.append({"system": "iching", "hexagram": num,
                           "type": "judgment"})
 
-        # Image (1 doc per hexagram)
-        itext = h.get("image", {}).get("text", "")
+        # Image with commentary (1 doc per hexagram)
         icomm = h.get("image", {}).get("commentary", "")
         if itext:
             docs.append(

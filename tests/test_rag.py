@@ -82,6 +82,7 @@ class TestTotalDocCount:
 
         # I Ching
         hexs = json.load(open(DATA_DIR / "iching" / "hexagrams.json"))["hexagrams"]
+        total += len(hexs)  # overview docs (1 per hexagram)
         total += sum(1 for h in hexs if h.get("symbolic_description"))
         total += sum(1 for h in hexs if h.get("judgment", {}).get("text"))
         total += sum(1 for h in hexs if h.get("image", {}).get("text"))

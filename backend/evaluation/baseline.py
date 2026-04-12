@@ -62,42 +62,29 @@ class BaselineLLM:
         self.client = OpenAI(api_key=api_key or os.environ["OPENAI_API_KEY"])
         self.model = model
 
-    def generate_tarot(self, name: str, question: str) -> str:
-        prompt = BASELINE_TAROT_PROMPT.format(name=name, question=question)
-        resp = self.client.chat.completions.create(
+    def _create(self, prompt: str) -> str:
+        from .retry_util import retry_on_rate_limit
+        resp = retry_on_rate_limit(
+            self.client.chat.completions.create,
             model=self.model,
             messages=[{"role": "user", "content": prompt}],
             temperature=0.85,
             max_tokens=800,
         )
         return resp.choices[0].message.content
+
+    def generate_tarot(self, name: str, question: str) -> str:
+        return self._create(BASELINE_TAROT_PROMPT.format(name=name, question=question))
 
     def generate_bazi(
         self, name: str, birth_date: str, birth_time: str | None, question: str
     ) -> str:
         time_clause = f" and birth time" if birth_time else ""
         birth_time_line = f"Birth time: {birth_time}\n" if birth_time else ""
-        prompt = BASELINE_BAZI_PROMPT.format(
-            name=name,
-            birth_date=birth_date,
-            question=question,
-            time_clause=time_clause,
-            birth_time_line=birth_time_line,
-        )
-        resp = self.client.chat.completions.create(
-            model=self.model,
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.85,
-            max_tokens=800,
-        )
-        return resp.choices[0].message.content
+        return self._create(BASELINE_BAZI_PROMPT.format(
+            name=name, birth_date=birth_date, question=question,
+            time_clause=time_clause, birth_time_line=birth_time_line,
+        ))
 
     def generate_iching(self, name: str, question: str) -> str:
-        prompt = BASELINE_ICHING_PROMPT.format(name=name, question=question)
-        resp = self.client.chat.completions.create(
-            model=self.model,
-            messages=[{"role": "user", "content": prompt}],
-            temperature=0.85,
-            max_tokens=800,
-        )
-        return resp.choices[0].message.content
+        return self._create(BASELINE_ICHING_PROMPT.format(name=name, question=question))

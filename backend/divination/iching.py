@@ -166,9 +166,10 @@ class IChingSystem(DivinationSystem):
 
         summary = "\n".join(summary_parts)
 
-        # Build symbols for RAG query
+        # Build symbols for RAG query — include hexagram numbers so the
+        # retriever can construct precise queries and metadata filters.
         symbols = [
-            primary["english"],
+            f"Hexagram {primary['number']} {primary['english']}",
             primary["chinese"],
             primary["upper_trigram"]["symbolic"],
             primary["lower_trigram"]["symbolic"],
@@ -177,14 +178,14 @@ class IChingSystem(DivinationSystem):
         ]
         if transformed:
             symbols.extend([
-                transformed["english"],
+                f"Hexagram {transformed['number']} {transformed['english']}",
                 transformed["chinese"],
                 "changing lines",
                 "transformation",
             ])
-        # Add changing line positions
+        # Add changing line positions with hexagram number for targeted retrieval
         for pos in cast["changing"]:
-            symbols.append(f"line {pos}")
+            symbols.append(f"Hexagram {primary['number']} line {pos}")
 
         raw = {
             "lines": cast["lines"],

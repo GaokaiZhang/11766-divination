@@ -159,13 +159,26 @@ function esc(s) { const d = document.createElement("div"); d.textContent = s; re
 function renderTarotReading(raw, summary) {
   const cards = raw.cards || [];
   const positions = raw.positions || [];
+
+  // Suit symbols for minor arcana
+  const suitSymbol = { wands: "🜂", cups: "🜄", swords: "🜁", pentacles: "🜃" };
+  function cardSymbol(name) {
+    const lower = name.toLowerCase();
+    for (const [suit, sym] of Object.entries(suitSymbol)) {
+      if (lower.includes(suit)) return sym;
+    }
+    return "✦"; // Major Arcana
+  }
+
   let html = '<div class="reading-cards">';
   cards.forEach((card, i) => {
     const orient = card.is_reversed ? "reversed" : "upright";
     const orientLabel = card.is_reversed ? "↓ Reversed" : "↑ Upright";
     const pos = positions[i] || `Card ${i+1}`;
+    const sym = cardSymbol(card.name);
     html += `<div class="tarot-card ${orient}">
       <div class="card-position">${esc(pos)}</div>
+      <div class="card-arcana">${sym}</div>
       <div class="card-name">${esc(card.name)}</div>
       <div class="card-orient">${orientLabel}</div>
     </div>`;
@@ -184,32 +197,127 @@ function renderIChingReading(raw, summary) {
   const lineSymbols = lines.map((v, i) => {
     const pos = i + 1;
     const isChanging = changing.includes(pos);
-    if (v === 7 || v === 9) return isChanging ? "———o———" : "—————————";
-    return isChanging ? "——— x ———" : "———   ———";
+    const yang = (v === 7 || v === 9);
+    const symbol = yang
+      ? (isChanging ? "━━━ ○ ━━━" : "━━━━━━━━━")
+      : (isChanging ? "━━━ × ━━━" : "━━━   ━━━");
+    return { symbol, isChanging };
   }).reverse();
 
   let html = `<div class="iching-hexagram">`;
-  html += `<div><div class="hex-unicode">${esc(primary.unicode || "")}</div>`;
+
+  // Primary hexagram block
+  html += `<div class="hex-block">`;
+  html += `<div class="hex-unicode">${esc(primary.unicode || "")}</div>`;
   html += `<div class="hex-name">#${primary.number} ${esc(primary.chinese || "")} (${esc(primary.pinyin || "")})</div>`;
-  html += `<div class="hex-english">${esc(primary.english || "")}</div></div>`;
-  html += `<div class="hex-lines">`;
-  lineSymbols.forEach(l => { html += `<div class="hex-line">${l}</div>`; });
+  html += `<div class="hex-english">${esc(primary.english || "")}</div>`;
   html += `</div>`;
+
+  // Line diagram
+  html += `<div class="hex-lines">`;
+  lineSymbols.forEach(l => {
+    const cls = l.isChanging ? "hex-line changing" : "hex-line";
+    html += `<div class="${cls}">${l.symbol}</div>`;
+  });
+  html += `</div>`;
+
+  // Transformed hexagram
   if (transformed) {
-    html += `<div class="hex-arrow">⟶</div>`;
-    html += `<div class="hex-transform">`;
+    html += `<div class="hex-arrow">→</div>`;
+    html += `<div class="hex-block hex-transform">`;
     html += `<div class="hex-unicode">${esc(transformed.unicode || "")}</div>`;
     html += `<div class="hex-name">#${transformed.number} ${esc(transformed.chinese || "")}</div>`;
     html += `<div class="hex-english">${esc(transformed.english || "")}</div>`;
     html += `</div>`;
   }
-  html += `</div>`;
+
+  html += `</div>`; // end iching-hexagram
+
+  if (changing.length > 0) {
+    html += `<div class="changing-lines-note">Changing lines: ${changing.join(", ")}</div>`;
+  }
+
   html += `<pre class="reading-text">${esc(summary)}</pre>`;
   return html;
 }
 
 function renderBaziReading(raw, summary) {
-  return `<pre class="reading-text">${esc(summary)}</pre>`;
+  const eightChar = raw.eight_char || [];
+  const labels = raw.pillar_labels || ["Year", "Month", "Day", "Hour"];
+  const hourEstimated = raw.hour_estimated;
+
+  // Stem / Branch lookup tables (must match backend)
+  const STEMS    = ["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"];
+  const STEM_PY  = ["Jiǎ","Yǐ","Bǐng","Dīng","Wù","Jǐ","Gēng","Xīn","Rén","Guǐ"];
+  const STEM_EL  = ["Yang Wood","Yin Wood","Yang Fire","Yin Fire","Yang Earth",
+                    "Yin Earth","Yang Metal","Yin Metal","Yang Water","Yin Water"];
+  const BRANCHES    = ["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"];
+  const BRANCH_PY   = ["Zǐ","Chǒu","Yín","Mǎo","Chén","Sì","Wǔ","Wèi","Shēn","Yǒu","Xū","Hài"];
+  const BRANCH_EL   = ["Yang Water","Yin Earth","Yang Wood","Yin Wood","Yang Earth","Yin Fire",
+                        "Yang Fire","Yin Earth","Yang Metal","Yin Metal","Yang Earth","Yin Water"];
+
+  function elemClass(el) {
+    if (el.includes("Wood"))  return "elem-wood";
+    if (el.includes("Fire"))  return "elem-fire";
+    if (el.includes("Earth")) return "elem-earth";
+    if (el.includes("Metal")) return "elem-metal";
+    if (el.includes("Water")) return "elem-water";
+    return "";
+  }
+
+  if (eightChar.length < 4) {
+    return `<pre class="reading-text">${esc(summary)}</pre>`;
+  }
+
+  // Day Master
+  const dayMasterEl = STEM_EL[eightChar[2][0]];
+
+  let html = '<div class="bazi-chart">';
+
+  // Column headers
+  html += '<div class="bazi-row bazi-headers">';
+  labels.forEach((label, i) => {
+    const cls = i === 2 ? "bazi-col day-pillar" : "bazi-col";
+    const extra = (i === 3 && hourEstimated) ? '<span class="bazi-estimated">~est</span>' : '';
+    html += `<div class="${cls}"><span class="bazi-label">${esc(label)}${extra}</span></div>`;
+  });
+  html += '</div>';
+
+  // Stem row
+  html += '<div class="bazi-row">';
+  eightChar.forEach(([sIdx], i) => {
+    const el = STEM_EL[sIdx];
+    const cls = i === 2 ? "bazi-col bazi-cell day-pillar" : "bazi-col bazi-cell";
+    html += `<div class="${cls} ${elemClass(el)}">
+      <span class="bazi-char">${esc(STEMS[sIdx])}</span>
+      <span class="bazi-pinyin">${esc(STEM_PY[sIdx])}</span>
+      <span class="bazi-element">${esc(el)}</span>
+    </div>`;
+  });
+  html += '</div>';
+
+  // Branch row
+  html += '<div class="bazi-row">';
+  eightChar.forEach(([, bIdx], i) => {
+    const el = BRANCH_EL[bIdx];
+    const cls = i === 2 ? "bazi-col bazi-cell day-pillar" : "bazi-col bazi-cell";
+    html += `<div class="${cls} ${elemClass(el)}">
+      <span class="bazi-char">${esc(BRANCHES[bIdx])}</span>
+      <span class="bazi-pinyin">${esc(BRANCH_PY[bIdx])}</span>
+      <span class="bazi-element">${esc(el)}</span>
+    </div>`;
+  });
+  html += '</div>';
+
+  html += '</div>'; // end bazi-chart
+
+  // Day Master badge
+  html += `<div class="bazi-day-master ${elemClass(dayMasterEl)}">`;
+  html += `Day Master: <strong>${esc(dayMasterEl)}</strong>`;
+  html += '</div>';
+
+  html += `<pre class="reading-text">${esc(summary)}</pre>`;
+  return html;
 }
 
 function renderReading(system, raw, summary) {
@@ -304,4 +412,16 @@ document.getElementById("btn-end-session").addEventListener("click", async () =>
     showError(err.message);
   }
   document.getElementById("btn-end-session").disabled = true;
+});
+
+// ── New reading ───────────────────────────────────────────────────────────
+document.getElementById("btn-new-reading").addEventListener("click", () => {
+  state.readingRaw = null;
+  state.readingSymbols = [];
+  state.readingSummary = "";
+  state.messages = [];
+  document.getElementById("chat-messages").innerHTML = "";
+  document.getElementById("reading-display").innerHTML = "";
+  document.getElementById("btn-end-session").disabled = false;
+  showScreen("screen-input");
 });

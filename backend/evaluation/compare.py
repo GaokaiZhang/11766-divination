@@ -1,18 +1,27 @@
 """
-Comparison runner: RAG system vs. baseline (simple LLM prompting).
+Three-way comparison: RAG system vs. baseline vs. context-stuffing.
 
 Usage:
     python -m backend.evaluation.compare
 
-Generates a side-by-side evaluation report showing where the full RAG
-pipeline outperforms (or matches) simple prompting. This directly addresses
-the instructor's feedback: "An evaluation against simple LLM prompting will
-go a long way in justifying the project's relevance."
+Conditions:
+  A) RAG: offline computation + selective retrieval + grounded prompting
+  B) Baseline: simple LLM prompting, no external data or computation
+  C) Context-stuffing: offline computation + ALL curated docs in prompt (no retrieval)
+
+Condition C isolates retrieval's contribution from curated data's contribution.
+If C matches A, the value is the data. If A > C, selective retrieval adds value.
+
+Addresses instructor midpoint feedback:
+  - "Evaluate against simple LLM prompting" → A vs B
+  - "Investigate how RAG actually helped" → A vs B vs C
+  - "Context-stuffing baseline could be interesting" → condition C
 """
 import json
 from pathlib import Path
 
 from .baseline import BaselineLLM
+from .context_stuffing import ContextStuffingLLM
 from .judge import LLMJudge
 from ..divination.base import UserBirthInfo, DivinationResult
 from ..divination.tarot import TarotSystem
@@ -56,11 +65,12 @@ BAZI_CASES = [
 def run_tarot_comparison(
     rag_llm: DivinationLLM,
     baseline_llm: BaselineLLM,
+    stuffing_llm: ContextStuffingLLM,
     judge: LLMJudge,
     tarot: TarotSystem,
     seed: int = 42,
 ) -> list[dict]:
-    """Run all Tarot test cases and compare RAG vs baseline."""
+    """Run all Tarot test cases and compare RAG vs baseline vs context-stuffing."""
     results = []
     for i, case in enumerate(TAROT_CASES):
         print(f"  Tarot case {i+1}/{len(TAROT_CASES)}: {case['name']}...")
@@ -77,16 +87,28 @@ def run_tarot_comparison(
             case["name"], case["question"]
         )
 
+        # Context-stuffing: offline computation + ALL docs in prompt
+        response_stuffing = stuffing_llm.generate(
+            "tarot", case["name"], case["question"], reading.summary
+        )
+
         # Judge: individual scores
         scores_rag = judge.evaluate_grounding(reading.summary, response_rag)
         scores_baseline = judge.evaluate_grounding(
             "No structured reading provided (baseline generated its own)",
             response_baseline,
         )
+        scores_stuffing = judge.evaluate_grounding(reading.summary, response_stuffing)
 
-        # Judge: head-to-head
-        comparison = judge.compare_responses(
-            case["question"], response_rag, response_baseline
+        # Judge: head-to-head RAG vs baseline
+        comparison_ab = judge.compare_responses(
+            case["question"], reading.summary,
+            response_rag, response_baseline
+        )
+        # Judge: head-to-head RAG vs context-stuffing
+        comparison_ac = judge.compare_responses(
+            case["question"], reading.summary,
+            response_rag, response_stuffing
         )
 
         results.append({
@@ -95,9 +117,12 @@ def run_tarot_comparison(
             "reading_summary": reading.summary,
             "response_rag": response_rag,
             "response_baseline": response_baseline,
+            "response_stuffing": response_stuffing,
             "scores_rag": scores_rag,
             "scores_baseline": scores_baseline,
-            "comparison": comparison,
+            "scores_stuffing": scores_stuffing,
+            "comparison_rag_vs_baseline": comparison_ab,
+            "comparison_rag_vs_stuffing": comparison_ac,
         })
     return results
 
@@ -105,10 +130,11 @@ def run_tarot_comparison(
 def run_bazi_comparison(
     rag_llm: DivinationLLM,
     baseline_llm: BaselineLLM,
+    stuffing_llm: ContextStuffingLLM,
     judge: LLMJudge,
     bazi: BaziSystem,
 ) -> list[dict]:
-    """Run all Bazi test cases and compare RAG vs baseline."""
+    """Run all Bazi test cases and compare RAG vs baseline vs context-stuffing."""
     results = []
     for i, case in enumerate(BAZI_CASES):
         print(f"  Bazi case {i+1}/{len(BAZI_CASES)}: {case['name']}...")
@@ -134,14 +160,20 @@ def run_bazi_comparison(
             case["name"], case["birth_date"], case["birth_time"], case["question"]
         )
 
+        # Context-stuffing
+        response_stuffing = stuffing_llm.generate(
+            "bazi", case["name"], case["question"], reading.summary
+        )
+
         # Judge: grounding
         scores_rag = judge.evaluate_grounding(reading.summary, response_rag)
         scores_baseline = judge.evaluate_grounding(
             "LLM self-generated Bazi chart (no verified computation)",
             response_baseline,
         )
+        scores_stuffing = judge.evaluate_grounding(reading.summary, response_stuffing)
 
-        # Judge: Bazi accuracy (does the baseline even get the pillars right?)
+        # Judge: Bazi accuracy
         accuracy_baseline = judge.evaluate_bazi_accuracy(
             case["birth_date"], case["birth_time"], response_baseline
         )
@@ -150,8 +182,13 @@ def run_bazi_comparison(
         )
 
         # Judge: head-to-head
-        comparison = judge.compare_responses(
-            case["question"], response_rag, response_baseline
+        comparison_ab = judge.compare_responses(
+            case["question"], reading.summary,
+            response_rag, response_baseline
+        )
+        comparison_ac = judge.compare_responses(
+            case["question"], reading.summary,
+            response_rag, response_stuffing
         )
 
         results.append({
@@ -160,11 +197,14 @@ def run_bazi_comparison(
             "reading_summary": reading.summary,
             "response_rag": response_rag,
             "response_baseline": response_baseline,
+            "response_stuffing": response_stuffing,
             "scores_rag": scores_rag,
             "scores_baseline": scores_baseline,
+            "scores_stuffing": scores_stuffing,
             "accuracy_rag": accuracy_rag,
             "accuracy_baseline": accuracy_baseline,
-            "comparison": comparison,
+            "comparison_rag_vs_baseline": comparison_ab,
+            "comparison_rag_vs_stuffing": comparison_ac,
         })
     return results
 
@@ -179,11 +219,12 @@ ICHING_CASES = [
 def run_iching_comparison(
     rag_llm: DivinationLLM,
     baseline_llm: BaselineLLM,
+    stuffing_llm: ContextStuffingLLM,
     judge: LLMJudge,
     iching: IChingSystem,
     seed: int = 42,
 ) -> list[dict]:
-    """Run all I Ching test cases and compare RAG vs baseline."""
+    """Run all I Ching test cases and compare RAG vs baseline vs context-stuffing."""
     results = []
     for i, case in enumerate(ICHING_CASES):
         print(f"  I Ching case {i+1}/{len(ICHING_CASES)}: {case['name']}...")
@@ -200,16 +241,28 @@ def run_iching_comparison(
             case["name"], case["question"]
         )
 
+        # Context-stuffing: offline computation + ALL hexagram-level docs
+        # (line texts excluded — exceed context window; noted as limitation)
+        response_stuffing = stuffing_llm.generate(
+            "iching", case["name"], case["question"], reading.summary
+        )
+
         # Judge: individual scores
         scores_rag = judge.evaluate_grounding(reading.summary, response_rag)
         scores_baseline = judge.evaluate_grounding(
             "LLM self-generated hexagram (no verified casting or Wilhelm text)",
             response_baseline,
         )
+        scores_stuffing = judge.evaluate_grounding(reading.summary, response_stuffing)
 
         # Judge: head-to-head
-        comparison = judge.compare_responses(
-            case["question"], response_rag, response_baseline
+        comparison_ab = judge.compare_responses(
+            case["question"], reading.summary,
+            response_rag, response_baseline
+        )
+        comparison_ac = judge.compare_responses(
+            case["question"], reading.summary,
+            response_rag, response_stuffing
         )
 
         results.append({
@@ -218,46 +271,75 @@ def run_iching_comparison(
             "reading_summary": reading.summary,
             "response_rag": response_rag,
             "response_baseline": response_baseline,
+            "response_stuffing": response_stuffing,
             "scores_rag": scores_rag,
             "scores_baseline": scores_baseline,
-            "comparison": comparison,
+            "scores_stuffing": scores_stuffing,
+            "comparison_rag_vs_baseline": comparison_ab,
+            "comparison_rag_vs_stuffing": comparison_ac,
         })
     return results
 
 
+def _avg(vals: list) -> float:
+    return sum(vals) / len(vals) if vals else 0.0
+
+
+def _count_wins(results: list[dict], comparison_key: str) -> dict:
+    """Count A/B/tie wins across a list of results for a comparison key."""
+    wins = {"A": 0, "B": 0, "tie": 0}
+    for r in results:
+        comp = r.get(comparison_key, {})
+        w = comp.get("overall_preference", {}).get("winner", "tie")
+        wins[w] = wins.get(w, 0) + 1
+    return wins
+
+
 def print_summary(all_results: list[dict]) -> None:
-    """Print a human-readable summary of the comparison."""
+    """Print a human-readable summary of the three-way comparison."""
     print("\n" + "=" * 70)
-    print("EVALUATION SUMMARY: RAG System vs. Simple LLM Prompting")
+    print("EVALUATION SUMMARY: RAG vs. Baseline vs. Context-Stuffing")
     print("=" * 70)
 
-    # Aggregate scores
-    rag_scores = {"symbol_grounding": [], "specificity": [], "reflection_quality": [], "warmth": [], "overall": []}
-    baseline_scores = {"symbol_grounding": [], "specificity": [], "reflection_quality": [], "warmth": [], "overall": []}
-    comparison_wins = {"A": 0, "B": 0, "tie": 0}
+    # Updated dimensions (v2) — content quality focused
+    dims = ["symbol_accuracy", "source_grounding",
+            "combinatorial_specificity", "reflective_depth", "overall"]
 
+    scores = {
+        "rag": {d: [] for d in dims},
+        "baseline": {d: [] for d in dims},
+        "stuffing": {d: [] for d in dims},
+    }
     for r in all_results:
-        for dim in rag_scores:
-            if dim in r["scores_rag"]:
-                rag_scores[dim].append(r["scores_rag"][dim])
-            if dim in r["scores_baseline"]:
-                baseline_scores[dim].append(r["scores_baseline"][dim])
-        winner = r["comparison"].get("overall_preference", {}).get("winner", "tie")
-        comparison_wins[winner] = comparison_wins.get(winner, 0) + 1
+        for cond, key in [("rag", "scores_rag"), ("baseline", "scores_baseline"),
+                          ("stuffing", "scores_stuffing")]:
+            for dim in dims:
+                if dim in r.get(key, {}):
+                    scores[cond][dim].append(r[key][dim])
 
     print("\n--- Average Scores (1-5) ---")
-    print(f"{'Dimension':<25} {'RAG System':>12} {'Baseline':>12}")
-    print("-" * 50)
-    for dim in rag_scores:
-        avg_rag = sum(rag_scores[dim]) / len(rag_scores[dim]) if rag_scores[dim] else 0
-        avg_base = sum(baseline_scores[dim]) / len(baseline_scores[dim]) if baseline_scores[dim] else 0
-        print(f"{dim:<25} {avg_rag:>12.2f} {avg_base:>12.2f}")
+    print(f"{'Dimension':<30} {'RAG':>8} {'Baseline':>10} {'Stuffing':>10}")
+    print("-" * 60)
+    for dim in dims:
+        print(f"{dim:<30} {_avg(scores['rag'][dim]):>8.2f} "
+              f"{_avg(scores['baseline'][dim]):>10.2f} "
+              f"{_avg(scores['stuffing'][dim]):>10.2f}")
 
-    print(f"\n--- Head-to-Head (LLM Judge Overall Preference) ---")
-    total = sum(comparison_wins.values())
-    print(f"RAG System wins: {comparison_wins.get('A', 0)}/{total}")
-    print(f"Baseline wins:   {comparison_wins.get('B', 0)}/{total}")
-    print(f"Ties:            {comparison_wins.get('tie', 0)}/{total}")
+    # Head-to-head: RAG vs Baseline
+    wins_ab = _count_wins(all_results, "comparison_rag_vs_baseline")
+    total = sum(wins_ab.values())
+    print(f"\n--- RAG vs. Baseline (head-to-head, {total} cases) ---")
+    print(f"  RAG wins:      {wins_ab['A']}")
+    print(f"  Baseline wins: {wins_ab['B']}")
+    print(f"  Ties:          {wins_ab['tie']}")
+
+    # Head-to-head: RAG vs Context-Stuffing
+    wins_ac = _count_wins(all_results, "comparison_rag_vs_stuffing")
+    total_ac = sum(wins_ac.values())
+    print(f"\n--- RAG vs. Context-Stuffing (head-to-head, {total_ac} cases) ---")
+    print(f"  RAG wins:      {wins_ac['A']}")
+    print(f"  Stuffing wins: {wins_ac['B']}")
+    print(f"  Ties:          {wins_ac['tie']}")
 
     # Bazi accuracy
     bazi_results = [r for r in all_results if r["system"] == "bazi"]
@@ -265,27 +347,31 @@ def print_summary(all_results: list[dict]) -> None:
         print(f"\n--- Bazi Computational Accuracy ---")
         rag_correct = sum(1 for r in bazi_results if r.get("accuracy_rag", {}).get("pillars_correct", False))
         base_correct = sum(1 for r in bazi_results if r.get("accuracy_baseline", {}).get("pillars_correct", False))
-        print(f"RAG System (offline computation): {rag_correct}/{len(bazi_results)} pillars correct")
-        print(f"Baseline (LLM-generated):         {base_correct}/{len(bazi_results)} pillars correct")
+        print(f"  RAG (offline computation): {rag_correct}/{len(bazi_results)} pillars correct")
+        print(f"  Baseline (LLM-generated):  {base_correct}/{len(bazi_results)} pillars correct")
 
 
 def main():
+    from dotenv import load_dotenv
+    load_dotenv()
+
     print("Initializing evaluation pipeline...")
     rag_llm = DivinationLLM()
     baseline_llm = BaselineLLM()
+    stuffing_llm = ContextStuffingLLM()
     judge = LLMJudge()
     tarot = TarotSystem()
     bazi = BaziSystem()
     iching = IChingSystem()
 
-    print("\nRunning Tarot comparisons...")
-    tarot_results = run_tarot_comparison(rag_llm, baseline_llm, judge, tarot)
+    print("\nRunning Tarot comparisons (RAG vs Baseline vs Context-Stuffing)...")
+    tarot_results = run_tarot_comparison(rag_llm, baseline_llm, stuffing_llm, judge, tarot)
 
     print("\nRunning Bazi comparisons...")
-    bazi_results = run_bazi_comparison(rag_llm, baseline_llm, judge, bazi)
+    bazi_results = run_bazi_comparison(rag_llm, baseline_llm, stuffing_llm, judge, bazi)
 
     print("\nRunning I Ching comparisons...")
-    iching_results = run_iching_comparison(rag_llm, baseline_llm, judge, iching)
+    iching_results = run_iching_comparison(rag_llm, baseline_llm, stuffing_llm, judge, iching)
 
     all_results = tarot_results + bazi_results + iching_results
 

@@ -5,6 +5,10 @@ Replaces the expensive human evaluation (5 raters x 30 responses) with
 automated metrics that can be run at scale. Addresses instructor feedback
 on both Method (feasibility of human eval) and Engagement (justifying
 RAG vs. simple prompting).
+
+v2: Redesigned evaluation dimensions to focus on content quality where RAG
+demonstrably helps, with explicit justification for each dimension and
+anchor examples to reduce score compression.
 """
 import json
 import os
@@ -13,9 +17,9 @@ from openai import OpenAI
 
 
 GROUNDING_PROMPT = """\
-You are an evaluation judge. Below is a divination reading and an LLM-generated \
-response to that reading. Your task is to assess how well the response is \
-grounded in the specific symbols from the reading.
+You are an evaluation judge for divination reading responses. Below is a \
+divination reading (Tarot, Bazi, or I Ching) and an LLM-generated response. \
+Assess the response's content quality on the dimensions below.
 
 === Reading ===
 {reading}
@@ -23,67 +27,129 @@ grounded in the specific symbols from the reading.
 === Response ===
 {response}
 
-Rate the response on each dimension (1-5 scale). Return ONLY a JSON object:
+Rate each dimension on a 1-5 scale using the anchor examples below. Return \
+ONLY a JSON object.
+
+**SCORING ANCHORS (use these to calibrate — do NOT default to 4):**
+
+symbol_accuracy: Does the response correctly name and interpret the specific \
+symbols drawn?
+  5 = Every symbol's meaning matches traditional sources (e.g., "The Tower \
+represents sudden upheaval" is correct); no fabricated meanings.
+  3 = Most symbols correct, but one meaning is vague or slightly off \
+(e.g., describes The Tower as "a change in perspective" — softer than traditional).
+  1 = Fabricates meanings (e.g., invents card names, confuses hexagram line \
+texts, gets Bazi pillar elements wrong).
+
+source_grounding: Does the response reference or paraphrase specific \
+traditional texts, commentaries, or established meanings?
+  5 = Directly quotes or closely paraphrases traditional sources (e.g., \
+Wilhelm's "The Creative works sublime success" for Hexagram 1, or describes \
+RWS card imagery accurately).
+  3 = Uses general traditional concepts ("this hexagram relates to perseverance") \
+without specific textual reference.
+  1 = No reference to traditional sources; entirely improvised interpretation.
+
+combinatorial_specificity: Does the interpretation account for how multiple \
+symbols interact (card pairs, element clashes, changing lines, pillar \
+relationships)?
+  5 = Rich multi-symbol interpretation (e.g., "The tension between your Tower \
+and Star cards suggests disruption followed by renewal"; or identifies how Day \
+Master element interacts with other pillars).
+  3 = Symbols interpreted individually, sequentially, without interaction.
+  1 = Generic advice that could apply to any symbol combination.
+
+reflective_depth: Does the response connect the reading's specific symbols to \
+the user's question in a way that invites genuine self-examination?
+  5 = Deep personal connection: uses specific symbol meanings to ask a \
+thought-provoking follow-up tied to the user's stated concern.
+  3 = Acknowledges the user's question but follow-up is surface-level or \
+loosely connected to symbols.
+  1 = No connection to user's question; robotic summary of symbols.
+
+overall: Holistic quality — would this be a satisfying, accurate divination \
+reading for a real user seeking self-reflection?
+  5 = Excellent: accurate, grounded in tradition, personally meaningful.
+  3 = Adequate: mostly correct but lacks depth or personal connection.
+  1 = Poor: inaccurate, generic, or unhelpful.
+
+Return:
 {{
-  "symbol_grounding": <1-5>,
-  "symbol_grounding_rationale": "<which specific symbols were/weren't referenced>",
-  "specificity": <1-5>,
-  "specificity_rationale": "<is this specific to THIS reading or generic advice?>",
-  "reflection_quality": <1-5>,
-  "reflection_quality_rationale": "<does the follow-up question prompt genuine reflection?>",
-  "warmth": <1-5>,
-  "warmth_rationale": "<is the tone warm, empathetic, non-prescriptive?>",
+  "symbol_accuracy": <1-5>,
+  "symbol_accuracy_rationale": "<which symbols were correct/incorrect?>",
+  "source_grounding": <1-5>,
+  "source_grounding_rationale": "<what traditional sources were referenced?>",
+  "combinatorial_specificity": <1-5>,
+  "combinatorial_specificity_rationale": "<how were symbol interactions handled?>",
+  "reflective_depth": <1-5>,
+  "reflective_depth_rationale": "<how did the response connect to the user?>",
   "overall": <1-5>
 }}
-
-Scoring guide:
-- symbol_grounding: 5 = names every drawn symbol and engages with its meaning; \
-1 = no symbols mentioned, purely generic
-- specificity: 5 = interpretation could only apply to this exact reading; \
-1 = could be copy-pasted for any reading
-- reflection_quality: 5 = follow-up question is open-ended, personal, and \
-thought-provoking; 1 = no question or a trivial/closed question
-- warmth: 5 = genuinely warm and non-prescriptive; 1 = cold, robotic, or preachy
-- overall: holistic quality score
 """
 
 COMPARISON_PROMPT = """\
-You are an evaluation judge comparing two divination reading responses. \
-Both responses were generated for the same user question and (where applicable) \
-the same birth data. Response A comes from a system that uses structured offline \
-computation and retrieval-augmented generation (RAG) over curated traditional \
-meanings. Response B comes from simple LLM prompting with no external knowledge.
+You are an evaluation judge comparing two divination reading responses. Both \
+were generated for the same user question and reading. You do NOT know which \
+system produced which response — evaluate purely on content quality.
 
 === User Question ===
 {question}
 
-=== Response A (RAG System) ===
+=== Reading Context ===
+{reading}
+
+=== Response A ===
 {response_a}
 
-=== Response B (Baseline / Simple Prompting) ===
+=== Response B ===
 {response_b}
 
-Compare the two responses. Return ONLY a JSON object:
+Compare the two responses on the dimensions below. For each, choose a winner \
+or declare a tie. Focus on factual content quality, not stylistic differences \
+like tone or sentence structure.
+
+**Dimensions and what to look for:**
+
+1. symbol_accuracy: Which response more accurately interprets the specific \
+symbols in the reading? Look for fabricated meanings, confused symbols, or \
+incorrect traditional interpretations.
+
+2. source_grounding: Which response more faithfully references traditional \
+texts and established meanings? Look for direct quotes, accurate paraphrases, \
+or specific traditional concepts vs. vague improvisation.
+
+3. combinatorial_specificity: Which response better interprets how the \
+symbols interact with each other (not just individually)? Look for cross-symbol \
+analysis, element interactions, card pair meanings, or changing-line dynamics.
+
+4. reflective_depth: Which response more meaningfully connects the reading's \
+specific symbols to the user's personal question? Look for symbol-grounded \
+personalization, not generic advice.
+
+5. overall_preference: Overall, which response provides a more accurate, \
+specific, and personally meaningful divination reading?
+
+Return ONLY a JSON object:
 {{
-  "factual_accuracy": {{
+  "symbol_accuracy": {{
     "winner": "A" or "B" or "tie",
-    "rationale": "<which response has more accurate symbolic meanings?>"
+    "rationale": "<specific evidence>"
   }},
-  "symbol_grounding": {{
+  "source_grounding": {{
     "winner": "A" or "B" or "tie",
-    "rationale": "<which response is more grounded in specific symbols?>"
+    "rationale": "<specific evidence>"
   }},
-  "specificity": {{
+  "combinatorial_specificity": {{
     "winner": "A" or "B" or "tie",
-    "rationale": "<which gives a more specific, non-generic interpretation?>"
+    "rationale": "<specific evidence>"
   }},
-  "reflection_depth": {{
+  "reflective_depth": {{
     "winner": "A" or "B" or "tie",
-    "rationale": "<which better promotes genuine self-reflection?>"
+    "rationale": "<specific evidence>"
   }},
   "overall_preference": {{
     "winner": "A" or "B" or "tie",
-    "rationale": "<overall, which response would be more useful to a real user?>"
+    "rationale": "<specific evidence>"
   }}
 }}
 """
@@ -124,11 +190,13 @@ class LLMJudge:
         self.model = model
 
     def _call(self, prompt: str) -> dict:
-        resp = self.client.chat.completions.create(
+        from .retry_util import retry_on_rate_limit
+        resp = retry_on_rate_limit(
+            self.client.chat.completions.create,
             model=self.model,
             messages=[{"role": "user", "content": prompt}],
             temperature=0.0,
-            max_tokens=500,
+            max_tokens=800,
         )
         raw = resp.choices[0].message.content.strip()
         # Strip markdown code fences if present
@@ -137,16 +205,18 @@ class LLMJudge:
         return json.loads(raw)
 
     def evaluate_grounding(self, reading: str, response: str) -> dict:
-        """Score a single response on grounding, specificity, reflection, warmth."""
+        """Score a single response on accuracy, grounding, specificity, depth."""
         prompt = GROUNDING_PROMPT.format(reading=reading, response=response)
         return self._call(prompt)
 
     def compare_responses(
-        self, question: str, response_rag: str, response_baseline: str
+        self, question: str, reading: str,
+        response_rag: str, response_baseline: str
     ) -> dict:
         """Head-to-head comparison: RAG system vs. baseline."""
         prompt = COMPARISON_PROMPT.format(
             question=question,
+            reading=reading,
             response_a=response_rag,
             response_b=response_baseline,
         )

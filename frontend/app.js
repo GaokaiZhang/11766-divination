@@ -10,6 +10,70 @@ const state = {
   messages: [],          // [{role, content}] conversation history
 };
 
+// ── System metadata ────────────────────────────────────────────────────────
+const SYSTEM_META = {
+  tarot:  { icon: "\u2721", label: "Tarot \u2014 Three-Card Spread" },
+  bazi:   { icon: "\u2697", label: "Bazi \u2014 Four Pillars of Destiny" },
+  iching: { icon: "\u2637", label: "I Ching \u2014 Book of Changes" },
+};
+
+// ── Ambient particle background ────────────────────────────────────────────
+(function initBackground() {
+  const canvas = document.getElementById("bg-canvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+  let w, h, particles;
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+
+  function createParticles() {
+    const count = Math.min(Math.floor((w * h) / 18000), 80);
+    particles = Array.from({ length: count }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      r: Math.random() * 1.5 + 0.4,
+      dx: (Math.random() - 0.5) * 0.15,
+      dy: (Math.random() - 0.5) * 0.12,
+      alpha: Math.random() * 0.5 + 0.15,
+      pulse: Math.random() * Math.PI * 2,
+    }));
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, w, h);
+    for (const p of particles) {
+      p.x += p.dx;
+      p.y += p.dy;
+      p.pulse += 0.008;
+      if (p.x < -10) p.x = w + 10;
+      if (p.x > w + 10) p.x = -10;
+      if (p.y < -10) p.y = h + 10;
+      if (p.y > h + 10) p.y = -10;
+
+      const a = p.alpha * (0.6 + 0.4 * Math.sin(p.pulse));
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(155, 127, 212, ${a})`;
+      ctx.fill();
+    }
+    requestAnimationFrame(draw);
+  }
+
+  resize();
+  createParticles();
+  draw();
+  window.addEventListener("resize", () => { resize(); createParticles(); });
+})();
+
+// ── Copy title text for glow effect ────────────────────────────────────────
+document.querySelectorAll(".title-glow").forEach(el => {
+  el.setAttribute("data-text", el.textContent);
+});
+
 // ── Screen helpers ─────────────────────────────────────────────────────────
 function showScreen(id) {
   document.querySelectorAll(".screen").forEach(s => s.classList.remove("active"));
@@ -36,7 +100,7 @@ function appendSystemNote(text) {
 }
 
 function showError(msg) {
-  appendSystemNote(`⚠ ${msg}`);
+  appendSystemNote("\u26A0 " + msg);
 }
 
 // ── API helper with error handling ─────────────────────────────────────────
@@ -90,8 +154,11 @@ updateBirthFieldVisibility();
 document.getElementById("form-input").addEventListener("submit", async (e) => {
   e.preventDefault();
   const btn = e.target.querySelector("button[type=submit]");
+  const btnText = btn.querySelector(".btn-text");
+  const btnLoading = btn.querySelector(".btn-loading");
   btn.disabled = true;
-  btn.textContent = "Reading the signs…";
+  btnText.style.display = "none";
+  btnLoading.style.display = "";
 
   state.userId = getUserId();
   state.system = document.getElementById("input-system").value;
@@ -118,7 +185,8 @@ document.getElementById("form-input").addEventListener("submit", async (e) => {
     alert(err.message);
   } finally {
     btn.disabled = false;
-    btn.textContent = "Begin Reading";
+    btnText.style.display = "";
+    btnLoading.style.display = "none";
   }
 });
 
@@ -126,6 +194,9 @@ document.getElementById("form-input").addEventListener("submit", async (e) => {
 document.getElementById("btn-clarify-submit").addEventListener("click", async () => {
   const answer = document.getElementById("clarify-answer").value.trim();
   if (!answer) return;
+  const btn = document.getElementById("btn-clarify-submit");
+  btn.disabled = true;
+  btn.textContent = "Reading...";
 
   const timeMap = {
     morning: "07:00", dawn: "04:00", afternoon: "13:00",
@@ -150,6 +221,9 @@ document.getElementById("btn-clarify-submit").addEventListener("click", async ()
     initChatScreen(data);
   } catch (err) {
     alert(err.message);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = "Continue";
   }
 });
 
@@ -160,20 +234,20 @@ function renderTarotReading(raw, summary) {
   const cards = raw.cards || [];
   const positions = raw.positions || [];
 
-  // Suit symbols for minor arcana
-  const suitSymbol = { wands: "🜂", cups: "🜄", swords: "🜁", pentacles: "🜃" };
+  // Suit symbols for minor arcana (using widely supported characters)
+  const suitSymbol = { wands: "\u269C", cups: "\u2661", swords: "\u2694", pentacles: "\u2B21" };
   function cardSymbol(name) {
     const lower = name.toLowerCase();
     for (const [suit, sym] of Object.entries(suitSymbol)) {
       if (lower.includes(suit)) return sym;
     }
-    return "✦"; // Major Arcana
+    return "\u2726"; // Major Arcana
   }
 
   let html = '<div class="reading-cards">';
   cards.forEach((card, i) => {
     const orient = card.is_reversed ? "reversed" : "upright";
-    const orientLabel = card.is_reversed ? "↓ Reversed" : "↑ Upright";
+    const orientLabel = card.is_reversed ? "\u2193 Reversed" : "\u2191 Upright";
     const pos = positions[i] || `Card ${i+1}`;
     const sym = cardSymbol(card.name);
     html += `<div class="tarot-card ${orient}">
@@ -199,8 +273,8 @@ function renderIChingReading(raw, summary) {
     const isChanging = changing.includes(pos);
     const yang = (v === 7 || v === 9);
     const symbol = yang
-      ? (isChanging ? "━━━ ○ ━━━" : "━━━━━━━━━")
-      : (isChanging ? "━━━ × ━━━" : "━━━   ━━━");
+      ? (isChanging ? "\u2501\u2501\u2501 \u25CB \u2501\u2501\u2501" : "\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501\u2501")
+      : (isChanging ? "\u2501\u2501\u2501 \u00D7 \u2501\u2501\u2501" : "\u2501\u2501\u2501   \u2501\u2501\u2501");
     return { symbol, isChanging };
   }).reverse();
 
@@ -223,7 +297,7 @@ function renderIChingReading(raw, summary) {
 
   // Transformed hexagram
   if (transformed) {
-    html += `<div class="hex-arrow">→</div>`;
+    html += `<div class="hex-arrow">\u2192</div>`;
     html += `<div class="hex-block hex-transform">`;
     html += `<div class="hex-unicode">${esc(transformed.unicode || "")}</div>`;
     html += `<div class="hex-name">#${transformed.number} ${esc(transformed.chinese || "")}</div>`;
@@ -247,12 +321,12 @@ function renderBaziReading(raw, summary) {
   const hourEstimated = raw.hour_estimated;
 
   // Stem / Branch lookup tables (must match backend)
-  const STEMS    = ["甲","乙","丙","丁","戊","己","庚","辛","壬","癸"];
-  const STEM_PY  = ["Jiǎ","Yǐ","Bǐng","Dīng","Wù","Jǐ","Gēng","Xīn","Rén","Guǐ"];
+  const STEMS    = ["\u7532","\u4E59","\u4E19","\u4E01","\u620A","\u5DF1","\u5E9A","\u8F9B","\u58EC","\u7678"];
+  const STEM_PY  = ["Ji\u01CE","Y\u01D0","B\u01D0ng","D\u012Bng","W\u00F9","J\u01D0","G\u0113ng","X\u012Bn","R\u00E9n","Gu\u01D0"];
   const STEM_EL  = ["Yang Wood","Yin Wood","Yang Fire","Yin Fire","Yang Earth",
                     "Yin Earth","Yang Metal","Yin Metal","Yang Water","Yin Water"];
-  const BRANCHES    = ["子","丑","寅","卯","辰","巳","午","未","申","酉","戌","亥"];
-  const BRANCH_PY   = ["Zǐ","Chǒu","Yín","Mǎo","Chén","Sì","Wǔ","Wèi","Shēn","Yǒu","Xū","Hài"];
+  const BRANCHES    = ["\u5B50","\u4E11","\u5BC5","\u536F","\u8FB0","\u5DF3","\u5348","\u672A","\u7533","\u9149","\u620C","\u4EA5"];
+  const BRANCH_PY   = ["Z\u01D0","Ch\u01D2u","Y\u00EDn","M\u01CEo","Ch\u00E9n","S\u00EC","W\u01D4","W\u00E8i","Sh\u0113n","Y\u01D2u","X\u016B","H\u00E0i"];
   const BRANCH_EL   = ["Yang Water","Yin Earth","Yang Wood","Yin Wood","Yang Earth","Yin Fire",
                         "Yang Fire","Yin Earth","Yang Metal","Yin Metal","Yang Earth","Yin Water"];
 
@@ -336,7 +410,12 @@ function initChatScreen(data) {
   state.readingSummary = data.reading_summary || "";
   state.messages = [];
 
-  // Reconstruct full conversation: user question → assistant reply
+  // Update system icon and label in chat header
+  const meta = SYSTEM_META[state.system] || { icon: "", label: "" };
+  document.getElementById("reading-system-icon").textContent = meta.icon;
+  document.getElementById("chat-system-label").textContent = meta.label;
+
+  // Reconstruct full conversation: user question -> assistant reply
   if (data.initial_question) {
     state.messages.push({ role: "user", content: data.initial_question });
   }
@@ -358,7 +437,7 @@ async function sendMessage() {
   state.messages.push({ role: "user", content: text });
   appendMessage("user", text);
 
-  const indicator = appendMessage("assistant", "…");
+  const indicator = appendMessage("assistant", "\u2026");
   indicator.classList.add("typing");
 
   try {
@@ -411,7 +490,10 @@ document.getElementById("btn-end-session").addEventListener("click", async () =>
   } catch (err) {
     showError(err.message);
   }
-  document.getElementById("btn-end-session").disabled = true;
+  const endBtn = document.getElementById("btn-end-session");
+  endBtn.disabled = true;
+  endBtn.textContent = "\u2713 Session Saved";
+  endBtn.classList.add("btn-session-done");
 });
 
 // ── New reading ───────────────────────────────────────────────────────────

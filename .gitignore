@@ -21,3 +21,6 @@ users.db
 
 # OS
 .DS_Store
+
+# Demo script (personal, not tracked)
+demo.md

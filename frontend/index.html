@@ -4,15 +4,30 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Divination Companion</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
 
+  <!-- Ambient background canvas -->
+  <canvas id="bg-canvas"></canvas>
+
   <!-- ─── Input Screen ──────────────────────────────────── -->
   <div id="screen-input" class="screen active">
-    <div class="card">
-      <h1 class="title">Divination Companion</h1>
+    <div class="card fade-in">
+      <div class="card-ornament top-left"></div>
+      <div class="card-ornament top-right"></div>
+      <div class="card-ornament bottom-left"></div>
+      <div class="card-ornament bottom-right"></div>
+
+      <h1 class="title">
+        <span class="title-glow">Divination Companion</span>
+      </h1>
       <p class="subtitle">A space for reflection, not prediction.</p>
+
+      <div class="divider"><span class="divider-symbol">&#10038;</span></div>
 
       <form id="form-input">
         <label>Your name
@@ -21,9 +36,9 @@
 
         <label>System
           <select id="input-system">
-            <option value="tarot">Tarot (three-card spread)</option>
-            <option value="bazi">Bazi — Four Pillars of Destiny</option>
-            <option value="iching">I Ching — Book of Changes</option>
+            <option value="tarot">Tarot &mdash; Three-Card Spread</option>
+            <option value="bazi">Bazi &mdash; Four Pillars of Destiny</option>
+            <option value="iching">I Ching &mdash; Book of Changes</option>
           </select>
         </label>
 
@@ -41,34 +56,57 @@
 
         <label>What's on your mind? <span class="hint">(optional)</span>
           <textarea id="input-question" rows="3"
-            placeholder="A question, a concern, or leave blank for an open reading…"></textarea>
+            placeholder="A question, a concern, or leave blank for an open reading..."></textarea>
         </label>
 
-        <button type="submit" class="btn-primary">Begin Reading</button>
+        <button type="submit" class="btn-primary">
+          <span class="btn-text">Begin Reading</span>
+          <span class="btn-loading" style="display:none;">
+            <span class="loading-dots">
+              <span></span><span></span><span></span>
+            </span>
+            Reading the signs...
+          </span>
+        </button>
       </form>
     </div>
   </div>
 
   <!-- ─── Clarification Screen ─────────────────────────── -->
   <div id="screen-clarify" class="screen">
-    <div class="card">
+    <div class="card fade-in">
+      <div class="card-ornament top-left"></div>
+      <div class="card-ornament top-right"></div>
+      <div class="card-ornament bottom-left"></div>
+      <div class="card-ornament bottom-right"></div>
+
+      <h2 class="clarify-heading">A moment of clarity...</h2>
+      <div class="divider"><span class="divider-symbol">&#10038;</span></div>
       <p id="clarify-question" class="clarify-text"></p>
-      <input type="text" id="clarify-answer" placeholder="Your answer…" />
+      <input type="text" id="clarify-answer" placeholder="Your answer..." />
       <button id="btn-clarify-submit" class="btn-primary">Continue</button>
     </div>
   </div>
 
   <!-- ─── Reading + Chat Screen ────────────────────────── -->
   <div id="screen-chat" class="screen">
-    <div id="reading-panel">
-      <h2 id="reading-title">Your Reading</h2>
+    <div id="reading-panel" class="fade-in">
+      <div class="reading-header">
+        <span class="reading-header-icon" id="reading-system-icon"></span>
+        <h2 id="reading-title">Your Reading</h2>
+      </div>
+      <div class="reading-divider"></div>
       <div id="reading-display"></div>
     </div>
 
-    <div id="chat-panel">
+    <div id="chat-panel" class="fade-in">
+      <div id="chat-header">
+        <span class="chat-header-title">Divination Companion</span>
+        <span class="chat-header-system" id="chat-system-label"></span>
+      </div>
       <div id="chat-messages"></div>
       <div id="chat-input-row">
-        <textarea id="chat-input" rows="2" placeholder="Respond, or ask a question…"></textarea>
+        <textarea id="chat-input" rows="2" placeholder="Respond, or ask a question..."></textarea>
         <button id="btn-send" class="btn-primary">Send</button>
       </div>
       <div id="chat-actions">

@@ -58,9 +58,8 @@ def _check_output_safety(text: str) -> str:
         if phrase in lower:
             logger.warning("Output guardrail triggered: %s", phrase)
             return text + (
-                "\n\n*Please note: I'm a reflective companion, not a medical or "
-                "mental health professional. For clinical concerns, please consult "
-                "a qualified practitioner.*"
+                "\n\n*For clinical or medical concerns, please consult "
+                "a qualified professional.*"
             )
     return text
 
@@ -193,8 +192,8 @@ class DivinationLLM:
             response = self.client.chat.completions.create(
                 model=self.model,
                 messages=[{"role": "system", "content": system_content}] + trimmed,
-                temperature=0.85,
-                max_tokens=600,
+                temperature=0.8,
+                max_tokens=900,
             )
         except Exception:
             # Retry with backoff for rate limits during evaluation
@@ -204,8 +203,8 @@ class DivinationLLM:
             response = self.client.chat.completions.create(
                 model=self.model,
                 messages=[{"role": "system", "content": system_content}] + trimmed,
-                temperature=0.85,
-                max_tokens=600,
+                temperature=0.8,
+                max_tokens=900,
             )
         elapsed_ms = int((time.time() - start) * 1000)
 

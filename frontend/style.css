@@ -433,6 +433,78 @@ button:disabled {
   50% { opacity: 1; }
 }
 
+/* Streaming caret: faint pulsing block at the tail of the assistant bubble. */
+.message.streaming::after {
+  content: "\25AE";
+  display: inline-block;
+  margin-left: 2px;
+  color: var(--accent);
+  animation: caretBlink .9s steps(2, start) infinite;
+  transform: translateY(-1px);
+}
+@keyframes caretBlink {
+  0%, 100% { opacity: .15; }
+  50%      { opacity: 1; }
+}
+
+/* Markdown rendering inside assistant bubbles. Keep the original paragraph
+   rhythm from white-space: pre-wrap, but opt out of pre-wrap when we have
+   real block elements so paragraph spacing doesn't double up. */
+.message.assistant p,
+.message.assistant ul,
+.message.assistant ol,
+.message.assistant blockquote,
+.message.assistant pre { white-space: normal; }
+.message.assistant p + p { margin-top: .65em; }
+.message.assistant strong { color: var(--accent); font-weight: 600; }
+.message.assistant em     { color: var(--gold); font-style: italic; }
+.message.assistant ul,
+.message.assistant ol     { padding-left: 1.4em; margin: .35em 0; }
+.message.assistant li     { margin: .18em 0; }
+.message.assistant blockquote {
+  margin: .5em 0;
+  padding: .25em .9em;
+  border-left: 3px solid var(--accent2);
+  color: var(--muted);
+  font-style: italic;
+}
+.message.assistant code {
+  background: rgba(155, 127, 212, .1);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 1px 6px;
+  font-family: var(--mono);
+  font-size: .88em;
+}
+.message.assistant pre {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: .6em .8em;
+  margin: .5em 0;
+  overflow-x: auto;
+}
+.message.assistant pre code {
+  background: none;
+  border: none;
+  padding: 0;
+}
+.message.assistant h1,
+.message.assistant h2,
+.message.assistant h3 {
+  font-family: var(--heading);
+  color: var(--accent);
+  font-size: 1.05em;
+  letter-spacing: .04em;
+  margin: .5em 0 .3em;
+}
+.message.assistant hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: .8em 0;
+  opacity: .5;
+}
+
 /* ── Chat input row ───────────────────────────────────── */
 #chat-input-row {
   display: flex;

@@ -6,9 +6,10 @@ An LLM-powered conversational companion that uses symbolic divination (Tarot, Ba
 
 - **Offline divination engines**: Tarot (78-card RWS deck), Bazi (Four Pillars via `cnlunar`), I Ching (three-coin method, 64 hexagrams)
 - **RAG pipeline**: 901-document ChromaDB index with query expansion and metadata filtering (92.1% precision@3)
-- **LLM synthesis**: GPT-4o with grounded prompting, safety guardrails (crisis detection, clinical-overreach prevention)
-- **User profiles**: SQLite-backed persistent profiles with cross-session theme extraction
-- **Evaluation**: Three-way comparison (RAG vs. baseline vs. context-stuffing) using LLM-as-Judge
+- **LLM synthesis**: GPT-4o with grounded prompting, safety guardrails (crisis detection via keyword + OpenAI Moderation API, clinical-overreach prevention), tiktoken-based context budgeting, exponential backoff on transient errors
+- **User profiles**: SQLite-backed persistent profiles with cross-session theme extraction (timestamped, capped at 8 most-recent entries)
+- **Frontend**: Single-page app with streaming token-by-token replies and markdown rendering for assistant messages
+- **Evaluation**: Three-way comparison (RAG vs. baseline vs. context-stuffing) using LLM-as-Judge, plus recall-based RAG component ablation
 
 ## Setup
 
@@ -34,7 +35,7 @@ Open `http://localhost:8000/app/` in your browser.
 
 ```
 backend/
-  app.py                  # FastAPI backend (endpoints: /start, /chat, /end-session)
+  app.py                  # FastAPI backend (endpoints: /start, /chat, /chat/stream, /end-session)
   divination/             # Offline divination engines (tarot, bazi, iching)
   rag/                    # ChromaDB indexer + retriever with query expansion
   llm/                    # LLM client with safety guardrails + prompt templates

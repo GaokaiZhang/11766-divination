@@ -19,6 +19,7 @@ logging.basicConfig(
 
 from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.responses import StreamingResponse
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 from typing import Optional
@@ -147,6 +148,35 @@ def chat(req: ChatRequest):
 
     reply = llm.chat(req.messages, result, profile)
     return {"reply": reply}
+
+
+@app.post("/chat/stream")
+def chat_stream(req: ChatRequest):
+    """Streaming variant of /chat. The response body is UTF-8 plain text
+    containing the assistant reply concatenated as it is generated. The
+    client is expected to read the body incrementally and render as it
+    arrives. The response is identical byte-for-byte to what /chat would
+    have returned in its 'reply' field."""
+    if req.system not in SYSTEMS:
+        raise HTTPException(400, f"Unknown system '{req.system}'")
+
+    profile = store.get_or_create(req.user_id, req.user_id)
+    result = DivinationResult(
+        system=req.system,
+        raw=req.result_raw,
+        summary=req.reading_summary,
+        symbols=req.symbols,
+    )
+
+    def byte_stream():
+        for chunk in llm.chat_stream(req.messages, result, profile):
+            yield chunk.encode("utf-8")
+
+    return StreamingResponse(
+        byte_stream(),
+        media_type="text/plain; charset=utf-8",
+        headers={"X-Accel-Buffering": "no", "Cache-Control": "no-cache"},
+    )
 
 
 @app.post("/end-session")

@@ -286,6 +286,70 @@ class DivinationLLM:
         return reply
 
     # ------------------------------------------------------------------
+    # Chat streaming variant
+    # ------------------------------------------------------------------
+
+    def chat_stream(
+        self,
+        messages: list[dict],
+        result: DivinationResult,
+        user: UserProfile,
+    ):
+        """Yield the assistant reply as a stream of text chunks.
+
+        Safety behavior matches chat():
+          - Input crisis signal → yield the scripted SAFETY_RESPONSE as one
+            chunk and stop (no model call).
+          - Clinical-overreach trigger on the accumulated reply → yield a
+            final disclaimer chunk after the model stream ends.
+
+        The caller is expected to iterate this generator and forward each
+        chunk to the client (e.g., as chunks of an HTTP response body).
+        """
+        if messages:
+            last_user_msg = next(
+                (m["content"] for m in reversed(messages) if m["role"] == "user"), ""
+            )
+            safety = _check_input_safety(last_user_msg, client=self.client)
+            if safety:
+                yield safety
+                return
+
+        system_content = self._build_system_context(result, user)
+        trimmed = _truncate_messages(messages, max_tokens=6000)
+
+        start = time.time()
+        stream = self._call_with_backoff(
+            messages=[{"role": "system", "content": system_content}] + trimmed,
+            temperature=0.8,
+            max_tokens=900,
+            stream=True,
+        )
+
+        collected: list[str] = []
+        for event in stream:
+            choice = event.choices[0] if event.choices else None
+            if choice is None:
+                continue
+            delta = getattr(choice, "delta", None)
+            piece = getattr(delta, "content", None) if delta is not None else None
+            if piece:
+                collected.append(piece)
+                yield piece
+
+        elapsed_ms = int((time.time() - start) * 1000)
+        full_reply = "".join(collected)
+        logger.info(
+            "LLM stream: model=%s, chars=%d, latency=%dms",
+            self.model, len(full_reply), elapsed_ms,
+        )
+
+        # Output safety check runs once on the accumulated reply.
+        checked = _check_output_safety(full_reply)
+        if checked != full_reply:
+            yield checked[len(full_reply):]
+
+    # ------------------------------------------------------------------
     # Theme extraction (structured output with JSON)
     # ------------------------------------------------------------------
 

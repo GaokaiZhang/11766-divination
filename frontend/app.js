@@ -1,4 +1,7 @@
-const API = "http://localhost:8000";
+// Use relative URLs so the frontend works regardless of how the page is
+// reached (localhost, a tunneled URL, a different host). The backend serves
+// the frontend itself, so same-origin fetches always target the right API.
+const API = "";
 
 // ── State ──────────────────────────────────────────────────────────────────
 const state = {
@@ -126,11 +129,32 @@ function showScreen(id) {
   document.getElementById(id).classList.add("active");
 }
 
+// Render a safe markdown subset into an assistant bubble. User messages
+// still use textContent — no rendering trust extended to user input.
+function renderAssistantMarkdown(el, text) {
+  if (typeof marked === "undefined" || typeof DOMPurify === "undefined") {
+    el.textContent = text;
+    return;
+  }
+  const html = marked.parse(text, { breaks: true, gfm: true });
+  el.innerHTML = DOMPurify.sanitize(html, {
+    ALLOWED_TAGS: [
+      "p", "br", "strong", "em", "b", "i", "u", "s", "code", "pre",
+      "blockquote", "ul", "ol", "li", "h1", "h2", "h3", "h4", "hr",
+    ],
+    ALLOWED_ATTR: [],
+  });
+}
+
 function appendMessage(role, content) {
   const container = document.getElementById("chat-messages");
   const div = document.createElement("div");
   div.className = `message ${role}`;
-  div.textContent = content;
+  if (role === "assistant") {
+    renderAssistantMarkdown(div, content);
+  } else {
+    div.textContent = content;
+  }
   container.appendChild(div);
   container.scrollTop = container.scrollHeight;
   return div;
@@ -515,7 +539,7 @@ function initChatScreen(data) {
   showScreen("screen-chat");
 }
 
-// ── Send a chat message ────────────────────────────────────────────────────
+// ── Send a chat message (streaming) ────────────────────────────────────────
 async function sendMessage() {
   const input = document.getElementById("chat-input");
   const btn = document.getElementById("btn-send");
@@ -527,23 +551,67 @@ async function sendMessage() {
   state.messages.push({ role: "user", content: text });
   appendMessage("user", text);
 
-  const indicator = appendMessage("assistant", "\u2026");
-  indicator.classList.add("typing");
+  const bubble = appendMessage("assistant", "\u2026");
+  bubble.classList.add("typing");
+
+  const messagesContainer = document.getElementById("chat-messages");
+  let accumulated = "";
+  let gotFirstChunk = false;
 
   try {
-    const data = await apiFetch("/chat", {
-      user_id:         state.userId,
-      system:          state.system,
-      result_raw:      state.readingRaw,
-      symbols:         state.readingSymbols,
-      reading_summary: state.readingSummary,
-      messages:        state.messages,
+    const res = await fetch(`${API}/chat/stream`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        user_id:         state.userId,
+        system:          state.system,
+        result_raw:      state.readingRaw,
+        symbols:         state.readingSymbols,
+        reading_summary: state.readingSummary,
+        messages:        state.messages,
+      }),
     });
-    indicator.classList.remove("typing");
-    indicator.textContent = data.reply;
-    state.messages.push({ role: "assistant", content: data.reply });
+    if (!res.ok) {
+      const errText = await res.text().catch(() => "");
+      throw new Error(errText || `Server error (${res.status})`);
+    }
+
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+    let scrollPinned = true;
+
+    // Only auto-scroll if user hasn't scrolled up manually.
+    messagesContainer.addEventListener("scroll", () => {
+      const nearBottom =
+        messagesContainer.scrollHeight -
+          messagesContainer.scrollTop -
+          messagesContainer.clientHeight < 60;
+      scrollPinned = nearBottom;
+    }, { passive: true });
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      const chunk = decoder.decode(value, { stream: true });
+      if (!chunk) continue;
+      accumulated += chunk;
+      if (!gotFirstChunk) {
+        gotFirstChunk = true;
+        bubble.classList.remove("typing");
+        bubble.classList.add("streaming");
+      }
+      renderAssistantMarkdown(bubble, accumulated);
+      if (scrollPinned) {
+        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+      }
+    }
+
+    bubble.classList.remove("streaming");
+    // Final render with any trailing buffered bytes
+    renderAssistantMarkdown(bubble, accumulated);
+    state.messages.push({ role: "assistant", content: accumulated });
   } catch (err) {
-    indicator.remove();
+    bubble.remove();
     // Remove the user message that failed from both state and DOM
     state.messages.pop();
     const msgs = document.getElementById("chat-messages");

@@ -461,16 +461,40 @@ button:disabled {
 ::-webkit-scrollbar-thumb:hover { background: var(--muted); }
 
 /* ══════════════════════════════════════════════════════════
-   READING DISPLAY: TAROT CARDS
+   READING DISPLAY: TAROT SPREAD FIGURE
    ══════════════════════════════════════════════════════════ */
-.reading-cards {
+.tarot-spread-figure {
+  margin-bottom: 1rem;
+}
+.spread-label {
+  font-family: var(--heading);
+  font-size: .7rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  text-align: center;
+  margin-bottom: .6rem;
+}
+.spread-arc {
   display: flex;
   gap: .6rem;
-  margin-bottom: 1.2rem;
-  flex-wrap: wrap;
   justify-content: center;
   perspective: 800px;
+  margin-bottom: .5rem;
 }
+.spread-timeline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .4rem;
+  font-family: var(--heading);
+  font-size: .6rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+  opacity: .7;
+}
+.spread-arrow { color: var(--accent); font-size: .75rem; }
 
 .tarot-card {
   flex: 1 1 85px;
@@ -527,7 +551,15 @@ button:disabled {
   font-size: .6rem;
   text-transform: uppercase;
   letter-spacing: .08em;
-  margin-bottom: .4rem;
+  margin-bottom: .2rem;
+}
+.card-numeral {
+  font-family: var(--heading);
+  font-size: .55rem;
+  color: var(--gold);
+  opacity: .5;
+  letter-spacing: .1em;
+  margin-bottom: .2rem;
 }
 .card-arcana {
   font-size: 1.5rem;
@@ -742,6 +774,77 @@ button:disabled {
 .bazi-day-master.elem-earth { background: rgba(212,168,76,.08);  border-color: #6b5a2f; box-shadow: 0 0 12px rgba(212,168,76,.1); }
 .bazi-day-master.elem-metal { background: rgba(196,196,216,.08); border-color: #6a6a7a; box-shadow: 0 0 12px rgba(196,196,216,.1); }
 .bazi-day-master.elem-water { background: rgba(92,184,214,.08);  border-color: #2d6678; box-shadow: 0 0 12px rgba(92,184,214,.1); }
+
+/* ── Bazi Five Elements Cycle Figure ─────────────────── */
+.wuxing-cycle {
+  margin: .8rem 0 1rem;
+  text-align: center;
+  animation: fadeSlideIn .6s ease-out;
+}
+.wuxing-title {
+  font-family: var(--heading);
+  font-size: .65rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: .5rem;
+}
+.wuxing-ring {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin: 0 auto;
+}
+.wuxing-node {
+  position: absolute;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1.5px solid;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform .3s, box-shadow .3s;
+  opacity: .5;
+}
+.wuxing-node.wuxing-active {
+  opacity: 1;
+  box-shadow: 0 0 10px currentColor;
+  transform: scale(1.1);
+}
+/* Pentagon positions: top, top-right, bottom-right, bottom-left, top-left */
+.wuxing-node[style*="--i:0"] { top: 0;   left: 50%; transform: translateX(-50%); }
+.wuxing-node[style*="--i:1"] { top: 28%;  right: 0; }
+.wuxing-node[style*="--i:2"] { bottom: 2%; right: 8%; }
+.wuxing-node[style*="--i:3"] { bottom: 2%; left: 8%; }
+.wuxing-node[style*="--i:4"] { top: 28%;  left: 0; }
+.wuxing-node.wuxing-active[style*="--i:0"] { transform: translateX(-50%) scale(1.1); }
+.wuxing-ch {
+  font-size: .85rem;
+  font-weight: bold;
+  line-height: 1;
+}
+.wuxing-en {
+  font-family: var(--heading);
+  font-size: .38rem;
+  letter-spacing: .03em;
+  opacity: .8;
+}
+.wuxing-arrows {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+.wuxing-gen {
+  stroke: var(--muted);
+  stroke-width: .8;
+  stroke-dasharray: 3 2;
+  opacity: .3;
+}
 
 /* ── Reading text (shared) ───────────────────────────── */
 .reading-text {

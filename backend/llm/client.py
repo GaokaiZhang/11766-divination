@@ -1,9 +1,22 @@
 import json
 import logging
 import os
+import random
 import time
 
-from openai import OpenAI
+from openai import (
+    APIConnectionError,
+    APITimeoutError,
+    InternalServerError,
+    OpenAI,
+    RateLimitError,
+)
+
+try:
+    import tiktoken
+    _TOKENIZER = tiktoken.get_encoding("o200k_base")
+except Exception:  # offline / tiktoken missing — fall back to heuristic
+    _TOKENIZER = None
 
 from ..divination.base import DivinationResult
 from ..rag.retriever import retrieve, retrieve_expanded
@@ -16,6 +29,10 @@ from .prompts import (
 )
 
 logger = logging.getLogger(__name__)
+
+# Errors worth retrying — transient network / capacity issues. Everything else
+# (auth, bad request, content policy) should surface immediately.
+_RETRYABLE = (RateLimitError, APIConnectionError, APITimeoutError, InternalServerError)
 
 # ---------------------------------------------------------------------------
 # Guardrails
@@ -41,13 +58,38 @@ OUTPUT_GUARDRAIL_PHRASES = [
 ]
 
 
-def _check_input_safety(text: str) -> str | None:
-    """Return a safety response if the input contains crisis signals, else None."""
+def _check_input_safety(text: str, client: "OpenAI | None" = None) -> str | None:
+    """Return a safety response if the input contains crisis signals, else None.
+
+    Two-layer check:
+    1. Keyword match — fast, deterministic, catches the unambiguous cases.
+    2. OpenAI Moderation API — catches paraphrased / non-English / obfuscated
+       crisis language that the keyword list misses.
+
+    The Moderation call fails open: if the API errors, we still honor the
+    keyword layer rather than blocking the request.
+    """
     lower = text.lower()
     for trigger in SAFETY_TRIGGERS:
         if trigger in lower:
-            logger.warning("Safety trigger detected in user input")
+            logger.warning("Safety trigger (keyword) in user input")
             return SAFETY_RESPONSE
+
+    if client is None:
+        return None
+    try:
+        mod = client.moderations.create(
+            model="omni-moderation-latest", input=text
+        )
+        result = mod.results[0]
+        categories = result.categories
+        if getattr(categories, "self_harm", False) or getattr(
+            categories, "self_harm_intent", False
+        ) or getattr(categories, "self_harm_instructions", False):
+            logger.warning("Safety trigger (moderation API) in user input")
+            return SAFETY_RESPONSE
+    except Exception as e:
+        logger.debug("Moderation API call failed, continuing: %s", e)
     return None
 
 
@@ -69,7 +111,17 @@ def _check_output_safety(text: str) -> str:
 # ---------------------------------------------------------------------------
 
 def _estimate_tokens(text: str) -> int:
-    """Rough token count (~4 chars per token for English)."""
+    """Token count via tiktoken when available; otherwise char-based heuristic.
+
+    The heuristic (4 chars/token) understates Chinese/Japanese by ~2x, so users
+    with multilingual histories silently blew the context budget. tiktoken's
+    o200k_base encoding matches GPT-4o's real tokenizer for both languages.
+    """
+    if _TOKENIZER is not None:
+        try:
+            return len(_TOKENIZER.encode(text))
+        except Exception:
+            pass
     return len(text) // 4
 
 
@@ -117,9 +169,29 @@ class DivinationLLM:
         self,
         api_key: str | None = None,
         model: str = "gpt-4o",
+        max_retries: int = 4,
     ):
         self.client = OpenAI(api_key=api_key or os.environ["OPENAI_API_KEY"])
         self.model = model
+        self.max_retries = max_retries
+
+    def _call_with_backoff(self, **kwargs):
+        """Chat completion with exponential backoff + jitter on transient errors."""
+        delay = 1.0
+        last_err: Exception | None = None
+        for attempt in range(self.max_retries):
+            try:
+                return self.client.chat.completions.create(model=self.model, **kwargs)
+            except _RETRYABLE as e:
+                last_err = e
+                sleep_s = delay + random.uniform(0, 0.5)
+                logger.warning(
+                    "OpenAI transient error (%s), retry %d/%d in %.1fs",
+                    type(e).__name__, attempt + 1, self.max_retries, sleep_s,
+                )
+                time.sleep(sleep_s)
+                delay = min(delay * 2, 16.0)
+        raise last_err if last_err else RuntimeError("retry loop exhausted")
 
     # ------------------------------------------------------------------
     # Context assembly (with expanded RAG retrieval)
@@ -173,12 +245,12 @@ class DivinationLLM:
         result: DivinationResult,
         user: UserProfile,
     ) -> str:
-        # Input safety check on the latest user message
+        # Input safety check on the latest user message (keyword + moderation)
         if messages:
             last_user_msg = next(
                 (m["content"] for m in reversed(messages) if m["role"] == "user"), ""
             )
-            safety = _check_input_safety(last_user_msg)
+            safety = _check_input_safety(last_user_msg, client=self.client)
             if safety:
                 return safety
 
@@ -188,24 +260,11 @@ class DivinationLLM:
         trimmed = _truncate_messages(messages, max_tokens=6000)
 
         start = time.time()
-        try:
-            response = self.client.chat.completions.create(
-                model=self.model,
-                messages=[{"role": "system", "content": system_content}] + trimmed,
-                temperature=0.8,
-                max_tokens=900,
-            )
-        except Exception:
-            # Retry with backoff for rate limits during evaluation
-            import time as _time
-            from openai import RateLimitError
-            _time.sleep(3)
-            response = self.client.chat.completions.create(
-                model=self.model,
-                messages=[{"role": "system", "content": system_content}] + trimmed,
-                temperature=0.8,
-                max_tokens=900,
-            )
+        response = self._call_with_backoff(
+            messages=[{"role": "system", "content": system_content}] + trimmed,
+            temperature=0.8,
+            max_tokens=900,
+        )
         elapsed_ms = int((time.time() - start) * 1000)
 
         reply = response.choices[0].message.content
@@ -236,8 +295,7 @@ class DivinationLLM:
             f"{m['role'].upper()}: {m['content']}" for m in conversation
         )
         start = time.time()
-        response = self.client.chat.completions.create(
-            model=self.model,
+        response = self._call_with_backoff(
             messages=[
                 {
                     "role": "user",

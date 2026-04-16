@@ -7,6 +7,11 @@ Start from the 11766-divination/ directory with:
 import logging
 import os
 
+from dotenv import load_dotenv
+
+# Load .env from the project root before any submodule reads os.environ.
+load_dotenv()
+
 logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s [%(name)s] %(levelname)s: %(message)s",

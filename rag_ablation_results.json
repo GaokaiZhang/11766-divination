@@ -1,0 +1,42 @@
+{
+  "tarot": {
+    "3": {
+      "full": 0.5889,
+      "no_expansion": 0.5889,
+      "no_metadata_filter": 0.5889,
+      "no_system_filter": 0.5889
+    },
+    "5": {
+      "full": 0.6222,
+      "no_expansion": 0.6333,
+      "no_metadata_filter": 0.6222,
+      "no_system_filter": 0.6333
+    },
+    "8": {
+      "full": 0.6333,
+      "no_expansion": 0.6333,
+      "no_metadata_filter": 0.6333,
+      "no_system_filter": 0.6333
+    }
+  },
+  "iching": {
+    "3": {
+      "full": 0.1389,
+      "no_expansion": 0.1222,
+      "no_metadata_filter": 0.1111,
+      "no_system_filter": 0.1222
+    },
+    "5": {
+      "full": 0.2111,
+      "no_expansion": 0.1833,
+      "no_metadata_filter": 0.1667,
+      "no_system_filter": 0.1833
+    },
+    "8": {
+      "full": 0.3667,
+      "no_expansion": 0.2222,
+      "no_metadata_filter": 0.2222,
+      "no_system_filter": 0.2222
+    }
+  }
+}

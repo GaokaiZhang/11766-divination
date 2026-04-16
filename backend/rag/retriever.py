@@ -131,13 +131,14 @@ def retrieve(
         where=where,
     )
 
+    ids = results["ids"][0]
     docs = results["documents"][0]
     metas = results["metadatas"][0]
     distances = results.get("distances", [[]])[0]
 
     output = []
-    for d, m, dist in zip(docs, metas, distances or [0.0] * len(docs)):
-        output.append({"text": d, "meta": m, "distance": dist})
+    for id_, d, m, dist in zip(ids, docs, metas, distances or [0.0] * len(docs)):
+        output.append({"id": id_, "text": d, "meta": m, "distance": dist})
 
     logger.debug("retrieve(query=%r, system=%s) → %d docs", query[:60], system, len(output))
     return output

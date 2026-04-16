@@ -17,13 +17,35 @@ const SYSTEM_META = {
   iching: { icon: "\u2637", label: "I Ching \u2014 Book of Changes" },
 };
 
-// ── Ambient particle background ────────────────────────────────────────────
-(function initBackground() {
+// ── Ambient particle background (theme-aware) ─────────────────────────────
+const BG = (function initBackground() {
   const canvas = document.getElementById("bg-canvas");
-  if (!canvas) return;
+  if (!canvas) return { setTheme() {} };
   const ctx = canvas.getContext("2d");
-  if (!ctx) return;
+  if (!ctx) return { setTheme() {} };
   let w, h, particles;
+
+  // Theme palettes: each has particle colors + optional floating glyphs
+  const THEMES = {
+    default: {
+      colors: ["155,127,212", "107,184,196", "201,168,76"],
+      glyphs: ["\u2726", "\u2727", "\u00B7"],
+    },
+    tarot: {
+      colors: ["155,127,212", "180,140,255", "120,100,200"],
+      glyphs: ["\u2721", "\u2726", "\u2605", "\u263D", "\u2600"],
+    },
+    bazi: {
+      colors: ["110,207,122", "232,116,97", "212,168,76", "196,196,216", "92,184,214"],
+      glyphs: ["\u6728", "\u706B", "\u571F", "\u91D1", "\u6C34"],
+    },
+    iching: {
+      colors: ["107,184,196", "140,200,210", "80,160,180"],
+      glyphs: ["\u2630", "\u2631", "\u2632", "\u2633", "\u2634", "\u2635", "\u2636", "\u2637"],
+    },
+  };
+
+  let currentTheme = "default";
 
   function resize() {
     w = canvas.width = window.innerWidth;
@@ -31,16 +53,25 @@ const SYSTEM_META = {
   }
 
   function createParticles() {
+    const theme = THEMES[currentTheme] || THEMES.default;
     const count = Math.min(Math.floor((w * h) / 18000), 80);
-    particles = Array.from({ length: count }, () => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      r: Math.random() * 1.5 + 0.4,
-      dx: (Math.random() - 0.5) * 0.15,
-      dy: (Math.random() - 0.5) * 0.12,
-      alpha: Math.random() * 0.5 + 0.15,
-      pulse: Math.random() * Math.PI * 2,
-    }));
+    particles = Array.from({ length: count }, () => {
+      const colorStr = theme.colors[Math.floor(Math.random() * theme.colors.length)];
+      // ~15% of particles are glyphs
+      const isGlyph = Math.random() < 0.15 && theme.glyphs.length > 0;
+      return {
+        x: Math.random() * w,
+        y: Math.random() * h,
+        r: isGlyph ? 0 : (Math.random() * 1.5 + 0.4),
+        dx: (Math.random() - 0.5) * 0.15,
+        dy: (Math.random() - 0.5) * 0.12,
+        alpha: Math.random() * 0.4 + 0.1,
+        pulse: Math.random() * Math.PI * 2,
+        color: colorStr,
+        glyph: isGlyph ? theme.glyphs[Math.floor(Math.random() * theme.glyphs.length)] : null,
+        fontSize: isGlyph ? (Math.random() * 12 + 10) : 0,
+      };
+    });
   }
 
   function draw() {
@@ -55,10 +86,16 @@ const SYSTEM_META = {
       if (p.y > h + 10) p.y = -10;
 
       const a = p.alpha * (0.6 + 0.4 * Math.sin(p.pulse));
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(155, 127, 212, ${a})`;
-      ctx.fill();
+      if (p.glyph) {
+        ctx.font = `${p.fontSize}px serif`;
+        ctx.fillStyle = `rgba(${p.color}, ${a * 0.7})`;
+        ctx.fillText(p.glyph, p.x, p.y);
+      } else {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${p.color}, ${a})`;
+        ctx.fill();
+      }
     }
     requestAnimationFrame(draw);
   }
@@ -67,6 +104,15 @@ const SYSTEM_META = {
   createParticles();
   draw();
   window.addEventListener("resize", () => { resize(); createParticles(); });
+
+  return {
+    setTheme(name) {
+      if (name !== currentTheme) {
+        currentTheme = name;
+        createParticles();
+      }
+    }
+  };
 })();
 
 // ── Copy title text for glow effect ────────────────────────────────────────
@@ -140,11 +186,8 @@ const birthFields = document.getElementById("birth-fields");
 
 function updateBirthFieldVisibility() {
   const system = systemSelect.value;
-  if (system === "bazi") {
-    birthFields.style.display = "";
-  } else {
-    birthFields.style.display = "none";
-  }
+  birthFields.style.display = system === "bazi" ? "" : "none";
+  BG.setTheme(system);
 }
 
 systemSelect.addEventListener("change", updateBirthFieldVisibility);
@@ -234,7 +277,7 @@ function renderTarotReading(raw, summary) {
   const cards = raw.cards || [];
   const positions = raw.positions || [];
 
-  // Suit symbols for minor arcana (using widely supported characters)
+  // Suit symbols for minor arcana
   const suitSymbol = { wands: "\u269C", cups: "\u2661", swords: "\u2694", pentacles: "\u2B21" };
   function cardSymbol(name) {
     const lower = name.toLowerCase();
@@ -244,20 +287,27 @@ function renderTarotReading(raw, summary) {
     return "\u2726"; // Major Arcana
   }
 
-  let html = '<div class="reading-cards">';
+  // Tarot spread figure: three-card arc with decorative frame
+  let html = '<div class="tarot-spread-figure">';
+  html += '<div class="spread-label">Three-Card Spread</div>';
+  html += '<div class="spread-arc">';
   cards.forEach((card, i) => {
     const orient = card.is_reversed ? "reversed" : "upright";
     const orientLabel = card.is_reversed ? "\u2193 Reversed" : "\u2191 Upright";
     const pos = positions[i] || `Card ${i+1}`;
     const sym = cardSymbol(card.name);
+    const romanNum = ["\u2160", "\u2161", "\u2162"][i] || "";
     html += `<div class="tarot-card ${orient}">
       <div class="card-position">${esc(pos)}</div>
+      <div class="card-numeral">${romanNum}</div>
       <div class="card-arcana">${sym}</div>
       <div class="card-name">${esc(card.name)}</div>
       <div class="card-orient">${orientLabel}</div>
     </div>`;
   });
-  html += '</div>';
+  html += '</div>'; // spread-arc
+  html += '<div class="spread-timeline"><span>Past</span><span class="spread-arrow">\u2192</span><span>Present</span><span class="spread-arrow">\u2192</span><span>Future</span></div>';
+  html += '</div>'; // tarot-spread-figure
   html += `<pre class="reading-text">${esc(summary)}</pre>`;
   return html;
 }
@@ -390,6 +440,45 @@ function renderBaziReading(raw, summary) {
   html += `Day Master: <strong>${esc(dayMasterEl)}</strong>`;
   html += '</div>';
 
+  // Five Elements cycle figure — highlight active elements
+  const activeElements = new Set();
+  eightChar.forEach(([sIdx, bIdx]) => {
+    const sEl = STEM_EL[sIdx].split(" ")[1];  // "Yang Wood" -> "Wood"
+    const bEl = BRANCH_EL[bIdx].split(" ")[1];
+    activeElements.add(sEl);
+    activeElements.add(bEl);
+  });
+  const elems = [
+    { name: "Wood",  ch: "\u6728", cls: "elem-wood" },
+    { name: "Fire",  ch: "\u706B", cls: "elem-fire" },
+    { name: "Earth", ch: "\u571F", cls: "elem-earth" },
+    { name: "Metal", ch: "\u91D1", cls: "elem-metal" },
+    { name: "Water", ch: "\u6C34", cls: "elem-water" },
+  ];
+  html += '<div class="wuxing-cycle">';
+  html += '<div class="wuxing-title">Five Elements</div>';
+  html += '<div class="wuxing-ring">';
+  elems.forEach((el, i) => {
+    const active = activeElements.has(el.name) ? "wuxing-active" : "";
+    html += `<div class="wuxing-node ${el.cls} ${active}" style="--i:${i}">`;
+    html += `<span class="wuxing-ch">${el.ch}</span>`;
+    html += `<span class="wuxing-en">${el.name}</span>`;
+    html += `</div>`;
+  });
+  // Generating cycle arrows (Wood->Fire->Earth->Metal->Water->Wood)
+  html += '<svg class="wuxing-arrows" viewBox="0 0 120 120">';
+  // Generating cycle (outer, clockwise): green dashed
+  const pts = [[60,8],[108,42],[93,105],[27,105],[12,42]]; // pentagon vertices
+  for (let i = 0; i < 5; i++) {
+    const [x1, y1] = pts[i];
+    const [x2, y2] = pts[(i + 1) % 5];
+    const mx = (x1 + x2) / 2, my = (y1 + y2) / 2;
+    html += `<line x1="${x1}" y1="${y1}" x2="${mx}" y2="${my}" class="wuxing-gen"/>`;
+  }
+  html += '</svg>';
+  html += '</div>'; // wuxing-ring
+  html += '</div>'; // wuxing-cycle
+
   html += `<pre class="reading-text">${esc(summary)}</pre>`;
   return html;
 }
@@ -410,10 +499,11 @@ function initChatScreen(data) {
   state.readingSummary = data.reading_summary || "";
   state.messages = [];
 
-  // Update system icon and label in chat header
+  // Update system icon, label, and background theme
   const meta = SYSTEM_META[state.system] || { icon: "", label: "" };
   document.getElementById("reading-system-icon").textContent = meta.icon;
   document.getElementById("chat-system-label").textContent = meta.label;
+  BG.setTheme(state.system);
 
   // Reconstruct full conversation: user question -> assistant reply
   if (data.initial_question) {
@@ -505,5 +595,8 @@ document.getElementById("btn-new-reading").addEventListener("click", () => {
   document.getElementById("chat-messages").innerHTML = "";
   document.getElementById("reading-display").innerHTML = "";
   document.getElementById("btn-end-session").disabled = false;
+  document.getElementById("btn-end-session").textContent = "End Session";
+  document.getElementById("btn-end-session").classList.remove("btn-session-done");
+  BG.setTheme(document.getElementById("input-system").value);
   showScreen("screen-input");
 });

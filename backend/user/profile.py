@@ -6,6 +6,29 @@ from pathlib import Path
 
 DB_PATH = Path(__file__).parent.parent.parent / "users.db"
 
+# Cap on how many themes we keep per user. Older entries are dropped so the
+# system prompt does not get flooded as sessions accumulate.
+MAX_THEMES = 8
+
+
+def _themes_blob_to_texts(raw: str) -> list[str]:
+    """Load the themes JSON blob and return plain theme texts, newest first.
+
+    Handles two on-disk formats:
+      - legacy: list[str]
+      - current: list[{text, ts, count}]
+    """
+    parsed = json.loads(raw or "[]")
+    if not parsed:
+        return []
+    if isinstance(parsed[0], str):
+        return list(parsed)
+    normalized = [
+        p for p in parsed if isinstance(p, dict) and p.get("text")
+    ]
+    normalized.sort(key=lambda p: p.get("ts", ""), reverse=True)
+    return [p["text"] for p in normalized]
+
 
 @dataclass
 class UserProfile:
@@ -58,38 +81,74 @@ class ProfileStore:
                 return UserProfile(
                     user_id=row[0], name=row[1],
                     birth_date=row[2], birth_time=row[3], birth_location=row[4],
-                    themes=json.loads(row[5] or "[]"), created_at=row[6],
+                    themes=_themes_blob_to_texts(row[5])[:MAX_THEMES],
+                    created_at=row[6],
                 )
             profile = UserProfile(user_id=user_id, name=name)
-            self._upsert(conn, profile)
+            self._upsert(conn, profile, initial=True)
             return profile
 
     def update(self, profile: UserProfile) -> None:
+        """Update non-theme profile fields. Themes are managed via add_theme."""
         with sqlite3.connect(self.db_path) as conn:
-            self._upsert(conn, profile)
+            self._upsert(conn, profile, initial=False)
 
-    def _upsert(self, conn: sqlite3.Connection, p: UserProfile) -> None:
+    def _upsert(
+        self, conn: sqlite3.Connection, p: UserProfile, *, initial: bool
+    ) -> None:
+        # Never clobber the themes column from this path — add_theme owns it.
+        # On initial insert the column starts as an empty JSON list.
+        if initial:
+            themes_blob = "[]"
+        else:
+            row = conn.execute(
+                "SELECT themes FROM users WHERE user_id = ?", (p.user_id,)
+            ).fetchone()
+            themes_blob = row[0] if row else "[]"
         conn.execute(
             "INSERT OR REPLACE INTO users VALUES (?,?,?,?,?,?,?)",
             (p.user_id, p.name, p.birth_date, p.birth_time,
-             p.birth_location, json.dumps(p.themes), p.created_at),
+             p.birth_location, themes_blob, p.created_at),
         )
 
     def add_theme(self, user_id: str, theme: str) -> None:
-        """Append a newly extracted theme to the user's profile (no duplicates)."""
+        """Record a theme with a timestamp, refresh recency on duplicates,
+        and keep only the most recent MAX_THEMES entries.
+
+        Storage format: list of {text, ts, count} dicts, sorted newest first.
+        """
+        now = datetime.now().isoformat()
         with sqlite3.connect(self.db_path) as conn:
             row = conn.execute(
                 "SELECT themes FROM users WHERE user_id = ?", (user_id,)
             ).fetchone()
             if not row:
                 return
-            themes: list[str] = json.loads(row[0] or "[]")
-            if theme not in themes:
-                themes.append(theme)
-                conn.execute(
-                    "UPDATE users SET themes = ? WHERE user_id = ?",
-                    (json.dumps(themes), user_id),
-                )
+
+            raw = json.loads(row[0] or "[]")
+            # Migrate legacy list[str] entries in-place.
+            entries: list[dict] = [
+                {"text": t, "ts": now, "count": 1} if isinstance(t, str) else t
+                for t in raw
+                if isinstance(t, (str, dict))
+            ]
+
+            existing = next(
+                (e for e in entries if e.get("text") == theme), None
+            )
+            if existing:
+                existing["ts"] = now
+                existing["count"] = int(existing.get("count", 1)) + 1
+            else:
+                entries.append({"text": theme, "ts": now, "count": 1})
+
+            entries.sort(key=lambda e: e.get("ts", ""), reverse=True)
+            entries = entries[:MAX_THEMES]
+
+            conn.execute(
+                "UPDATE users SET themes = ? WHERE user_id = ?",
+                (json.dumps(entries), user_id),
+            )
 
     # ------------------------------------------------------------------
     # Reading history

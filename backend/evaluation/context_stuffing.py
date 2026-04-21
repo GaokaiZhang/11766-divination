@@ -6,11 +6,12 @@ If context-stuffing matches RAG performance, then the value comes from having
 curated data, not from retrieval selecting the right docs. If RAG outperforms
 context-stuffing, then selective retrieval adds value beyond data curation.
 
-Token budgets (GPT-4o 128k context):
-  - Tarot:  176 docs, ~12k tokens — fits fully
-  - Bazi:    85 docs, ~10k tokens — fits fully
-  - I Ching: 640 docs, ~106k tokens — too large; we stuff 256 hexagram-level
-    docs (~48k tokens) excluding individual line texts. This is a known
+Token budgets (measured with tiktoken o200k_base):
+  - Tarot:  176 docs, ~10k tokens — fits fully
+  - Bazi:    85 docs, ~9k tokens — fits fully
+  - I Ching: 640 docs, ~95k tokens — full set exceeds the API's 30k TPM
+    rate limit. We stuff only the 64 overview docs (~7k tokens) and drop
+    the symbolic, judgment, image, and line docs. This is a known
     limitation noted in the evaluation.
 """
 import os
